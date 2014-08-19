@@ -1,7 +1,9 @@
 /** @jsx React.DOM */
 
 var React = window.React = require('react'),
-    Timer = require("./ui/Timer");
+    Timer = require("./ui/Timer"),
+    Album = require("./ui/Album"),
+    Star = require("./ui/Star"),
     mountNode = document.getElementById("app");
 
 var TodoList = React.createClass({
@@ -41,5 +43,6 @@ var TodoApp = React.createClass({
 });
 
 
-React.renderComponent(<TodoApp />, mountNode);
+// React.renderComponent(<TodoApp />, mountNode);
+React.renderComponent(<Album />, mountNode);
 
