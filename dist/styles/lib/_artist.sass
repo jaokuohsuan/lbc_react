@@ -19,8 +19,7 @@ $select-color: #0094e0
   transition-timing-function: ease
 
   &.slide-in
-    transform: translateX(0)
-    
+    transform: translateX(0)    
     //+animation(ui-show $slide-time)
 
   &.slide-out
@@ -70,7 +69,7 @@ $select-color: #0094e0
     z-index: 10
   .unlock &:after
     content: "\f09c"
-    // //+animation(fade-out 1s ease 3s)
+    // +animation(fade-out 1s ease 3s)
 
   input 
     border: 1px solid #acacac
@@ -149,10 +148,6 @@ $select-color: #0094e0
     transition-duration: $slide-time
     transition-timing-function: ease
     transition-delay: 0.2s
-    -webkit-transition-property: bottom
-    -webkit-transition-duration: $slide-time
-    -webkit-transition-timing-function: ease
-    -webkit-transition-delay: 0.2s
     
     //bottom: calc(87.5% - 1.7rem)
 

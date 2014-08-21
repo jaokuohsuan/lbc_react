@@ -2,8 +2,10 @@
 
 var React = window.React = require('react'),
     Timer = require("./ui/Timer"),
-    Album = require("./ui/Album"),
-    Star = require("./ui/Star"),
+    StarWrap = require("./ui/StarWrap"),
+    VideoWrap = require("./ui/VideoWrap"),
+    AlbumWrap = require("./ui/AlbumWrap"),
+    SearchWrap = require("./ui/SearchWrap"),
     mountNode = document.getElementById("app");
 
 var TodoList = React.createClass({
@@ -43,6 +45,23 @@ var TodoApp = React.createClass({
 });
 
 
+
+var LbcApp=React.createClass({
+
+  render: function(){
+    return(
+      <div>
+        <SearchWrap />
+        <StarWrap />
+        <AlbumWrap />
+        <VideoWrap />
+      </div>
+    );
+  }
+
+});
+
+
 // React.renderComponent(<TodoApp />, mountNode);
-React.renderComponent(<Album />, mountNode);
+React.renderComponent(<LbcApp />, mountNode);
 
