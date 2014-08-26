@@ -23,6 +23,20 @@ gulp.task('styles', function () {
 });
 
 
+gulp.task('compass', function () {
+    return gulp.src('app/styles/**/*.{scss,sass}')
+        .pipe($.plumber())
+        .pipe($.compass({
+            css: 'dist/styles',
+            sass: 'app/styles',
+            image: 'app/images',
+            require: ['susy']
+          }))
+        .pipe($.autoprefixer('last 1 version'))
+        .pipe(gulp.dest('dist/styles'))
+        .pipe($.size())
+        .pipe($.connect.reload());
+});
 
 
 
@@ -119,7 +133,7 @@ gulp.task('watch', ['html', 'bundle', 'connect'], function () {
 
     
     // Watch .scss files
-    gulp.watch('app/styles/**/*.scss', ['styles']);
+    gulp.watch('app/styles/**/*.{sass,scss}', ['compass']);
     
 
 

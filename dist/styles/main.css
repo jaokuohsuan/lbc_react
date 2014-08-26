@@ -1,9 +1,8 @@
-
+@charset "UTF-8";
 @-webkit-keyframes fade-in {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
@@ -12,7 +11,6 @@
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
@@ -21,7 +19,6 @@
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
@@ -30,7 +27,6 @@
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
@@ -39,7 +35,6 @@
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
@@ -48,7 +43,6 @@
   0% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
@@ -58,7 +52,6 @@
     -webkit-transform: translateX(9.2rem);
             transform: translateX(9.2rem);
   }
-
   100% {
     -webkit-transform: translateX(-1.1rem);
             transform: translateX(-1.1rem);
@@ -68,7 +61,6 @@
   0% {
     transform: translateX(9.2rem);
   }
-
   100% {
     transform: translateX(-1.1rem);
   }
@@ -78,7 +70,6 @@
     -webkit-transform: translateX(9.2rem);
             transform: translateX(9.2rem);
   }
-
   100% {
     -webkit-transform: translateX(-1.1rem);
             transform: translateX(-1.1rem);
@@ -89,7 +80,6 @@
     -webkit-transform: translateX(-1.1rem);
             transform: translateX(-1.1rem);
   }
-
   100% {
     -webkit-transform: translateX(9.2rem);
             transform: translateX(9.2rem);
@@ -99,7 +89,6 @@
   0% {
     transform: translateX(-1.1rem);
   }
-
   100% {
     transform: translateX(9.2rem);
   }
@@ -109,7 +98,6 @@
     -webkit-transform: translateX(-1.1rem);
             transform: translateX(-1.1rem);
   }
-
   100% {
     -webkit-transform: translateX(9.2rem);
             transform: translateX(9.2rem);
@@ -120,7 +108,6 @@
     -webkit-transform: translateX(1.5rem);
             transform: translateX(1.5rem);
   }
-
   100% {
     -webkit-transform: translateX(-12rem);
             transform: translateX(-12rem);
@@ -130,7 +117,6 @@
   0% {
     transform: translateX(1.5rem);
   }
-
   100% {
     transform: translateX(-12rem);
   }
@@ -140,7 +126,6 @@
     -webkit-transform: translateX(1.5rem);
             transform: translateX(1.5rem);
   }
-
   100% {
     -webkit-transform: translateX(-12rem);
             transform: translateX(-12rem);
@@ -151,7 +136,6 @@
     -webkit-transform: translateX(-12rem);
             transform: translateX(-12rem);
   }
-
   100% {
     -webkit-transform: translateX(1.5rem);
             transform: translateX(1.5rem);
@@ -161,7 +145,6 @@
   0% {
     transform: translateX(-12rem);
   }
-
   100% {
     transform: translateX(1.5rem);
   }
@@ -171,10 +154,65 @@
     -webkit-transform: translateX(-12rem);
             transform: translateX(-12rem);
   }
-
   100% {
     -webkit-transform: translateX(1.5rem);
             transform: translateX(1.5rem);
+  }
+}
+@-webkit-keyframes ui-hide {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-60rem);
+            transform: translateX(-60rem);
+  }
+}
+@-ms-keyframes ui-hide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-60rem);
+  }
+}
+@keyframes ui-hide {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-60rem);
+            transform: translateX(-60rem);
+  }
+}
+@-webkit-keyframes ui-show {
+  0% {
+    -webkit-transform: translateX(-60rem);
+            transform: translateX(-60rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@-ms-keyframes ui-show {
+  0% {
+    transform: translateX(-60rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes ui-show {
+  0% {
+    -webkit-transform: translateX(-60rem);
+            transform: translateX(-60rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
 }
 @-webkit-keyframes album-playing {
@@ -182,7 +220,6 @@
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 0.1875rem rgba(0, 148, 224, 0);
   }
-
   100% {
     background-color: rgba(0, 148, 224, 0.8);
     box-shadow: 0 0 0.1875rem #0094e0;
@@ -193,7 +230,6 @@
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 0.1875rem rgba(0, 148, 224, 0);
   }
-
   100% {
     background-color: rgba(0, 148, 224, 0.8);
     box-shadow: 0 0 0.1875rem #0094e0;
@@ -204,7 +240,6 @@
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 0.1875rem rgba(0, 148, 224, 0);
   }
-
   100% {
     background-color: rgba(0, 148, 224, 0.8);
     box-shadow: 0 0 0.1875rem #0094e0;
@@ -215,12 +250,10 @@
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
-
   10%, 30%, 50%, 70%, 90% {
     -webkit-transform: translateX(-0.5rem);
             transform: translateX(-0.5rem);
   }
-
   20%, 40%, 60%, 80% {
     -webkit-transform: translateX(0.5rem);
             transform: translateX(0.5rem);
@@ -230,11 +263,9 @@
   0%,100% {
     transform: translateX(0);
   }
-
   10%, 30%, 50%, 70%, 90% {
     transform: translateX(-0.5rem);
   }
-
   20%, 40%, 60%, 80% {
     transform: translateX(0.5rem);
   }
@@ -244,23 +275,23 @@
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
-
   10%, 30%, 50%, 70%, 90% {
     -webkit-transform: translateX(-0.5rem);
             transform: translateX(-0.5rem);
   }
-
   20%, 40%, 60%, 80% {
     -webkit-transform: translateX(0.5rem);
             transform: translateX(0.5rem);
   }
 }
+/* line 85, ../../app/styles/lib/_animate.sass */
 .no-animation {
   -webkit-animation: none;
           animation: none;
 }
 
 /*store layer */
+/* line 11, ../../app/styles/lib/_artist.sass */
 #ui-layer {
   width: 23%;
   height: calc(100% -  7.1rem);
@@ -271,10 +302,12 @@
   transition-duration: 0.5s;
   transition-timing-function: ease;
 }
+/* line 21, ../../app/styles/lib/_artist.sass */
 #ui-layer.slide-in {
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
+/* line 25, ../../app/styles/lib/_artist.sass */
 #ui-layer.slide-out {
   -webkit-transform: translateX(-60rem);
           transform: translateX(-60rem);
@@ -282,6 +315,7 @@
   -webkit-transition-delay: 1.3s;
 }
 
+/* line 34, ../../app/styles/lib/_artist.sass */
 #artist-catalogue-wrap {
   margin-left: 2rem;
   margin-top: 4.5rem;
@@ -290,6 +324,7 @@
   float: left;
 }
 
+/* line 41, ../../app/styles/lib/_artist.sass */
 .artist-search {
   position: absolute;
   transition-property: -webkit-transform;
@@ -297,60 +332,69 @@
   transition-duration: 0.5s;
   transition-timing-function: ease;
 }
+/* line 48, ../../app/styles/lib/_artist.sass */
 .artist-search:before {
-  content: "\f002";
+  content: "";
   display: block;
   position: absolute;
   font-size: 0.63rem;
   font-family: "listenicon";
   -webkit-font-smoothing: antialiased;
-  color: #777777;
+  color: #777;
   left: 0.45rem;
-  top: calc(50% - 0.5rem);
+  top: calc( 50% - 0.5rem);
   z-index: 10;
 }
+/* line 59, ../../app/styles/lib/_artist.sass */
 .artist-search:after {
-  content: "\f023";
+  content: "";
   display: block;
   position: absolute;
   font-size: 0.9rem;
   font-family: "listenicon";
   -webkit-font-smoothing: antialiased;
-  color: #777777;
+  color: #777;
   right: 0.7rem;
-  top: calc(50% - 0.5rem);
+  top: calc( 50% - 0.5rem);
   z-index: 10;
 }
+/* line 70, ../../app/styles/lib/_artist.sass */
 .unlock .artist-search:after {
-  content: "\f09c";
+  content: "";
 }
+/* line 74, ../../app/styles/lib/_artist.sass */
 .artist-search input {
   border: 1px solid #acacac;
   height: 1.1875rem;
   font-size: 0.7rem;
   padding: 0.125rem 0.5rem 0.0625rem 1.5rem;
   width: 8rem;
-  color: #999999;
+  color: #999;
   border-radius: 20rem;
 }
+/* line 82, ../../app/styles/lib/_artist.sass */
 .artist-search input:focus {
   outline: 0;
 }
+/* line 84, ../../app/styles/lib/_artist.sass */
 .show-artist .artist-search {
   -webkit-transform: translateX(0rem);
           transform: translateX(0rem);
 }
+/* line 86, ../../app/styles/lib/_artist.sass */
 .show-album .artist-search {
   -webkit-transform: translateX(-13rem);
           transform: translateX(-13rem);
 }
 
+/* line 88, ../../app/styles/lib/_artist.sass */
 .search-wrap {
   position: relative;
 }
 
+/* line 90, ../../app/styles/lib/_artist.sass */
 .back-but {
-  color: white;
+  color: #fff;
   width: 2.5rem;
   height: 2.5rem;
   background-color: rgba(255, 255, 255, 0.2);
@@ -361,29 +405,34 @@
   text-indent: -9999px;
   display: none;
 }
+/* line 101, ../../app/styles/lib/_artist.sass */
 .back-but:hover {
   background-color: rgba(255, 255, 255, 0.65);
 }
+/* line 105, ../../app/styles/lib/_artist.sass */
 .back-but:before {
   font-size: 1.2rem;
-  color: white;
-  content: "\f060";
+  color: #fff;
+  content: "";
   display: block;
   position: absolute;
   font-family: "listenicon";
   -webkit-font-smoothing: antialiased;
   left: 0.6rem;
-  top: calc(50% - 0.8rem);
+  top: calc( 50% - 0.8rem);
   z-index: 10;
   text-indent: 0;
 }
+/* line 118, ../../app/styles/lib/_artist.sass */
 .show-artist .back-but {
   display: none;
 }
+/* line 120, ../../app/styles/lib/_artist.sass */
 .show-album .back-but {
   display: inline-block;
 }
 
+/* line 126, ../../app/styles/lib/_artist.sass */
 .artist-wrap {
   position: relative;
   -webkit-transform: translateX(1.5rem);
@@ -391,6 +440,7 @@
   top: 1.52rem;
 }
 
+/* line 135, ../../app/styles/lib/_artist.sass */
 .album-line {
   width: 1px;
   background-color: rgba(255, 255, 255, 0.3);
@@ -398,6 +448,7 @@
   top: 0;
   bottom: 0;
 }
+/* line 141, ../../app/styles/lib/_artist.sass */
 .album-line .line-inner {
   background-color: rgba(0, 148, 224, 0.6);
   box-shadow: 0 0 0.1875rem rgba(0, 148, 224, 0.4);
@@ -410,6 +461,7 @@
   transition-delay: 0.2s;
 }
 
+/* line 154, ../../app/styles/lib/_artist.sass */
 .artist-catalogue-list {
   position: relative;
   z-index: 20;
@@ -419,37 +471,46 @@
   margin-top: 0;
   left: -2rem;
 }
+/* line 176, ../../app/styles/lib/_artist.sass */
 .artist-catalogue-list .artist-item .artist-but {
   display: block;
   text-decoration: none;
 }
 
+/* line 181, ../../app/styles/lib/_artist.sass */
 .artist-item {
   padding-left: 2rem;
   list-style: none;
-  color: white;
+  color: #fff;
   position: relative;
 }
+/* line 187, ../../app/styles/lib/_artist.sass */
 .artist-item:hover .artist-but {
-  color: white;
+  color: #fff;
   text-shadow: 0 0 0.35rem rgba(255, 255, 255, 0.9), 0 0 0.8rem rgba(255, 255, 255, 0.7);
 }
+/* line 190, ../../app/styles/lib/_artist.sass */
 .artist-item:hover .artist-remove {
   display: block;
 }
+/* line 192, ../../app/styles/lib/_artist.sass */
 .artist-item:first-child {
   padding-top: 1rem;
 }
+/* line 194, ../../app/styles/lib/_artist.sass */
 .artist-item:first-child .artist-remove {
   top: 3.3rem;
 }
+/* line 197, ../../app/styles/lib/_artist.sass */
 .artist-item:last-child .artist-but {
   padding-bottom: 0;
 }
+/* line 201, ../../app/styles/lib/_artist.sass */
 .artist-item.is-playing .artist-but {
-  color: #0094e0;
+  color: #0094E0;
 }
 
+/* line 204, ../../app/styles/lib/_artist.sass */
 .artist-remove {
   position: absolute;
   color: white;
@@ -462,11 +523,13 @@
   transition-duration: 0.5s;
   transition-timing-function: ease;
 }
+/* line 217, ../../app/styles/lib/_artist.sass */
 .artist-remove:hover {
   color: #32ffff;
   text-shadow: 0 0 0.1875rem #0094e0;
 }
 
+/* line 221, ../../app/styles/lib/_artist.sass */
 .artist-but {
   cursor: pointer;
   text-decoration: none;
@@ -474,29 +537,35 @@
   display: block;
   margin-bottom: 0.5rem;
   padding: 0.7rem 0 0.5rem 0.3rem;
-  color: white;
+  color: #fff;
 }
+/* line 232, ../../app/styles/lib/_artist.sass */
 .artist-but:hover .artist-name {
-  color: #0094e0;
+  color: #0094E0;
 }
+/* line 235, ../../app/styles/lib/_artist.sass */
 .artist-but.is-playing .artist-name {
-  color: #0094e0;
+  color: #0094E0;
 }
+/* line 237, ../../app/styles/lib/_artist.sass */
 .artist-but.is-playing .artist-thumb:before {
   border-color: rgba(0, 148, 224, 0.25);
 }
 
+/* line 243, ../../app/styles/lib/_artist.sass */
 .artist-thumb {
   width: 5rem;
   height: 5rem;
   overflow: hidden;
   border-radius: 50%;
   display: inline-block;
+  background-size: cover;
   box-sizing: border-box;
   position: relative;
   z-index: 20;
-  background-color: black;
+  background-color: #000;
 }
+/* line 256, ../../app/styles/lib/_artist.sass */
 .artist-thumb:before {
   content: "";
   position: absolute;
@@ -507,17 +576,21 @@
   box-sizing: border-box;
   border-radius: 50%;
 }
+/* line 266, ../../app/styles/lib/_artist.sass */
 .artist-thumb:hover:before {
   border-color: rgba(255, 225, 225, 0.6);
 }
+/* line 272, ../../app/styles/lib/_artist.sass */
 .artist-thumb img {
   height: 100%;
 }
+/* line 276, ../../app/styles/lib/_artist.sass */
 .artist-thumb.is-tall img {
   width: 100%;
   height: auto;
 }
 
+/* line 281, ../../app/styles/lib/_artist.sass */
 .artist-name {
   text-decoration: none;
   display: inline-block;
@@ -526,6 +599,7 @@
   text-shadow: 0 0 1px black;
 }
 
+/* line 289, ../../app/styles/lib/_artist.sass */
 .artist-line {
   background: rgba(255, 255, 255, 0.25);
   position: absolute;
@@ -537,6 +611,7 @@
   z-index: 10;
 }
 
+/* line 299, ../../app/styles/lib/_artist.sass */
 #album-item-wrap {
   top: 7.8rem;
   left: 0;
@@ -548,6 +623,7 @@
   overflow: hidden;
   opacity: 0;
 }
+/* line 329, ../../app/styles/lib/_artist.sass */
 #album-item-wrap:after {
   content: "";
   display: block;
@@ -559,6 +635,7 @@
   background-color: rgba(255, 255, 255, 0.3);
   z-index: 10;
 }
+/* line 339, ../../app/styles/lib/_artist.sass */
 #album-item-wrap:before {
   content: "";
   display: block;
@@ -577,10 +654,12 @@
   -webkit-transition-duration: 0.3s;
   -webkit-transition-timing-function: ease-in;
 }
+/* line 356, ../../app/styles/lib/_artist.sass */
 #album-item-wrap.is-playing:before {
   width: 5rem;
 }
 
+/* line 360, ../../app/styles/lib/_artist.sass */
 .album-scroll {
   padding-left: 5rem;
   padding-top: 2rem;
@@ -588,21 +667,26 @@
   position: relative;
 }
 
+/* line 366, ../../app/styles/lib/_artist.sass */
 .album-item-list {
   list-style: none;
   margin: 0 0 0 1em;
   padding: 0 1rem 0 0;
   display: block;
+  transition: top 0.4s 0;
 }
 
+/* line 376, ../../app/styles/lib/_artist.sass */
 .album-item {
   display: block;
+  box-sizing: border-box;
   width: 100%;
   margin-bottom: 2rem;
   margin-right: 1.1%;
   padding: 0.5rem;
   position: relative;
 }
+/* line 388, ../../app/styles/lib/_artist.sass */
 .album-item:after {
   content: "";
   display: block;
@@ -614,34 +698,45 @@
   background-color: rgba(255, 255, 255, 0.2);
   z-index: 10;
 }
+/* line 399, ../../app/styles/lib/_artist.sass */
 .album-item:last-child {
   margin-bottom: 0;
 }
+/* line 406, ../../app/styles/lib/_artist.sass */
 .album-item.is-playing .album-title {
   color: rgba(0, 148, 224, 0.9);
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.6), 0 0 0.125rem rgba(0, 148, 224, 0.3);
+  text-shadow: 0 0 0.1875rem rgba(0, 148, 224, 0.5);
+}
+/* line 411, ../../app/styles/lib/_artist.sass */
+.album-item.is-playing .album-time {
+  color: #0094e0;
 }
 
+/* line 418, ../../app/styles/lib/_artist.sass */
 .album-but {
   text-decoration: none;
   display: block;
   position: relative;
 }
 
+/* line 423, ../../app/styles/lib/_artist.sass */
 .album-thumb {
   width: 5rem;
   height: 5rem;
   overflow: hidden;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
 }
+/* line 429, ../../app/styles/lib/_artist.sass */
 .album-thumb img {
   width: 100%;
 }
 
+/* line 431, ../../app/styles/lib/_artist.sass */
 .album-title {
   font-weight: 200;
   display: block;
-  color: white;
+  color: #FFF;
   padding-top: 0.2rem;
   margin-top: -1.85rem;
   font-size: 1.05rem;
@@ -649,19 +744,31 @@
   top: 0;
   white-space: nowrap;
   max-width: 25.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
+/* line 444, ../../app/styles/lib/_artist.sass */
 .album-time {
   position: absolute;
   left: -3rem;
-  color: white;
+  color: #fff;
   font-weight: 200;
   top: -1rem;
   font-size: 0.7rem;
   -webkit-transform: scale(0.9);
-  color: #cccccc;
+  color: #ccc;
 }
 
+/* line 460, ../../app/styles/lib/_artist.sass */
 .is-hide {
   display: none !important;
+}
+
+/* line 464, ../../app/styles/lib/_artist.sass */
+body {
+  background-color: #000;
 }

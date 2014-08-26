@@ -47,6 +47,90 @@ var TodoApp = React.createClass({displayName: 'TodoApp',
 });
 
 
+var ARTISTALBUMS=[
+  {
+    artistName: 'Stars',
+    artistImage: "http://userserve-ak.last.fm/serve/126/132927.jpg",
+    albumList: [
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png", albumName: "Set Yourself on Fire"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",albumName: "The Five Ghosts"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",albumName: "The North"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",albumName: "In Our Bedroom After the War"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",albumName: "Heart"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",albumName: "Do You Trust Your Friends?"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",albumName: "Nightsongs"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",albumName: "The Bedroom Demos"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",albumName: "The Comeback EP"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",albumName: "A Lot of Little Lies for the Sake of One Big Truth"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",albumName: "Dead Child Stars"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",albumName: "Your Ex-Lover Is Dead"},
+      {albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",albumName: "Elevator Love Letter"},
+      {albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",albumName: "Ageless Beauty"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",albumName: "Morning Becomes Eclectic"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",albumName: "It's Alchemy!"}
+    ]
+  },
+  {
+    artistName: 'Muse',
+    artistImage: "http://userserve-ak.last.fm/serve/126/35147389.jpg",
+    albumList: [
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png", albumName: "Set Yourself on Fire"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",albumName: "The Five Ghosts"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",albumName: "The North"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",albumName: "In Our Bedroom After the War"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",albumName: "Heart"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",albumName: "Do You Trust Your Friends?"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",albumName: "Nightsongs"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",albumName: "The Bedroom Demos"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",albumName: "The Comeback EP"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",albumName: "A Lot of Little Lies for the Sake of One Big Truth"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",albumName: "Dead Child Stars"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",albumName: "Your Ex-Lover Is Dead"},
+      {albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",albumName: "Elevator Love Letter"},
+      {albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",albumName: "Ageless Beauty"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",albumName: "Morning Becomes Eclectic"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",albumName: "It's Alchemy!"}
+    ]
+  },
+  {
+    artistName: 'Garbage',
+    artistImage: "http://userserve-ak.last.fm/serve/126/81384615.png",
+    albumList: [
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png", albumName: "Set Yourself on Fire"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",albumName: "The Five Ghosts"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",albumName: "The North"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",albumName: "In Our Bedroom After the War"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",albumName: "Heart"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",albumName: "Do You Trust Your Friends?"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",albumName: "Nightsongs"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",albumName: "The Bedroom Demos"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",albumName: "The Comeback EP"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",albumName: "A Lot of Little Lies for the Sake of One Big Truth"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",albumName: "Dead Child Stars"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",albumName: "Your Ex-Lover Is Dead"},
+      {albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",albumName: "Elevator Love Letter"},
+      {albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",albumName: "Ageless Beauty"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",albumName: "Morning Becomes Eclectic"},
+      {albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",albumName: "It's Alchemy!"}
+    ]
+  }  
+
+
+];
+
+
+
+
+var PRODUCTS = [
+  {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
+  {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
+  {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
+  {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
+  {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
+  {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+];
+
+
 
 var LbcApp=React.createClass({displayName: 'LbcApp',
 
@@ -54,8 +138,8 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
     return(
       React.DOM.div(null, 
         SearchWrap(null), 
-        StarWrap(null), 
-        AlbumWrap(null), 
+        StarWrap({artistAlbums: this.props.artistAlbums}), 
+        AlbumWrap({artistAlbums: this.props.artistAlbums}), 
         VideoWrap(null)
       )
     );
@@ -65,10 +149,10 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
 
 
 // React.renderComponent(<TodoApp />, mountNode);
-React.renderComponent(LbcApp(null), mountNode);
+React.renderComponent(LbcApp({artistAlbums: ARTISTALBUMS}), mountNode);
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a4b82f46.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_aa43bfde.js","/")
 },{"./ui/AlbumWrap":3,"./ui/SearchWrap":4,"./ui/StarWrap":6,"./ui/Timer":7,"./ui/VideoWrap":8,"buffer":9,"ngpmcQ":12,"react":147}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
@@ -171,12 +255,22 @@ module.exports=AlbumWrap;
  var Star=React.createClass({displayName: 'Star',
 
  	render: function(){
+
+ 		//style for artist background-image
+
+ 		var starbgStyle={
+ 			'background-image': 'url('+this.props.artistImage+')'
+ 		};
+ 		
+
  		return(
  			
 	 			React.DOM.div({className: "artist-but"}, 
-					React.DOM.figure({className: "artist-thumb"}, " "), 
+					React.DOM.figure({className: "artist-thumb", style: starbgStyle}
+						
+					), 
 
-					React.DOM.span({className: "artist-name"}, " artistName "), 
+					React.DOM.span({className: "artist-name"}, " ", this.props.artistName, " "), 
 					React.DOM.a({href: "#", className: "artist-remove"}, 
 						React.DOM.i({className: "icon-remove"})
 					)
@@ -202,16 +296,24 @@ var StarWrap=React.createClass({displayName: 'StarWrap',
 
 
 	render:function(){
+		console.log('props',this.props)
+		var artists = [];
+        var lastArtist = null;
+        this.props.artistAlbums.forEach(function(artistAlbum) {
+           
+            artists.push(
+            	React.DOM.li({class: "artist-item"}, 
+            	Star({artistName: artistAlbum.artistName, artistImage: artistAlbum.artistImage})
+            	)
+            );
+           
+           
+        }.bind(this));
 		return(
 			React.DOM.div({className: "artist-wrap"}, 
 			React.DOM.div({className: "artist-line"}), 
 			React.DOM.ul({className: "artist-catalogue-list"}, 
-				React.DOM.li({class: "artist-item"}, 
-	               
-					Star(null)
-					
-				   
-				)
+				artists				
 			)
 		)
 		)
