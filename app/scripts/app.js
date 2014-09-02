@@ -1,11 +1,12 @@
 /** @jsx React.DOM */
 
 var React = window.React = require('react'),
-    Timer = require("./ui/Timer"),
-    StarWrap = require("./ui/StarWrap"),
-    VideoWrap = require("./ui/VideoWrap"),
-    AlbumWrap = require("./ui/AlbumWrap"),
-    SearchWrap = require("./ui/SearchWrap"),
+    Timer = require("./components/Timer"),
+    StarWrap = require("./components/StarWrap"),
+    VideoWrap = require("./components/VideoWrap"),
+    AlbumWrap = require("./components/AlbumWrap"),
+    SearchWrap = require("./components/SearchWrap"),
+    AppActions = require("./actions/AppActions"),
     mountNode = document.getElementById("app");
 
 var TodoList = React.createClass({

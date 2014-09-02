@@ -2,9 +2,14 @@
  * @jsx React.DOM
  */
 
-var Star = require("./Star");
-
+var Star = require("./Star"),
+	AppActions = require("../actions/AppActions");
 var StarWrap=React.createClass({
+	handleClick: function(){
+		// AppAction.
+
+
+	},
 
 
 	render:function(){
