@@ -1,9 +1,14 @@
 /**
  * @jsx React.DOM
  */
-
+var AppActions = require("../actions/AppActions");
 
  var Star=React.createClass({
+ 	handleClick: function(){
+		AppActions.clickArtist(this.props.artistName);
+
+
+	},
 
  	render: function(){
 
@@ -16,7 +21,7 @@
 
  		return(
  			
-	 			<div className="artist-but">
+	 			<div className="artist-but" onClick={this.handleClick}>
 					<figure className="artist-thumb" style={starbgStyle}>
 						
 					</figure>

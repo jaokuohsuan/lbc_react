@@ -5,12 +5,7 @@
 var Star = require("./Star"),
 	AppActions = require("../actions/AppActions");
 var StarWrap=React.createClass({
-	handleClick: function(){
-		// AppAction.
-
-
-	},
-
+	
 
 	render:function(){
 		console.log('props',this.props)
