@@ -764,7 +764,7 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
 React.renderComponent(LbcApp({artistAlbums: ARTISTALBUMS}), mountNode);
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_908d6c2c.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_9cc6c101.js","/")
 },{"./actions/AppActions":1,"./components/AlbumWrap":3,"./components/SearchWrap":4,"./components/StarWrap":6,"./components/Timer":7,"./components/VideoWrap":8,"buffer":14,"ngpmcQ":17,"react":152}],14:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /*!
