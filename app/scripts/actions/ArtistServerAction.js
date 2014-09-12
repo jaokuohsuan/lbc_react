@@ -7,10 +7,10 @@ var ActionTypes = AppConstants.ActionTypes;
 module.exports={
 
 
-  receiveArtist: function(rawMessages) {
+  receiveArtists: function(rawArtists) {
     AppDispatcher.handleServerAction({
-      type: ActionTypes.RECEIVE_ARTIST,
-      rawMessages: rawMessages
+      type: AppConstants.RECEIVE_ARTIST,
+      rawArtists: rawArtists
     });
   }
 

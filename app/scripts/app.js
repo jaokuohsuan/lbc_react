@@ -7,7 +7,11 @@ var React = window.React = require('react'),
     AlbumWrap = require("./components/AlbumWrap"),
     SearchWrap = require("./components/SearchWrap"),
     AppActions = require("./actions/AppActions"),
+    ArtistAPIUtils = require('./utils/ArtistAPIUtils'),
     mountNode = document.getElementById("app");
+
+
+ArtistAPIUtils.getArtists('Stars');  //first run
 
 var TodoList = React.createClass({
   render: function() {
