@@ -3,7 +3,7 @@
  */
 var AppActions = require("../actions/AppActions");
 
- var Star=React.createClass({
+ var Artist=React.createClass({
  	handleClick: function(){
 		AppActions.clickArtist(this.props.artistName);
 
@@ -14,7 +14,7 @@ var AppActions = require("../actions/AppActions");
 
  		//style for artist background-image
 
- 		var starbgStyle={
+ 		var artistbgStyle={
  			'background-image': 'url('+this.props.artistImage+')'
  		};
  		
@@ -22,7 +22,7 @@ var AppActions = require("../actions/AppActions");
  		return(
  			
 	 			<div className="artist-but" onClick={this.handleClick}>
-					<figure className="artist-thumb" style={starbgStyle}>
+					<figure className="artist-thumb" style={artistbgStyle}>
 						
 					</figure>
 
@@ -38,4 +38,4 @@ var AppActions = require("../actions/AppActions");
 
  });
 
-module.exports=Star;
+module.exports=Artist;

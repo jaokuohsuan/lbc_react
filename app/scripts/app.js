@@ -2,7 +2,7 @@
 
 var React = window.React = require('react'),
     Timer = require("./components/Timer"),
-    StarWrap = require("./components/StarWrap"),
+    ArtistWrap = require("./components/ArtistWrap"),
     VideoWrap = require("./components/VideoWrap"),
     AlbumWrap = require("./components/AlbumWrap"),
     SearchWrap = require("./components/SearchWrap"),
@@ -11,7 +11,7 @@ var React = window.React = require('react'),
     mountNode = document.getElementById("app");
 
 
-ArtistAPIUtils.getArtists('Stars');  //first run
+ArtistAPIUtils.getAlbums('Stars');  //first run
 
 var TodoList = React.createClass({
   render: function() {
@@ -141,7 +141,7 @@ var LbcApp=React.createClass({
     return(
       <div>
         <SearchWrap />
-        <StarWrap artistAlbums={this.props.artistAlbums} />
+        <ArtistWrap artistAlbums={this.props.artistAlbums} />
         <AlbumWrap artistAlbums={this.props.artistAlbums} />
         <VideoWrap />
       </div>

@@ -124,6 +124,92 @@ module.exports=AlbumWrap;
 /**
  * @jsx React.DOM
  */
+var AppActions = require("../actions/AppActions");
+
+ var Artist=React.createClass({displayName: 'Artist',
+ 	handleClick: function(){
+		AppActions.clickArtist(this.props.artistName);
+
+
+	},
+
+ 	render: function(){
+
+ 		//style for artist background-image
+
+ 		var artistbgStyle={
+ 			'background-image': 'url('+this.props.artistImage+')'
+ 		};
+ 		
+
+ 		return(
+ 			
+	 			React.DOM.div({className: "artist-but", onClick: this.handleClick}, 
+					React.DOM.figure({className: "artist-thumb", style: artistbgStyle}
+						
+					), 
+
+					React.DOM.span({className: "artist-name"}, " ", this.props.artistName, " "), 
+					React.DOM.a({href: "#", className: "artist-remove"}, 
+						React.DOM.i({className: "icon-remove"})
+					)
+				)
+			
+ 		)
+
+ 	}
+
+ });
+
+module.exports=Artist;
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\Artist.js","/components")
+},{"../actions/AppActions":1,"buffer":16,"ngpmcQ":19}],6:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+/**
+ * @jsx React.DOM
+ */
+
+var Artist = require("./Artist"),
+	AppActions = require("../actions/AppActions");
+var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
+	
+
+	render:function(){
+		console.log('props',this.props)
+		var artists = [];
+        var lastArtist = null;
+        this.props.artistAlbums.forEach(function(artistAlbum) {
+           
+            artists.push(
+            	React.DOM.li({class: "artist-item"}, 
+            	Artist({artistName: artistAlbum.artistName, artistImage: artistAlbum.artistImage})
+            	)
+            );
+           
+           
+        }.bind(this));
+		return(
+			React.DOM.div({className: "artist-wrap"}, 
+			React.DOM.div({className: "artist-line"}), 
+			React.DOM.ul({className: "artist-catalogue-list"}, 
+				artists				
+			)
+		)
+		)
+	}
+
+
+
+});
+
+
+module.exports=ArtistWrap;
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\ArtistWrap.js","/components")
+},{"../actions/AppActions":1,"./Artist":5,"buffer":16,"ngpmcQ":19}],7:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+/**
+ * @jsx React.DOM
+ */
 
  var SearchWrap=React.createClass({displayName: 'SearchWrap',
 
@@ -147,93 +233,7 @@ module.exports=AlbumWrap;
 
   module.exports=SearchWrap;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\SearchWrap.js","/components")
-},{"buffer":16,"ngpmcQ":19}],6:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-/**
- * @jsx React.DOM
- */
-var AppActions = require("../actions/AppActions");
-
- var Star=React.createClass({displayName: 'Star',
- 	handleClick: function(){
-		AppActions.clickArtist(this.props.artistName);
-
-
-	},
-
- 	render: function(){
-
- 		//style for artist background-image
-
- 		var starbgStyle={
- 			'background-image': 'url('+this.props.artistImage+')'
- 		};
- 		
-
- 		return(
- 			
-	 			React.DOM.div({className: "artist-but", onClick: this.handleClick}, 
-					React.DOM.figure({className: "artist-thumb", style: starbgStyle}
-						
-					), 
-
-					React.DOM.span({className: "artist-name"}, " ", this.props.artistName, " "), 
-					React.DOM.a({href: "#", className: "artist-remove"}, 
-						React.DOM.i({className: "icon-remove"})
-					)
-				)
-			
- 		)
-
- 	}
-
- });
-
-module.exports=Star;
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\Star.js","/components")
-},{"../actions/AppActions":1,"buffer":16,"ngpmcQ":19}],7:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-/**
- * @jsx React.DOM
- */
-
-var Star = require("./Star"),
-	AppActions = require("../actions/AppActions");
-var StarWrap=React.createClass({displayName: 'StarWrap',
-	
-
-	render:function(){
-		console.log('props',this.props)
-		var artists = [];
-        var lastArtist = null;
-        this.props.artistAlbums.forEach(function(artistAlbum) {
-           
-            artists.push(
-            	React.DOM.li({class: "artist-item"}, 
-            	Star({artistName: artistAlbum.artistName, artistImage: artistAlbum.artistImage})
-            	)
-            );
-           
-           
-        }.bind(this));
-		return(
-			React.DOM.div({className: "artist-wrap"}, 
-			React.DOM.div({className: "artist-line"}), 
-			React.DOM.ul({className: "artist-catalogue-list"}, 
-				artists				
-			)
-		)
-		)
-	}
-
-
-
-});
-
-
-module.exports=StarWrap;
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\StarWrap.js","/components")
-},{"../actions/AppActions":1,"./Star":6,"buffer":16,"ngpmcQ":19}],8:[function(require,module,exports){
+},{"buffer":16,"ngpmcQ":19}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @jsx React.DOM */
 
@@ -642,7 +642,7 @@ module.exports = invariant;
 
 var React = window.React = require('react'),
     Timer = require("./components/Timer"),
-    StarWrap = require("./components/StarWrap"),
+    ArtistWrap = require("./components/ArtistWrap"),
     VideoWrap = require("./components/VideoWrap"),
     AlbumWrap = require("./components/AlbumWrap"),
     SearchWrap = require("./components/SearchWrap"),
@@ -651,7 +651,7 @@ var React = window.React = require('react'),
     mountNode = document.getElementById("app");
 
 
-ArtistAPIUtils.getArtists('Stars');  //first run
+ArtistAPIUtils.getAlbums('Stars');  //first run
 
 var TodoList = React.createClass({displayName: 'TodoList',
   render: function() {
@@ -781,7 +781,7 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
     return(
       React.DOM.div(null, 
         SearchWrap(null), 
-        StarWrap({artistAlbums: this.props.artistAlbums}), 
+        ArtistWrap({artistAlbums: this.props.artistAlbums}), 
         AlbumWrap({artistAlbums: this.props.artistAlbums}), 
         VideoWrap(null)
       )
@@ -795,12 +795,11 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
 React.renderComponent(LbcApp({artistAlbums: ARTISTALBUMS}), mountNode);
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_37cfc3d0.js","/")
-},{"./actions/AppActions":1,"./components/AlbumWrap":4,"./components/SearchWrap":5,"./components/StarWrap":7,"./components/Timer":8,"./components/VideoWrap":9,"./utils/ArtistAPIUtils":15,"buffer":16,"ngpmcQ":19,"react":154}],15:[function(require,module,exports){
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_c0c02440.js","/")
+},{"./actions/AppActions":1,"./components/AlbumWrap":4,"./components/ArtistWrap":6,"./components/SearchWrap":7,"./components/Timer":8,"./components/VideoWrap":9,"./utils/ArtistAPIUtils":15,"buffer":16,"ngpmcQ":19,"react":154}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 
 var ArtistServerAction = require('../actions/ArtistServerAction');
-
 
 var gooogle_key = "AIzaSyAsteyStoDAQ62iG-rc5uDXttHNrtfEVHM";
 var lastfm_key = "d971000674f672292bf9638ba253bc54";
@@ -818,9 +817,15 @@ module.exports={
 	   		  if ( oReq.readyState == 4) {
 		　　　　　
 					//get artists
-					var rawArtists=JSON.parse(oReq.responseText);
-					　console.log( 'lalala:',rawArtists);
-					ArtistServerAction.receiveArtists(rawArtists);
+					var _response = {};					
+					var response =JSON.parse(oReq.responseText);
+					response  = response.results.artistmatches.artist[0];
+					_response.artistImage = response.image[2]["#text"];
+					_response.artistMbid = response.mbid;
+					_response.artistName = response.name;
+					delete response;
+					console.log( 'lalala:',_response);
+					ArtistServerAction.receiveArtists(_response );
 
 		　　　} else {
 		　　　　　　console.log( "Error: ",oReq.statusText );
@@ -828,6 +833,36 @@ module.exports={
 	   	}
 	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
 	    oReq.send(null);
+
+   },
+   getAlbums: function(searchkey){
+   		var oReq = new XMLHttpRequest();
+   		oReq.onreadystatechange = function(){
+
+	   		  if ( oReq.readyState == 4) {
+		　　　　　
+					//get getAlbums
+					var _response = {};
+					var response =JSON.parse(oReq.responseText);
+					response=response.topalbums.album;
+					// _response.albumName = response.name; //get album name
+					// _response.albumMbid = response.mbid; // get album mbid
+					// _response.albumCover = response.image[3]["#text"]; //get medium thumbnal medium url
+
+					// _response.artistName = response.artist.name; //rename description
+					// _response.albumNumber = response.albumNumber;
+					// delete response;
+
+					console.log( 'album:',response);
+					// ArtistServerAction.receiveArtists(_response );
+
+		　　　} else {
+		　　　　　　console.log( "Error: ",oReq.statusText );
+		　　　}
+	   	}
+	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + searchkey + "&autocorrect=1&api_key=" + lastfm_key + "&format=json", true);
+	    oReq.send(null);
+
 
    }
 

@@ -2,9 +2,9 @@
  * @jsx React.DOM
  */
 
-var Star = require("./Star"),
+var Artist = require("./Artist"),
 	AppActions = require("../actions/AppActions");
-var StarWrap=React.createClass({
+var ArtistWrap=React.createClass({
 	
 
 	render:function(){
@@ -15,7 +15,7 @@ var StarWrap=React.createClass({
            
             artists.push(
             	<li class="artist-item">
-            	<Star artistName={artistAlbum.artistName} artistImage={artistAlbum.artistImage} />
+            	<Artist artistName={artistAlbum.artistName} artistImage={artistAlbum.artistImage} />
             	</li>
             );
            
@@ -36,4 +36,4 @@ var StarWrap=React.createClass({
 });
 
 
-module.exports=StarWrap;
+module.exports=ArtistWrap;
