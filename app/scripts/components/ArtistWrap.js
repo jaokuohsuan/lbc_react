@@ -3,7 +3,8 @@
  */
 
 var Artist = require("./Artist"),
-	AppActions = require("../actions/AppActions");
+	AppActions = require("../actions/AppActions"),
+	ArtistStore = require('../stores/ArtistStore');
 var ArtistWrap=React.createClass({
 	
 

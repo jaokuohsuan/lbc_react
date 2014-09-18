@@ -11,7 +11,8 @@ var React = window.React = require('react'),
     mountNode = document.getElementById("app");
 
 
-ArtistAPIUtils.getAlbums('Stars');  //first run
+// ArtistAPIUtils.getAlbums('Stars');  //first run
+// ArtistAPIUtils.getTracks('663dc26a-9fec-4123-8911-678f50ab9a7d');  
 
 var TodoList = React.createClass({
   render: function() {

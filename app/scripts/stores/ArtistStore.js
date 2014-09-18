@@ -3,6 +3,8 @@ var AppDispatcher= require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var merge = require('react/lib/merge');
 
+var ActionTypes = ChatConstants.ActionTypes;
+
 var CHANGE_EVENT = 'change';
 
 
@@ -53,16 +55,16 @@ AppDispatcher.register(function(payload){
 	var text;
 
 	switch(action.actionType){
-		case AppConstants.ADD_ARTIST:
+		case  ActionTypes.ADD_ARTIST:
 
 			break;
-		case AppConstants.REMOVE_ARTIST
+		case  ActionTypes.REMOVE_ARTIST
 
 			break;
-		case AppConstants.CLICK_ARTIST
+		case  ActionTypes.CLICK_ARTIST
 
 			break;
-		case AppConstants.CLICK_ALBUM
+		case  ActionTypes.CLICK_ALBUM
 			break;
 		default:
       		return true;

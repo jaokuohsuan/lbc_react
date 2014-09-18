@@ -1,5 +1,7 @@
 var Dispatcher = require('./Dispatcher');
 var copyProperties = require('react/lib/copyProperties');
+var AppConstans= require('../contants/AppConstans');
+var PayloadSources=AppConstans.PayloadSources;
 
 var AppDispatcher = copyProperties(new Dispatcher(), {
 
@@ -9,7 +11,6 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
    * @param  {object} action The data coming from the view.
    */
   handleViewAction: function(action) {
-    console.log('action=',action);
     this.dispatch({
       source: 'VIEW_ACTION',
       action: action

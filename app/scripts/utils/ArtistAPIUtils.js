@@ -24,7 +24,7 @@ module.exports={
 					_response.artistMbid = response.mbid;
 					_response.artistName = response.name;
 					delete response;
-					console.log( 'lalala:',_response);
+					console.log( 'artist:',_response);
 					ArtistServerAction.receiveArtists(_response );
 
 		　　　} else {
@@ -62,6 +62,30 @@ module.exports={
 	   	}
 	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + searchkey + "&autocorrect=1&api_key=" + lastfm_key + "&format=json", true);
 	    oReq.send(null);
+   },
+   getTracks: function(albumMbid){
+   		var oReq = new XMLHttpRequest();
+
+   		oReq.onreadystatechange = function(){
+   			if ( oReq.readyState == 4) {
+   				var _response = {};
+				var response =JSON.parse(oReq.responseText);
+   				console.log( 'track:',response);
+   			}else{
+   				console.log( "Error: ",oReq.statusText );
+   			}
+
+   		}
+
+   		if (albumMbid != "") {
+				oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&mbid=" + albumMbid + "&format=json",true);
+		} else {
+				oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&artist=" + encodeURI(artistName) + "&album=" + encodeURI(albumName) + "&format=json",true);
+		}
+		oReq.send(null);
+
+
+
 
 
    }

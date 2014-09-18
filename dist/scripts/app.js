@@ -312,7 +312,6 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
    * @param  {object} action The data coming from the view.
    */
   handleViewAction: function(action) {
-    console.log('action=',action);
     this.dispatch({
       source: 'VIEW_ACTION',
       action: action
@@ -651,7 +650,8 @@ var React = window.React = require('react'),
     mountNode = document.getElementById("app");
 
 
-ArtistAPIUtils.getAlbums('Stars');  //first run
+// ArtistAPIUtils.getAlbums('Stars');  //first run
+// ArtistAPIUtils.getTracks('663dc26a-9fec-4123-8911-678f50ab9a7d');  
 
 var TodoList = React.createClass({displayName: 'TodoList',
   render: function() {
@@ -795,7 +795,7 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
 React.renderComponent(LbcApp({artistAlbums: ARTISTALBUMS}), mountNode);
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_c0c02440.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_b7015ca2.js","/")
 },{"./actions/AppActions":1,"./components/AlbumWrap":4,"./components/ArtistWrap":6,"./components/SearchWrap":7,"./components/Timer":8,"./components/VideoWrap":9,"./utils/ArtistAPIUtils":15,"buffer":16,"ngpmcQ":19,"react":154}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 
@@ -824,7 +824,7 @@ module.exports={
 					_response.artistMbid = response.mbid;
 					_response.artistName = response.name;
 					delete response;
-					console.log( 'lalala:',_response);
+					console.log( 'artist:',_response);
 					ArtistServerAction.receiveArtists(_response );
 
 		　　　} else {
@@ -862,6 +862,30 @@ module.exports={
 	   	}
 	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + searchkey + "&autocorrect=1&api_key=" + lastfm_key + "&format=json", true);
 	    oReq.send(null);
+   },
+   getTracks: function(albumMbid){
+   		var oReq = new XMLHttpRequest();
+
+   		oReq.onreadystatechange = function(){
+   			if ( oReq.readyState == 4) {
+   				var _response = {};
+				var response =JSON.parse(oReq.responseText);
+   				console.log( 'track:',response);
+   			}else{
+   				console.log( "Error: ",oReq.statusText );
+   			}
+
+   		}
+
+   		if (albumMbid != "") {
+				oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&mbid=" + albumMbid + "&format=json",true);
+		} else {
+				oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&artist=" + encodeURI(artistName) + "&album=" + encodeURI(albumName) + "&format=json",true);
+		}
+		oReq.send(null);
+
+
+
 
 
    }
