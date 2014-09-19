@@ -3,20 +3,21 @@ var AppDispatcher= require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var merge = require('react/lib/merge');
 
-var ActionTypes = ChatConstants.ActionTypes;
+var ActionTypes = AppConstants.ActionTypes;
+
 
 var CHANGE_EVENT = 'change';
 
 
-var _stars = {};
+var _artist= {};
 
 
-function createStar(star) {
+function createArtist(artist) {
   // Hand waving here -- not showing how this interacts with XHR or persistent
   // server-side storage.
   // Using the current timestamp in place of a real id.
   var id = Date.now();
-  _stars[id] = {
+  _artists[id] = {
     id: id,
     complete: false,
     text: text
@@ -24,18 +25,18 @@ function createStar(star) {
 }
 
 
-function updateStar(id, updates) {
-  _stars[id] = merge(_stars[id], updates);
+function updateArtist(id, updates) {
+  _artists[id] = merge(_artists[id], updates);
 }
 
-function destroyStar(id) {
-  delete _stars[id];
+function destroyArtist(id) {
+  delete _artists[id];
 }
 
-var StarStore=merge(EventEmitter.prototype,{
+var ArtistStore=merge(EventEmitter.prototype,{
 
 	getAll: function(){
-		return _stars;
+		return _artists;
 	},
 	emitChange: function() {
 	    this.emit(CHANGE_EVENT);
@@ -49,7 +50,7 @@ var StarStore=merge(EventEmitter.prototype,{
 
 });
 
-AppDispatcher.register(function(payload){
+AppDispatcher.dispatchToken(function(payload){
 
 	var action=payload.action;
 	var text;
@@ -65,15 +66,16 @@ AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.CLICK_ALBUM
+
 			break;
 		default:
-      		return true;
+      		
 	}
 
-	StarStore.emitChange();
+	ArtistStore.emitChange();
 
 	return true;  // No errors.  Needed by promise in Dispatcher.
 });
 
-model.exports=StarStore;
+model.exports=ArtistStore;
 

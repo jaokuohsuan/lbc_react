@@ -1,4 +1,4 @@
-var Dispatcher = require('./Dispatcher');
+var Dispatcher = require('flux').Dispatcher;
 var copyProperties = require('react/lib/copyProperties');
 var AppConstans= require('../contants/AppConstans');
 var PayloadSources=AppConstans.PayloadSources;
@@ -10,18 +10,21 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
    * as a view action.  Another variant here could be handleServerAction.
    * @param  {object} action The data coming from the view.
    */
-  handleViewAction: function(action) {
-    this.dispatch({
-      source: 'VIEW_ACTION',
+  handleServerAction: function(action) {
+    var payload = {
+      source: PayloadSources.SERVER_ACTION,
       action: action
-    });
+    };
+    this.dispatch(payload);
   },
-  handleServerAction: function(action){
-    this.dispatch({
-      source: 'SERVER_ACTION',
+  handleViewAction: function(action) {
+    var payload = {
+      source: PayloadSources.VIEW_ACTION,
       action: action
-    });
+    };
+    this.dispatch(payload);
   }
+
 
 });
 
