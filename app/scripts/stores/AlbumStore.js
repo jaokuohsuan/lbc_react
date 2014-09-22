@@ -8,38 +8,38 @@ var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 
-var _artist= {};
+var _album= {};
 
 
-function createArtist(artist) {
-  // Hand waving here -- not showing how this interacts with XHR or persistent
-  // server-side storage.
-  // Using the current timestamp in place of a real id.
-  var id = Date.now();
-  _artists[id] = {
-    id: id,
-    complete: false,
-    text: text
-  };
-}
+// function createArtist(artist) {
+//   // Hand waving here -- not showing how this interacts with XHR or persistent
+//   // server-side storage.
+//   // Using the current timestamp in place of a real id.
+//   var id = Date.now();
+//   _artists[id] = {
+//     id: id,
+//     complete: false,
+//     text: text
+//   };
+// }
 
 
-function updateArtist(id, updates) {
+function updateAlbum(id, updates) {
   _artists[id] = merge(_artists[id], updates);
 }
 
-function destroyArtist(id) {
+function destroyAlbum(id) {
   delete _artists[id];
 }
 
 
-function clickArtist(id){
+function clickAlbum(id){
 	console.log('click:',id);
 }
 
 
 
-var ArtistStore=merge(EventEmitter.prototype,{
+var AlbumStore=merge(EventEmitter.prototype,{
 
 	getAll: function(){
 		return _artists;
@@ -56,7 +56,7 @@ var ArtistStore=merge(EventEmitter.prototype,{
 
 });
 
-ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
+AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 	var action=payload.action;
 	var text;
@@ -69,8 +69,11 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.CLICK_ARTIST:
-			console.log('lalala click');
-			ArtistStore.emitChange();
+			console.log('lololo change artist');
+			AlbumStore.emitChange();
+
+			break;
+		case  ActionTypes.CLICK_ALBUM:
 
 			break;
 
@@ -82,5 +85,5 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 	
 });
 
-module.exports=ArtistStore;
+module.exports=AlbumStore;
 

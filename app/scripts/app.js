@@ -138,6 +138,19 @@ var PRODUCTS = [
 
 var LbcApp=React.createClass({
 
+  getInitialState: function() {
+    // init satate
+    return null
+  },
+
+  componentDidMount: function() {
+   
+  },
+  componentWillUnmount: function() {
+    
+  },
+
+
   render: function(){
     return(
       <div>

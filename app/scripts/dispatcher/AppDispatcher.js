@@ -1,6 +1,7 @@
+// var Dispatcher = require('react-dispatcher');
 var Dispatcher = require('flux').Dispatcher;
 var copyProperties = require('react/lib/copyProperties');
-var AppConstans= require('../contants/AppConstans');
+var AppConstans= require('../constants/AppConstants');
 var PayloadSources=AppConstans.PayloadSources;
 
 var AppDispatcher = copyProperties(new Dispatcher(), {
@@ -18,13 +19,13 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
     this.dispatch(payload);
   },
   handleViewAction: function(action) {
+    console.log("handleViewAction:",action);
     var payload = {
       source: PayloadSources.VIEW_ACTION,
       action: action
     };
     this.dispatch(payload);
   }
-
 
 });
 

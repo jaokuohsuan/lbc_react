@@ -1,13 +1,13 @@
 /**
  * @jsx React.DOM
  */
-var AppActions = require("../actions/AppActions");
+var ArtistActionCreators = require("../actions/ArtistActionCreators");
 
  var Artist=React.createClass({
  	handleClick: function(){
-		AppActions.clickArtist(this.props.artistName);
-
-
+ 		console.log("handleClick");
+		ArtistActionCreators.clickArtist(this.props.artistName);
+		
 	},
 
  	render: function(){

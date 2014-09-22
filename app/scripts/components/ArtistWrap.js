@@ -3,8 +3,9 @@
  */
 
 var Artist = require("./Artist"),
-	AppActions = require("../actions/AppActions"),
-	ArtistStore = require('../stores/ArtistStore');
+	ArtistActionCreators = require("../actions/ArtistActionCreators"),
+	ArtistStore = require('../stores/ArtistStore'),
+	AlbumStore=require('../stores/AlbumStore');
 var ArtistWrap=React.createClass({
 	
 
