@@ -1,9 +1,9 @@
 var AppConstants= require('../constants/AppConstants');
 var AppDispatcher= require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
+
 var merge = require('react/lib/merge');
 var ActionTypes = AppConstants.ActionTypes;
-
 
 var CHANGE_EVENT = 'change';
 
@@ -70,6 +70,7 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case  ActionTypes.CLICK_ARTIST:
 			console.log('lalala click');
+			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
 			ArtistStore.emitChange();
 
 			break;

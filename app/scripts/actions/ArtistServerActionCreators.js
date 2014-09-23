@@ -6,11 +6,10 @@ var ActionTypes = AppConstants.ActionTypes;
 
 module.exports={
 
-
-  receiveArtists: function(rawArtists) {
+  receiveInit: function(rawData) {
     AppDispatcher.handleServerAction({
-      type: AppConstants.RECEIVE_ARTIST,
-      rawArtists: rawArtists
+      actionType: ActionTypes.RECEIVE_INIT,
+      rawData: rawData
     });
   }
 

@@ -3,30 +3,54 @@ var AppDispatcher= require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var merge = require('react/lib/merge');
 
+var ActionTypes = AppConstants.ActionTypes;
+
 var CHANGE_EVENT = 'change';
 
+var _data= {};
 
-var _stars = {};
+var AppStore=merge(EventEmitter.prototype,{
 
-
-function createStar(star) {
-  // Hand waving here -- not showing how this interacts with XHR or persistent
-  // server-side storage.
-  // Using the current timestamp in place of a real id.
-  var id = Date.now();
-  _stars[id] = {
-    id: id,
-    complete: false,
-    text: text
-  };
-}
+    getInitData:function(rawData){      
+      return _data;
+    },
 
 
-function update(id, updates) {
-  _stars[id] = merge(_stars[id], updates);
-}
+    emitChange: function() {
+        this.emit(CHANGE_EVENT);
+    },
+    addChangeListener: function(callback) {
+        this.on(CHANGE_EVENT, callback);
+    },
+    removeChangeListener: function(callback) {
+        this.removeListener(CHANGE_EVENT, callback);
+    }
 
-function destroy(id) {
-  delete _stars[id];
-}
+  });
+
+AppStore.dispatchToken=AppDispatcher.register(function(payload){
+
+
+  var action=payload.action;
+
+
+  switch(action.actionType){
+    case  ActionTypes.RECEIVE_INIT:
+      console.log('INIT lalala',action.rawData);
+      _data=action.rawData;
+    
+      
+
+      break;
+
+
+    default:
+          
+  }
+  
+
+  
+});
+
+module.exports=AppStore;
 

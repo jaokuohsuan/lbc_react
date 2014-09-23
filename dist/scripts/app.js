@@ -1,5 +1,178 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+module.exports = {
+
+
+	init: function() {
+		localStorage.clear();
+		localStorage.setItem('artistalbums', JSON.stringify(
+
+			[{
+					artistName: 'Stars',
+					artistImage: "http://userserve-ak.last.fm/serve/126/132927.jpg",
+					albumList: [{
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png",
+						albumName: "Set Yourself on Fire"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
+						albumName: "The Five Ghosts"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",
+						albumName: "The North"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",
+						albumName: "In Our Bedroom After the War"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",
+						albumName: "Heart"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",
+						albumName: "Do You Trust Your Friends?"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",
+						albumName: "Nightsongs"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",
+						albumName: "The Bedroom Demos"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",
+						albumName: "The Comeback EP"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",
+						albumName: "A Lot of Little Lies for the Sake of One Big Truth"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",
+						albumName: "Dead Child Stars"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",
+						albumName: "Your Ex-Lover Is Dead"
+					}, {
+						albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",
+						albumName: "Elevator Love Letter"
+					}, {
+						albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",
+						albumName: "Ageless Beauty"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",
+						albumName: "Morning Becomes Eclectic"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",
+						albumName: "It's Alchemy!"
+					}]
+				}, {
+					artistName: 'Muse',
+					artistImage: "http://userserve-ak.last.fm/serve/126/35147389.jpg",
+					albumList: [{
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png",
+						albumName: "Set Yourself on Fire"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
+						albumName: "The Five Ghosts"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",
+						albumName: "The North"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",
+						albumName: "In Our Bedroom After the War"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",
+						albumName: "Heart"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",
+						albumName: "Do You Trust Your Friends?"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",
+						albumName: "Nightsongs"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",
+						albumName: "The Bedroom Demos"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",
+						albumName: "The Comeback EP"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",
+						albumName: "A Lot of Little Lies for the Sake of One Big Truth"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",
+						albumName: "Dead Child Stars"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",
+						albumName: "Your Ex-Lover Is Dead"
+					}, {
+						albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",
+						albumName: "Elevator Love Letter"
+					}, {
+						albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",
+						albumName: "Ageless Beauty"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",
+						albumName: "Morning Becomes Eclectic"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",
+						albumName: "It's Alchemy!"
+					}]
+				}, {
+					artistName: 'Garbage',
+					artistImage: "http://userserve-ak.last.fm/serve/126/81384615.png",
+					albumList: [{
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png",
+						albumName: "Set Yourself on Fire"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
+						albumName: "The Five Ghosts"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",
+						albumName: "The North"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",
+						albumName: "In Our Bedroom After the War"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",
+						albumName: "Heart"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",
+						albumName: "Do You Trust Your Friends?"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",
+						albumName: "Nightsongs"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",
+						albumName: "The Bedroom Demos"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",
+						albumName: "The Comeback EP"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",
+						albumName: "A Lot of Little Lies for the Sake of One Big Truth"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",
+						albumName: "Dead Child Stars"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",
+						albumName: "Your Ex-Lover Is Dead"
+					}, {
+						albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",
+						albumName: "Elevator Love Letter"
+					}, {
+						albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",
+						albumName: "Ageless Beauty"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",
+						albumName: "Morning Becomes Eclectic"
+					}, {
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",
+						albumName: "It's Alchemy!"
+					}]
+				}
+
+
+			]
+		));
+	}
+};
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/MusicExampleData.js","/")
+},{"buffer":21,"ngpmcQ":25}],2:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
 var AppDispatcher= require('../dispatcher/AppDispatcher');
 var AppConstans= require('../constants/AppConstants');
@@ -16,44 +189,7 @@ module.exports={
 	}
 };
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/actions\\AlbumActionCreators.js","/actions")
-},{"../constants/AppConstants":12,"../dispatcher/AppDispatcher":13,"buffer":21,"ngpmcQ":25}],2:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-var AppConstants= require('../constants/AppConstants');
-var AppDispatcher= require('../dispatcher/AppDispatcher');
-
-
-var AppActions={
-	addArtist: function(artist){
-		AppDispatcher.handleViewAction({
-			actionType: AppConstants.ADD_ARTIST,
-			artist: artist
-		})
-	},
-	removeArtist: function(index){
-		AppDispatcher.handleViewAction({
-			actionType: AppConstants.REMOVE_ARTIST,
-			index: index
-		})
-	},
-	clickArtist: function(index){
-		AppDispatcher.handleViewAction({
-			actionType: AppConstants.CLICK_ARTIST,
-			index: index
-		})
-	},
-	clickAlbum: function(index){
-		AppDispatcher.handleViewAction({
-			actionType: AppConstants.CLICK_ALBUM,
-			index: index
-		})
-	}
-
-};
-
-
-module.exports=AppActions;
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/actions\\AppActions.js","/actions")
-},{"../constants/AppConstants":12,"../dispatcher/AppDispatcher":13,"buffer":21,"ngpmcQ":25}],3:[function(require,module,exports){
+},{"../constants/AppConstants":11,"../dispatcher/AppDispatcher":12,"buffer":21,"ngpmcQ":25}],3:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
 var AppDispatcher= require('../dispatcher/AppDispatcher');
@@ -71,7 +207,7 @@ module.exports={
 	}
 };
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/actions\\ArtistActionCreators.js","/actions")
-},{"../constants/AppConstants":12,"../dispatcher/AppDispatcher":13,"buffer":21,"ngpmcQ":25}],4:[function(require,module,exports){
+},{"../constants/AppConstants":11,"../dispatcher/AppDispatcher":12,"buffer":21,"ngpmcQ":25}],4:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
@@ -81,17 +217,16 @@ var ActionTypes = AppConstants.ActionTypes;
 
 module.exports={
 
-
-  receiveArtists: function(rawArtists) {
+  receiveInit: function(rawData) {
     AppDispatcher.handleServerAction({
-      type: AppConstants.RECEIVE_ARTIST,
-      rawArtists: rawArtists
+      actionType: ActionTypes.RECEIVE_INIT,
+      rawData: rawData
     });
   }
 
 }
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/actions\\ArtistServerAction.js","/actions")
-},{"../constants/AppConstants":12,"../dispatcher/AppDispatcher":13,"buffer":21,"ngpmcQ":25}],5:[function(require,module,exports){
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/actions\\ArtistServerActionCreators.js","/actions")
+},{"../constants/AppConstants":11,"../dispatcher/AppDispatcher":12,"buffer":21,"ngpmcQ":25}],5:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @jsx React.DOM
@@ -127,7 +262,7 @@ var AlbumActionCreators = require("../actions/AlbumActionCreators");
 
  module.exports=Album;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\Album.js","/components")
-},{"../actions/AlbumActionCreators":1,"buffer":21,"ngpmcQ":25}],6:[function(require,module,exports){
+},{"../actions/AlbumActionCreators":2,"buffer":21,"ngpmcQ":25}],6:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @jsx React.DOM
@@ -138,6 +273,9 @@ var Album = require("./Album"),
 
 
 var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
+	getInitialState: function() {
+    	return {};
+  	},
 	render: function(){
 		console.log('Album-props',this.props);
 		var albums = [];
@@ -175,7 +313,7 @@ var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
 
 module.exports=AlbumWrap;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\AlbumWrap.js","/components")
-},{"../actions/AlbumActionCreators":1,"./Album":5,"buffer":21,"ngpmcQ":25}],7:[function(require,module,exports){
+},{"../actions/AlbumActionCreators":2,"./Album":5,"buffer":21,"ngpmcQ":25}],7:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @jsx React.DOM
@@ -263,7 +401,7 @@ var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
 
 module.exports=ArtistWrap;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\ArtistWrap.js","/components")
-},{"../actions/ArtistActionCreators":3,"../stores/AlbumStore":15,"../stores/ArtistStore":16,"./Artist":7,"buffer":21,"ngpmcQ":25}],9:[function(require,module,exports){
+},{"../actions/ArtistActionCreators":3,"../stores/AlbumStore":14,"../stores/ArtistStore":16,"./Artist":7,"buffer":21,"ngpmcQ":25}],9:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @jsx React.DOM
@@ -293,34 +431,6 @@ module.exports=ArtistWrap;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\SearchWrap.js","/components")
 },{"buffer":21,"ngpmcQ":25}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-/** @jsx React.DOM */
-
-var Timer = React.createClass({displayName: 'Timer',
-  getInitialState: function() {
-    return {secondsElapsed: 0};
-  },
-  tick: function() {
-    this.setState({secondsElapsed: this.state.secondsElapsed + 1});
-  },
-  componentDidMount: function() {
-    this.interval = setInterval(this.tick, 1000);
-  },
-  componentWillUnmount: function() {
-    clearInterval(this.interval);
-  },
-  render: function() {
-    return (
-      React.DOM.div(null, "Seconds Elapsed: ", this.state.secondsElapsed)
-    );
-  }
-});
-
-
-module.exports = Timer;
-
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\Timer.js","/components")
-},{"buffer":21,"ngpmcQ":25}],11:[function(require,module,exports){
-(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @jsx React.DOM
  */
@@ -345,7 +455,7 @@ var VideoWrap= React.createClass({displayName: 'VideoWrap',
 
  module.exports=VideoWrap;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\VideoWrap.js","/components")
-},{"buffer":21,"ngpmcQ":25}],12:[function(require,module,exports){
+},{"buffer":21,"ngpmcQ":25}],11:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var keyMirror = require('react/lib/keyMirror');
 
@@ -356,7 +466,8 @@ module.exports={
 		RECEIVE_ARTIST: 'RECEIVE_ARTIST',
 		REMOVE_ARTIST: 'REMOVE_ARTIST',
 		CLICK_ARTIST: 'CLICK_ARTIST',
-		CLICK_ALBUM: 'CLICK_ALBUM'
+		CLICK_ALBUM: 'CLICK_ALBUM',
+		RECEIVE_INIT: 'RECEIVE_INIT'
 	}),	
 	PayloadSources: keyMirror({
 	    SERVER_ACTION: null,
@@ -365,7 +476,7 @@ module.exports={
 
 };
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/constants\\AppConstants.js","/constants")
-},{"buffer":21,"ngpmcQ":25,"react/lib/keyMirror":143}],13:[function(require,module,exports){
+},{"buffer":21,"ngpmcQ":25,"react/lib/keyMirror":143}],12:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 // var Dispatcher = require('react-dispatcher');
 var Dispatcher = require('flux').Dispatcher;
@@ -400,151 +511,44 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
 
 module.exports = AppDispatcher;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/dispatcher\\AppDispatcher.js","/dispatcher")
-},{"../constants/AppConstants":12,"buffer":21,"flux":18,"ngpmcQ":25,"react/lib/copyProperties":115}],14:[function(require,module,exports){
+},{"../constants/AppConstants":11,"buffer":21,"flux":18,"ngpmcQ":25,"react/lib/copyProperties":115}],13:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @jsx React.DOM */
 
 var React = window.React = require('react'),
-    Timer = require("./components/Timer"),
+
     ArtistWrap = require("./components/ArtistWrap"),
     VideoWrap = require("./components/VideoWrap"),
     AlbumWrap = require("./components/AlbumWrap"),
     SearchWrap = require("./components/SearchWrap"),
-    AppActions = require("./actions/AppActions"),
-    ArtistAPIUtils = require('./utils/ArtistAPIUtils'),
+    MusicAPIUtils = require('./utils/MusicAPIUtils'),
+    AppStore = require('./stores/AppStore'),
     mountNode = document.getElementById("app");
+
+var MusicExampleData= require('./MusicExampleData'); //ecample Data
 
 
 // ArtistAPIUtils.getAlbums('Stars');  //first run
 // ArtistAPIUtils.getTracks('663dc26a-9fec-4123-8911-678f50ab9a7d');  
 
-var TodoList = React.createClass({displayName: 'TodoList',
-  render: function() {
-    var createItem = function(itemText) {
-      return React.DOM.li(null, itemText);
-    };
-    return React.DOM.ul(null, this.props.items.map(createItem));
-  }
-});
-var TodoApp = React.createClass({displayName: 'TodoApp',
-  getInitialState: function() {
-    return {items: [], text: ''};
-  },
-  onChange: function(e) {
-    this.setState({text: e.target.value});
-  },
-  handleSubmit: function(e) {
-    e.preventDefault();
-    var nextItems = this.state.items.concat([this.state.text]);
-    var nextText = '';
-    this.setState({items: nextItems, text: nextText});
-  },
-  render: function() {
-    return (
-      React.DOM.div(null, 
-        React.DOM.h3(null, "TODO"), 
-        TodoList({items: this.state.items}), 
-        React.DOM.form({onSubmit: this.handleSubmit}, 
-          React.DOM.input({onChange: this.onChange, value: this.state.text}), 
-          React.DOM.button(null, 'Add #' + (this.state.items.length + 1))
-        ), 
-        Timer(null)
-      )
-    );
-  }
-});
+MusicExampleData.init(); // put example data into localstorage
 
 
-var ARTISTALBUMS=[
-  {
-    artistName: 'Stars',
-    artistImage: "http://userserve-ak.last.fm/serve/126/132927.jpg",
-    albumList: [
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png", albumName: "Set Yourself on Fire"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",albumName: "The Five Ghosts"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",albumName: "The North"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",albumName: "In Our Bedroom After the War"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",albumName: "Heart"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",albumName: "Do You Trust Your Friends?"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",albumName: "Nightsongs"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",albumName: "The Bedroom Demos"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",albumName: "The Comeback EP"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",albumName: "A Lot of Little Lies for the Sake of One Big Truth"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",albumName: "Dead Child Stars"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",albumName: "Your Ex-Lover Is Dead"},
-      {albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",albumName: "Elevator Love Letter"},
-      {albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",albumName: "Ageless Beauty"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",albumName: "Morning Becomes Eclectic"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",albumName: "It's Alchemy!"}
-    ]
-  },
-  {
-    artistName: 'Muse',
-    artistImage: "http://userserve-ak.last.fm/serve/126/35147389.jpg",
-    albumList: [
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png", albumName: "Set Yourself on Fire"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",albumName: "The Five Ghosts"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",albumName: "The North"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",albumName: "In Our Bedroom After the War"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",albumName: "Heart"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",albumName: "Do You Trust Your Friends?"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",albumName: "Nightsongs"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",albumName: "The Bedroom Demos"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",albumName: "The Comeback EP"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",albumName: "A Lot of Little Lies for the Sake of One Big Truth"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",albumName: "Dead Child Stars"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",albumName: "Your Ex-Lover Is Dead"},
-      {albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",albumName: "Elevator Love Letter"},
-      {albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",albumName: "Ageless Beauty"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",albumName: "Morning Becomes Eclectic"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",albumName: "It's Alchemy!"}
-    ]
-  },
-  {
-    artistName: 'Garbage',
-    artistImage: "http://userserve-ak.last.fm/serve/126/81384615.png",
-    albumList: [
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png", albumName: "Set Yourself on Fire"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",albumName: "The Five Ghosts"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",albumName: "The North"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/62267899.png",albumName: "In Our Bedroom After the War"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/83357751.png",albumName: "Heart"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86272985.jpg",albumName: "Do You Trust Your Friends?"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/81470979.jpg",albumName: "Nightsongs"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/64466735.jpg",albumName: "The Bedroom Demos"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273099.jpg",albumName: "The Comeback EP"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273071.jpg",albumName: "A Lot of Little Lies for the Sake of One Big Truth"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/86273103.jpg",albumName: "Dead Child Stars"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/39574519.jpg",albumName: "Your Ex-Lover Is Dead"},
-      {albumCover: "http://images.amazon.com/images/P/B00009L822.01._SCMZZZZZZZ_.jpg",albumName: "Elevator Love Letter"},
-      {albumCover: "http://images.amazon.com/images/P/B000A1OFTQ.01._SCMZZZZZZZ_.jpg",albumName: "Ageless Beauty"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/7198433.jpg",albumName: "Morning Becomes Eclectic"},
-      {albumCover: "http://userserve-ak.last.fm/serve/300x300/61231285.jpg",albumName: "It's Alchemy!"}
-    ]
-  }  
+MusicAPIUtils.getInitData(); //get init data from Utils
 
 
-];
-
-
-
-
-var PRODUCTS = [
-  {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-  {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-  {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-  {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-  {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-  {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-];
-
-
+function getStateInit() {
+  console.log("Example Data");
+  return {
+    artistAlbums: AppStore.getInitData()
+  };
+}
 
 var LbcApp=React.createClass({displayName: 'LbcApp',
 
   getInitialState: function() {
     // init satate
-    return null
+    return getStateInit();
   },
 
   componentDidMount: function() {
@@ -559,8 +563,8 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
     return(
       React.DOM.div(null, 
         SearchWrap(null), 
-        ArtistWrap({artistAlbums: this.props.artistAlbums}), 
-        AlbumWrap({artistAlbums: this.props.artistAlbums}), 
+        ArtistWrap({artistAlbums: this.state.artistAlbums}), 
+        AlbumWrap({artistAlbums: this.state.artistAlbums}), 
         VideoWrap(null)
       )
     );
@@ -569,12 +573,12 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
 });
 
 
-// React.renderComponent(<TodoApp />, mountNode);
-React.renderComponent(LbcApp({artistAlbums: ARTISTALBUMS}), mountNode);
+React.renderComponent(LbcApp(null), mountNode);
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_909cd7e3.js","/")
-},{"./actions/AppActions":2,"./components/AlbumWrap":6,"./components/ArtistWrap":8,"./components/SearchWrap":9,"./components/Timer":10,"./components/VideoWrap":11,"./utils/ArtistAPIUtils":17,"buffer":21,"ngpmcQ":25,"react":160}],15:[function(require,module,exports){
+
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_1a19310c.js","/")
+},{"./MusicExampleData":1,"./components/AlbumWrap":6,"./components/ArtistWrap":8,"./components/SearchWrap":9,"./components/VideoWrap":10,"./stores/AppStore":15,"./utils/MusicAPIUtils":17,"buffer":21,"ngpmcQ":25,"react":160}],14:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
 var AppDispatcher= require('../dispatcher/AppDispatcher');
@@ -667,14 +671,74 @@ module.exports=AlbumStore;
 
 
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/stores\\AlbumStore.js","/stores")
-},{"../constants/AppConstants":12,"../dispatcher/AppDispatcher":13,"buffer":21,"events":24,"ngpmcQ":25,"react/lib/merge":146}],16:[function(require,module,exports){
+},{"../constants/AppConstants":11,"../dispatcher/AppDispatcher":12,"buffer":21,"events":24,"ngpmcQ":25,"react/lib/merge":146}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
 var AppDispatcher= require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var merge = require('react/lib/merge');
+
 var ActionTypes = AppConstants.ActionTypes;
 
+var CHANGE_EVENT = 'change';
+
+var _data= {};
+
+var AppStore=merge(EventEmitter.prototype,{
+
+    getInitData:function(rawData){      
+      return _data;
+    },
+
+
+    emitChange: function() {
+        this.emit(CHANGE_EVENT);
+    },
+    addChangeListener: function(callback) {
+        this.on(CHANGE_EVENT, callback);
+    },
+    removeChangeListener: function(callback) {
+        this.removeListener(CHANGE_EVENT, callback);
+    }
+
+  });
+
+AppStore.dispatchToken=AppDispatcher.register(function(payload){
+
+
+  var action=payload.action;
+
+
+  switch(action.actionType){
+    case  ActionTypes.RECEIVE_INIT:
+      console.log('INIT lalala',action.rawData);
+      _data=action.rawData;
+    
+      
+
+      break;
+
+
+    default:
+          
+  }
+  
+
+  
+});
+
+module.exports=AppStore;
+
+
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/stores\\AppStore.js","/stores")
+},{"../constants/AppConstants":11,"../dispatcher/AppDispatcher":12,"buffer":21,"events":24,"ngpmcQ":25,"react/lib/merge":146}],16:[function(require,module,exports){
+(function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
+var AppConstants= require('../constants/AppConstants');
+var AppDispatcher= require('../dispatcher/AppDispatcher');
+var EventEmitter = require('events').EventEmitter;
+
+var merge = require('react/lib/merge');
+var ActionTypes = AppConstants.ActionTypes;
 
 var CHANGE_EVENT = 'change';
 
@@ -741,6 +805,7 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case  ActionTypes.CLICK_ARTIST:
 			console.log('lalala click');
+			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
 			ArtistStore.emitChange();
 
 			break;
@@ -757,16 +822,25 @@ module.exports=ArtistStore;
 
 
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/stores\\ArtistStore.js","/stores")
-},{"../constants/AppConstants":12,"../dispatcher/AppDispatcher":13,"buffer":21,"events":24,"ngpmcQ":25,"react/lib/merge":146}],17:[function(require,module,exports){
+},{"../constants/AppConstants":11,"../dispatcher/AppDispatcher":12,"buffer":21,"events":24,"ngpmcQ":25,"react/lib/merge":146}],17:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 
-var ArtistServerAction = require('../actions/ArtistServerAction');
+var ArtistServerActionCreators = require('../actions/ArtistServerActionCreators');
 
 var gooogle_key = "AIzaSyAsteyStoDAQ62iG-rc5uDXttHNrtfEVHM";
 var lastfm_key = "d971000674f672292bf9638ba253bc54";
 var searchkey = "stars"; //Model
 
 module.exports={
+
+
+    getInitData: function() {
+	    // simulate retrieving data from a database
+	    var rawMessages = JSON.parse(localStorage.getItem('artistalbums'));
+
+	    // simulate success callback
+	    ArtistServerActionCreators.receiveInit(rawMessages);
+    },
 
 
    
@@ -854,8 +928,8 @@ module.exports={
 
 
 };
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/utils\\ArtistAPIUtils.js","/utils")
-},{"../actions/ArtistServerAction":4,"buffer":21,"ngpmcQ":25}],18:[function(require,module,exports){
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/utils\\MusicAPIUtils.js","/utils")
+},{"../actions/ArtistServerActionCreators":4,"buffer":21,"ngpmcQ":25}],18:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * Copyright (c) 2014, Facebook, Inc.
@@ -20374,4 +20448,4 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/..\\..\\node_modules\\react\\react.js","/..\\..\\node_modules\\react")
-},{"./lib/React":49,"buffer":21,"ngpmcQ":25}]},{},[14])
+},{"./lib/React":49,"buffer":21,"ngpmcQ":25}]},{},[13])

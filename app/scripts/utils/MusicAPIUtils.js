@@ -1,11 +1,20 @@
 
-var ArtistServerAction = require('../actions/ArtistServerAction');
+var ArtistServerActionCreators = require('../actions/ArtistServerActionCreators');
 
 var gooogle_key = "AIzaSyAsteyStoDAQ62iG-rc5uDXttHNrtfEVHM";
 var lastfm_key = "d971000674f672292bf9638ba253bc54";
 var searchkey = "stars"; //Model
 
 module.exports={
+
+
+    getInitData: function() {
+	    // simulate retrieving data from a database
+	    var rawMessages = JSON.parse(localStorage.getItem('artistalbums'));
+
+	    // simulate success callback
+	    ArtistServerActionCreators.receiveInit(rawMessages);
+    },
 
 
    

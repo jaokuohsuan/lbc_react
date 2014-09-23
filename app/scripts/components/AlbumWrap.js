@@ -7,6 +7,9 @@ var Album = require("./Album"),
 
 
 var AlbumWrap= React.createClass({
+	getInitialState: function() {
+    	return {};
+  	},
 	render: function(){
 		console.log('Album-props',this.props);
 		var albums = [];
