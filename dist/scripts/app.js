@@ -63,11 +63,11 @@ module.exports = {
 					artistName: 'Muse',
 					artistImage: "http://userserve-ak.last.fm/serve/126/35147389.jpg",
 					albumList: [{
-						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png",
-						albumName: "Set Yourself on Fire"
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
+						albumName: "GGYY"
 					}, {
 						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
-						albumName: "The Five Ghosts"
+						albumName: "KAKA"
 					}, {
 						albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",
 						albumName: "The North"
@@ -116,7 +116,7 @@ module.exports = {
 					artistImage: "http://userserve-ak.last.fm/serve/126/81384615.png",
 					albumList: [{
 						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png",
-						albumName: "Set Yourself on Fire"
+						albumName: "MAMAA  拉拉拉"
 					}, {
 						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
 						albumName: "The Five Ghosts"
@@ -193,7 +193,6 @@ module.exports={
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
 var AppDispatcher= require('../dispatcher/AppDispatcher');
-var AppConstans= require('../constants/AppConstants');
 
 var ActionTypes = AppConstants.ActionTypes;
 
@@ -202,7 +201,7 @@ module.exports={
 		console.log("ActionCreator clickArtist");
 		AppDispatcher.handleViewAction({
 			actionType: ActionTypes.CLICK_ARTIST,
-			index: index
+			artist: index
 		});
 	}
 };
@@ -269,26 +268,38 @@ var AlbumActionCreators = require("../actions/AlbumActionCreators");
  */
 
 var Album = require("./Album"),
-	AlbumActionCreators = require("../actions/AlbumActionCreators");
+	AlbumActionCreators = require("../actions/AlbumActionCreators"),
+	AlbumStore= require("../stores/AlbumStore");
 
 
 var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
 	getInitialState: function() {
-    	return {};
+    	return {artist: 'Stars'};
+  	},
+  	componentDidMount: function() {
+  		AlbumStore.addChangeListener(this._onChange);
+
+  	},
+  	componentWillUnmount: function() {
+  		AlbumStore.removeChangeListener(this._onChange);
+
   	},
 	render: function(){
 		console.log('Album-props',this.props);
 		var albums = [];
-		this.props.artistAlbums[0].albumList.forEach(function(artistAlbum) {
+		var indexNum= _.findIndex(this.props.artistAlbums, { 'artistName': this.state.artist });
+		console.log('indexNum:', indexNum);
+		this.props.artistAlbums[indexNum].albumList.map(function(artistAlbum) {
            
             albums.push(
+
             	React.DOM.li({className: "album-item"}, 
             	Album({albumName: artistAlbum.albumName, albumCover: artistAlbum.albumCover})
             	)
             );
            
            
-        }.bind(this));
+        });
 
 		return(
 
@@ -307,13 +318,18 @@ var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
 		      )
 		)
 
-	}
+	},
+
+	_onChange: function(data) {
+		console.log("_onChange",data);
+    	this.setState({artist: data.artist});
+    }
 
 });
 
 module.exports=AlbumWrap;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\AlbumWrap.js","/components")
-},{"../actions/AlbumActionCreators":2,"./Album":5,"buffer":21,"ngpmcQ":25}],7:[function(require,module,exports){
+},{"../actions/AlbumActionCreators":2,"../stores/AlbumStore":14,"./Album":5,"buffer":21,"ngpmcQ":25}],7:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @jsx React.DOM
@@ -366,7 +382,7 @@ module.exports=Artist;
 var Artist = require("./Artist"),
 	ArtistActionCreators = require("../actions/ArtistActionCreators"),
 	ArtistStore = require('../stores/ArtistStore'),
-	AlbumStore=require('../stores/AlbumStore');
+	AlbumStore= require('../stores/AlbumStore');
 var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
 	
 
@@ -374,7 +390,7 @@ var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
 		console.log('props',this.props)
 		var artists = [];
         var lastArtist = null;
-        this.props.artistAlbums.forEach(function(artistAlbum) {
+        this.props.artistAlbums.map(function(artistAlbum) {
            
             artists.push(
             	React.DOM.li({class: "artist-item"}, 
@@ -383,7 +399,7 @@ var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
             );
            
            
-        }.bind(this));
+        });
 		return(
 			React.DOM.div({className: "artist-wrap"}, 
 			React.DOM.div({className: "artist-line"}), 
@@ -538,7 +554,7 @@ MusicAPIUtils.getInitData(); //get init data from Utils
 
 
 function getStateInit() {
-  console.log("Example Data");
+  console.log("get Example Data");
   return {
     artistAlbums: AppStore.getInitData()
   };
@@ -577,7 +593,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_1a19310c.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_5dd32ddb.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":6,"./components/ArtistWrap":8,"./components/SearchWrap":9,"./components/VideoWrap":10,"./stores/AppStore":15,"./utils/MusicAPIUtils":17,"buffer":21,"ngpmcQ":25,"react":160}],14:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -626,8 +642,8 @@ var AlbumStore=merge(EventEmitter.prototype,{
 	getAll: function(){
 		return _artists;
 	},
-	emitChange: function() {
-	    this.emit(CHANGE_EVENT);
+	emitChange: function(action) {
+	    this.emit(CHANGE_EVENT,action);
 	},
 	addChangeListener: function(callback) {
 	    this.on(CHANGE_EVENT, callback);
@@ -651,8 +667,8 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.CLICK_ARTIST:
-			console.log('lololo change artist');
-			AlbumStore.emitChange();
+			console.log('load',action.artist, "albums");
+			AlbumStore.emitChange(action);
 
 			break;
 		case  ActionTypes.CLICK_ALBUM:

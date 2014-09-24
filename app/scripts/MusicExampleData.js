@@ -61,11 +61,11 @@ module.exports = {
 					artistName: 'Muse',
 					artistImage: "http://userserve-ak.last.fm/serve/126/35147389.jpg",
 					albumList: [{
-						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png",
-						albumName: "Set Yourself on Fire"
+						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
+						albumName: "GGYY"
 					}, {
 						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
-						albumName: "The Five Ghosts"
+						albumName: "KAKA"
 					}, {
 						albumCover: "http://userserve-ak.last.fm/serve/300x300/84741451.png",
 						albumName: "The North"
@@ -114,7 +114,7 @@ module.exports = {
 					artistImage: "http://userserve-ak.last.fm/serve/126/81384615.png",
 					albumList: [{
 						albumCover: "http://userserve-ak.last.fm/serve/300x300/62267895.png",
-						albumName: "Set Yourself on Fire"
+						albumName: "MAMAA  拉拉拉"
 					}, {
 						albumCover: "http://userserve-ak.last.fm/serve/300x300/48195537.png",
 						albumName: "The Five Ghosts"

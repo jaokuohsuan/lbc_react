@@ -5,7 +5,7 @@
 var Artist = require("./Artist"),
 	ArtistActionCreators = require("../actions/ArtistActionCreators"),
 	ArtistStore = require('../stores/ArtistStore'),
-	AlbumStore=require('../stores/AlbumStore');
+	AlbumStore= require('../stores/AlbumStore');
 var ArtistWrap=React.createClass({
 	
 
@@ -13,7 +13,7 @@ var ArtistWrap=React.createClass({
 		console.log('props',this.props)
 		var artists = [];
         var lastArtist = null;
-        this.props.artistAlbums.forEach(function(artistAlbum) {
+        this.props.artistAlbums.map(function(artistAlbum) {
            
             artists.push(
             	<li class="artist-item">
@@ -22,7 +22,7 @@ var ArtistWrap=React.createClass({
             );
            
            
-        }.bind(this));
+        });
 		return(
 			<div className="artist-wrap">
 			<div className="artist-line"></div>

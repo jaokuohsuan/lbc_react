@@ -44,8 +44,8 @@ var AlbumStore=merge(EventEmitter.prototype,{
 	getAll: function(){
 		return _artists;
 	},
-	emitChange: function() {
-	    this.emit(CHANGE_EVENT);
+	emitChange: function(action) {
+	    this.emit(CHANGE_EVENT,action);
 	},
 	addChangeListener: function(callback) {
 	    this.on(CHANGE_EVENT, callback);
@@ -69,8 +69,8 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.CLICK_ARTIST:
-			console.log('lololo change artist');
-			AlbumStore.emitChange();
+			console.log('load',action.artist, "albums");
+			AlbumStore.emitChange(action);
 
 			break;
 		case  ActionTypes.CLICK_ALBUM:

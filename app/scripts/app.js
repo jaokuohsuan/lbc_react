@@ -23,7 +23,7 @@ MusicAPIUtils.getInitData(); //get init data from Utils
 
 
 function getStateInit() {
-  console.log("Example Data");
+  console.log("get Example Data");
   return {
     artistAlbums: AppStore.getInitData()
   };
