@@ -69,7 +69,6 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.CLICK_ARTIST:
-			console.log('lalala click');
 			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
 			ArtistStore.emitChange();
 

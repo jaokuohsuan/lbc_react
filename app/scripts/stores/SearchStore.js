@@ -1,51 +1,40 @@
 var AppConstants= require('../constants/AppConstants');
 var AppDispatcher= require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
+
 var merge = require('react/lib/merge');
 var ActionTypes = AppConstants.ActionTypes;
-
 
 var CHANGE_EVENT = 'change';
 
 
-var _album= {};
+var _artistName= {};
 
 
-// function createArtist(artist) {
-//   // Hand waving here -- not showing how this interacts with XHR or persistent
-//   // server-side storage.
-//   // Using the current timestamp in place of a real id.
-//   var id = Date.now();
-//   _artists[id] = {
-//     id: id,
-//     complete: false,
-//     text: text
-//   };
-// }
 
 
-function updateAlbum(id, updates) {
+function updateArtist(id, updates) {
   _artists[id] = merge(_artists[id], updates);
 }
 
-function destroyAlbum(id) {
+function destroyArtist(id) {
   delete _artists[id];
 }
 
 
-function clickAlbum(id){
+function clickArtist(id){
 	console.log('click:',id);
 }
 
 
 
-var AlbumStore=merge(EventEmitter.prototype,{
+var SearchStore=merge(EventEmitter.prototype,{
 
 	getAll: function(){
 		return _artists;
 	},
-	emitChange: function(action) {
-	    this.emit(CHANGE_EVENT,action);
+	emitChange: function() {
+	    this.emit(CHANGE_EVENT);
 	},
 	addChangeListener: function(callback) {
 	    this.on(CHANGE_EVENT, callback);
@@ -56,7 +45,7 @@ var AlbumStore=merge(EventEmitter.prototype,{
 
 });
 
-AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
+SearchStore.dispatchToken=AppDispatcher.register(function(payload){
 
 	var action=payload.action;
 	var text;
@@ -68,10 +57,10 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 		case  ActionTypes.REMOVE_ARTIST:
 
 			break;
-		case  ActionTypes.CLICK_ARTIST:
-			AlbumStore.emitChange(action);
-			break;
-		case  ActionTypes.CLICK_ALBUM:
+		case  ActionTypes.SEARCH_ARTIST_NAME:
+			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
+			console.log("search neame:",action.rawData);
+			SearchStore.emitChange();
 
 			break;
 
@@ -83,5 +72,5 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 	
 });
 
-module.exports=AlbumStore;
+module.exports=SearchStore;
 

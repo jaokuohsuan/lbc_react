@@ -17,6 +17,36 @@ module.exports={
     },
 
 
+  //   getSearchTips: function(){
+
+  //   	var oReq= new XMLHttpRequest();
+  //   	oReq.onreadystatechange = function(){
+
+	 //   		  if ( oReq.readyState == 4) {
+		// 　　　　　
+		// 			//get artists
+		// 			var _response = {};					
+		// 			var response =JSON.parse(oReq.responseText);
+		// 			// response  = response.results.artistmatches.artist[0];
+		// 			// _response.artistImage = response.image[2]["#text"];
+		// 			// _response.artistMbid = response.mbid;
+		// 			// _response.artistName = response.name;
+		// 			// delete response;
+		// 			console.log( 'artist:',response);
+					
+
+		// 　　　} else {
+		// 　　　　　　console.log( "Error: ",oReq.statusText );
+		// 　　　}
+	 //   	}
+	 //   	 oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
+	 //   	 oReq.send(null);
+
+
+
+  //   },
+
+
    
    getArtists:function(searchkey){
    	

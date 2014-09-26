@@ -3,12 +3,13 @@ var keyMirror = require('react/lib/keyMirror');
 module.exports={
 
 	ActionTypes: keyMirror({
-		ADD_ARTIST: 'ADD_ARTIST',
-		RECEIVE_ARTIST: 'RECEIVE_ARTIST',
-		REMOVE_ARTIST: 'REMOVE_ARTIST',
-		CLICK_ARTIST: 'CLICK_ARTIST',
-		CLICK_ALBUM: 'CLICK_ALBUM',
-		RECEIVE_INIT: 'RECEIVE_INIT'
+		ADD_ARTIST: null,
+		RECEIVE_ARTIST: null,
+		REMOVE_ARTIST: null,
+		CLICK_ARTIST: null,
+		CLICK_ALBUM: null,
+		RECEIVE_INIT: null,
+		SEARCH_ARTIST_NAME: null
 	}),	
 	PayloadSources: keyMirror({
 	    SERVER_ACTION: null,

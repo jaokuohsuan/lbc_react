@@ -11,6 +11,13 @@ module.exports={
       actionType: ActionTypes.RECEIVE_INIT,
       rawData: rawData
     });
+  },
+  searchArtistName: function(val){
+  	AppDispatcher.handleServerAction({
+      actionType: ActionTypes.SEARCH_ARTIST_NAME,
+      rawData: val
+    });
+
   }
 
 }
