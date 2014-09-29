@@ -46,6 +46,36 @@ module.exports={
 
   //   },
 
+  getArtistTips:function(searchkey){
+   	
+	   	var oReq = new XMLHttpRequest();
+	   	oReq.onreadystatechange = function(){
+
+	   		  if ( oReq.readyState == 4) {
+		　　　　　
+					//get artists
+					var _response = {};					
+					var response =JSON.parse(oReq.responseText);
+					response  = response.results.artistmatches.artist;
+					_response = _.filter(response,'mbid'); //filter out mbid is empty
+					_response = _.map(_response,'name'); //get name list 
+
+					delete response;
+
+					// console.log( 'artist:',_response);
+					
+					
+					ArtistServerActionCreators.receiveArtists(_response);
+
+		　　　} else {
+		　　　　　　console.log( "Error: ",oReq.statusText );
+		　　　}
+	   	}
+	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
+	    oReq.send(null);
+
+   },
+
 
    
    getArtists:function(searchkey){
@@ -64,7 +94,7 @@ module.exports={
 					_response.artistName = response.name;
 					delete response;
 					console.log( 'artist:',_response);
-					ArtistServerAction.receiveArtists(_response );
+					ArtistServerActionCreators.receiveArtists(_response);
 
 		　　　} else {
 		　　　　　　console.log( "Error: ",oReq.statusText );

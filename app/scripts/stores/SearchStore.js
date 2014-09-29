@@ -33,8 +33,8 @@ var SearchStore=merge(EventEmitter.prototype,{
 	getAll: function(){
 		return _artists;
 	},
-	emitChange: function() {
-	    this.emit(CHANGE_EVENT);
+	emitChange: function(action) {
+	    this.emit(CHANGE_EVENT,action);
 	},
 	addChangeListener: function(callback) {
 	    this.on(CHANGE_EVENT, callback);
@@ -59,8 +59,8 @@ SearchStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case  ActionTypes.SEARCH_ARTIST_NAME:
 			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
-			console.log("search neame:",action.rawData);
-			SearchStore.emitChange();
+			console.log("search neame gg:",action.rawData);
+			SearchStore.emitChange(action.rawData);
 
 			break;
 

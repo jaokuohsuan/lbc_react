@@ -11,12 +11,15 @@ module.exports={
       actionType: ActionTypes.RECEIVE_INIT,
       rawData: rawData
     });
+
+    console.log('receiveInit');
   },
-  searchArtistName: function(val){
-  	AppDispatcher.handleServerAction({
+  receiveArtists: function(rawData){
+    AppDispatcher.handleServerAction({
       actionType: ActionTypes.SEARCH_ARTIST_NAME,
-      rawData: val
+      rawData: rawData
     });
+    console.log('receiveArtists');
 
   }
 
