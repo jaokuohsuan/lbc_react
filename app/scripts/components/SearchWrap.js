@@ -45,7 +45,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 	 		this.state.artistNameList.map(function(artistName){
 	 			nameList.push(
-	 				<option vaule={artistName}>{artistName}</option>
+	 				<option value={artistName}>{artistName}</option>
 	 			);
 
 	 		});

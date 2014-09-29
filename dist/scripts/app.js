@@ -500,7 +500,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 	 		this.state.artistNameList.map(function(artistName){
 	 			nameList.push(
-	 				React.DOM.option({vaule: artistName}, artistName)
+	 				React.DOM.option({value: artistName}, artistName)
 	 			);
 
 	 		});
@@ -682,7 +682,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_7134750d.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_cbd4cd42.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./utils/MusicAPIUtils":19,"buffer":23,"ngpmcQ":27,"react":162}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
