@@ -6,10 +6,25 @@ var Album = require("./Album"),
 	AlbumActionCreators = require("../actions/AlbumActionCreators"),
 	AlbumStore= require("../stores/AlbumStore");
 
+function getStateInit() {
+  return {
+    artistAlbums: AlbumStore.getInitData(),
+    artist: 'Stars'
+  };
+}
 
 var AlbumWrap= React.createClass({
+
+
+
+	_onChange: function(data) {
+		console.log("_onChange",data);
+    	this.setState({artist: data.artist});
+    },
+
+    
 	getInitialState: function() {
-    	return {artist: 'Stars'};
+    	return getStateInit();
   	},
   	componentDidMount: function() {
   		AlbumStore.addChangeListener(this._onChange);
@@ -20,11 +35,11 @@ var AlbumWrap= React.createClass({
 
   	},
 	render: function(){
-		console.log('Album-props',this.props);
+		console.log('Album-state',this.state);
 		var albums = [];
-		var indexNum= _.findIndex(this.props.artistAlbums, { 'artistName': this.state.artist });
+		var indexNum= _.findIndex(this.state.artistAlbums, { 'artistName': this.state.artist });
 		console.log('indexNum:', indexNum);
-		this.props.artistAlbums[indexNum].albumList.map(function(artistAlbum) {
+		this.state.artistAlbums[indexNum].albumList.map(function(artistAlbum) {
            
             albums.push(
 
@@ -53,12 +68,7 @@ var AlbumWrap= React.createClass({
 		      </div>
 		)
 
-	},
-
-	_onChange: function(data) {
-		console.log("_onChange",data);
-    	this.setState({artist: data.artist});
-    }
+	}
 
 });
 

@@ -22,34 +22,16 @@ MusicExampleData.init(); // put example data into localstorage
 MusicAPIUtils.getInitData(); //get init data from Utils
 
 
-function getStateInit() {
-  console.log("get Example Data");
-  return {
-    artistAlbums: AppStore.getInitData()
-  };
-}
 
 var LbcApp=React.createClass({
 
-  getInitialState: function() {
-    // init satate
-    return getStateInit();
-  },
-
-  componentDidMount: function() {
-   
-  },
-  componentWillUnmount: function() {
-    
-  },
-
-
+ 
   render: function(){
     return(
       <div>
         <SearchWrap />
-        <ArtistWrap artistAlbums={this.state.artistAlbums} />
-        <AlbumWrap artistAlbums={this.state.artistAlbums} />
+        <ArtistWrap  />
+        <AlbumWrap  />
         <VideoWrap />
       </div>
     );

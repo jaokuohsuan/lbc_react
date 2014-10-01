@@ -68,7 +68,7 @@ module.exports={
 					ArtistServerActionCreators.receiveArtists(_response);
 
 		　　　} else {
-		　　　　　　console.log( "Error: ",oReq.statusText );
+		　　　　　　// console.log( "Error: ",oReq.statusText );
 		　　　}
 	   	}
 	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
@@ -93,11 +93,11 @@ module.exports={
 					_response.artistMbid = response.mbid;
 					_response.artistName = response.name;
 					delete response;
-					console.log( 'artist:',_response);
-					ArtistServerActionCreators.receiveArtists(_response);
+					// console.log( 'artist:',_response);
+					ArtistServerActionCreators.addArtists(_response);
 
 		　　　} else {
-		　　　　　　console.log( "Error: ",oReq.statusText );
+		　　　　　　// console.log( "Error: ",oReq.statusText );
 		　　　}
 	   	}
 	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);

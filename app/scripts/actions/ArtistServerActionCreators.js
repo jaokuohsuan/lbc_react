@@ -21,6 +21,14 @@ module.exports={
     });
     console.log('receiveArtists');
 
+  },
+  addArtists: function(rawData){
+    AppDispatcher.handleServerAction({
+      actionType: ActionTypes.ADD_ARTIST,
+      rawData: rawData
+    });
+    console.log('addArtists');
+
   }
 
 }

@@ -11,7 +11,19 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
  	handleKeyPress: function(evt){
- 		console.log("evt:"+evt.keyCode);
+ 		
+ 		
+ 		if(evt.keyCode == "13"){
+
+ 			
+
+
+ 			var val=this.refs.searchInput.getDOMNode().value;
+ 			console.log("evt-keycode:"+evt.keyCode,"val:",val);
+ 			// evt.preventDefault();
+ 			SearchActionCreators.addArtistFromSearch(val);
+ 			
+ 		}
  	},
  	handleChange: function (evt) {
  		var val=this.refs.searchInput.getDOMNode().value;
@@ -54,22 +66,21 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
  		return(
 
- 			<div className="search-wrap" onKeyPress={this.handleKeyPress}>
- 				<form  className="artist-search" >
-				<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
+ 			<div className="search-wrap">
+ 				<div  className="artist-search" >
+				<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
 				<datalist id="artist-name-list">
-					{nameList}
-					
+					{nameList}			
 
 				</datalist>
-			    </form>
+			    </div>
 					}
  			</div>
  		)
  	},
  	_onChange: function(data) {
 
- 		console.log('on channge');
+ 		//console.log('on channge');
 		
     	this.setState({artistNameList: data});
     }

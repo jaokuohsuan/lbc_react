@@ -11,6 +11,9 @@ var CHANGE_EVENT = 'change';
 var _artist= {};
 
 
+
+
+
 function createArtist(artist) {
   // Hand waving here -- not showing how this interacts with XHR or persistent
   // server-side storage.
@@ -41,11 +44,15 @@ function clickArtist(id){
 
 var ArtistStore=merge(EventEmitter.prototype,{
 
+	getInitData:function(rawData){      
+      return _artist;
+    },
+
 	getAll: function(){
 		return _artists;
 	},
-	emitChange: function() {
-	    this.emit(CHANGE_EVENT);
+	emitChange: function(action) {
+	    this.emit(CHANGE_EVENT,action);
 	},
 	addChangeListener: function(callback) {
 	    this.on(CHANGE_EVENT, callback);
@@ -62,7 +69,15 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 	var text;
 
 	switch(action.actionType){
+		case  ActionTypes.RECEIVE_INIT:
+     		console.log('INIT lalala',action.rawData);
+     	  	_artist=action.rawData; 
+     	break;
 		case  ActionTypes.ADD_ARTIST:
+			
+			_artist.push(action.rawData);
+			console.log("ADD_ARTIS",_artist);
+			ArtistStore.emitChange(_artist);
 
 			break;
 		case  ActionTypes.REMOVE_ARTIST:

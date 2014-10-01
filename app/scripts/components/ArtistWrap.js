@@ -6,14 +6,45 @@ var Artist = require("./Artist"),
 	ArtistActionCreators = require("../actions/ArtistActionCreators"),
 	ArtistStore = require('../stores/ArtistStore'),
 	AlbumStore= require('../stores/AlbumStore');
+
+
+function getStateInit() {
+  return {
+    artistAlbums: ArtistStore.getInitData()
+  };
+}
+
+
 var ArtistWrap=React.createClass({
+
+    _onAddArtist: function(data){
+      console.log("_onAddArtist data:" ,data);
+      this.setState({artist: data.artist});
+
+    },
+
+	  getInitialState: function() {
+    	// init satate
+    	return getStateInit();
+  	},
+
+  	componentDidMount: function() {
+      ArtistStore.addChangeListener(this._onAddArtist);
+   
+    },
+
+    componentWillUnmount: function() {
+      ArtistStore.removeChangeListener(this._onAddArtist);
+    
+    },
+
 	
 
 	render:function(){
-		console.log('props',this.props)
+		console.log('artistwrap state',this.state)
 		var artists = [];
         var lastArtist = null;
-        this.props.artistAlbums.map(function(artistAlbum) {
+        this.state.artistAlbums.map(function(artistAlbum) {
            
             artists.push(
             	<li class="artist-item">

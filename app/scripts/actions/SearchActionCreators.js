@@ -16,6 +16,17 @@ module.exports={
 
     MusicAPIUtils.getArtistTips(val);
 
-  }
+  },
+
+  addArtistFromSearch: function(val){
+  	AppDispatcher.handleServerAction({
+      actionType: ActionTypes.ENTER_ARTIST,
+      rawData: val
+    });
+
+    MusicAPIUtils.getArtists(val);
+
+  } 
+
 
 }

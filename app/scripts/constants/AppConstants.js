@@ -4,6 +4,7 @@ module.exports={
 
 	ActionTypes: keyMirror({
 		ADD_ARTIST: null,
+		ENTER_ARTIST: null,
 		RECEIVE_ARTIST: null,
 		REMOVE_ARTIST: null,
 		CLICK_ARTIST: null,

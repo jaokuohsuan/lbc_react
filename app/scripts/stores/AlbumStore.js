@@ -25,11 +25,11 @@ var _album= {};
 
 
 function updateAlbum(id, updates) {
-  _artists[id] = merge(_artists[id], updates);
+  _album[id] = merge(_album[id], updates);
 }
 
 function destroyAlbum(id) {
-  delete _artists[id];
+  delete _album[id];
 }
 
 
@@ -41,8 +41,15 @@ function clickAlbum(id){
 
 var AlbumStore=merge(EventEmitter.prototype,{
 
+	
+
+
+	getInitData:function(rawData){      
+      return _album;
+    },
+
 	getAll: function(){
-		return _artists;
+		return _album;
 	},
 	emitChange: function(action) {
 	    this.emit(CHANGE_EVENT,action);
@@ -62,6 +69,10 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 	var text;
 
 	switch(action.actionType){
+		case  ActionTypes.RECEIVE_INIT:
+     		console.log('INIT lalala',action.rawData);
+     	  	_album=action.rawData; 
+     	break;
 		case  ActionTypes.ADD_ARTIST:
 
 			break;

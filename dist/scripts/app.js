@@ -231,6 +231,14 @@ module.exports={
     });
     console.log('receiveArtists');
 
+  },
+  addArtists: function(rawData){
+    AppDispatcher.handleServerAction({
+      actionType: ActionTypes.ADD_ARTIST,
+      rawData: rawData
+    });
+    console.log('addArtists');
+
   }
 
 }
@@ -255,7 +263,18 @@ module.exports={
 
     MusicAPIUtils.getArtistTips(val);
 
-  }
+  },
+
+  addArtistFromSearch: function(val){
+  	AppDispatcher.handleServerAction({
+      actionType: ActionTypes.ENTER_ARTIST,
+      rawData: val
+    });
+
+    MusicAPIUtils.getArtists(val);
+
+  } 
+
 
 }
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/actions\\SearchActionCreators.js","/actions")
@@ -305,10 +324,25 @@ var Album = require("./Album"),
 	AlbumActionCreators = require("../actions/AlbumActionCreators"),
 	AlbumStore= require("../stores/AlbumStore");
 
+function getStateInit() {
+  return {
+    artistAlbums: AlbumStore.getInitData(),
+    artist: 'Stars'
+  };
+}
 
 var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
+
+
+
+	_onChange: function(data) {
+		console.log("_onChange",data);
+    	this.setState({artist: data.artist});
+    },
+
+    
 	getInitialState: function() {
-    	return {artist: 'Stars'};
+    	return getStateInit();
   	},
   	componentDidMount: function() {
   		AlbumStore.addChangeListener(this._onChange);
@@ -319,11 +353,11 @@ var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
 
   	},
 	render: function(){
-		console.log('Album-props',this.props);
+		console.log('Album-state',this.state);
 		var albums = [];
-		var indexNum= _.findIndex(this.props.artistAlbums, { 'artistName': this.state.artist });
+		var indexNum= _.findIndex(this.state.artistAlbums, { 'artistName': this.state.artist });
 		console.log('indexNum:', indexNum);
-		this.props.artistAlbums[indexNum].albumList.map(function(artistAlbum) {
+		this.state.artistAlbums[indexNum].albumList.map(function(artistAlbum) {
            
             albums.push(
 
@@ -352,12 +386,7 @@ var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
 		      )
 		)
 
-	},
-
-	_onChange: function(data) {
-		console.log("_onChange",data);
-    	this.setState({artist: data.artist});
-    }
+	}
 
 });
 
@@ -417,14 +446,45 @@ var Artist = require("./Artist"),
 	ArtistActionCreators = require("../actions/ArtistActionCreators"),
 	ArtistStore = require('../stores/ArtistStore'),
 	AlbumStore= require('../stores/AlbumStore');
+
+
+function getStateInit() {
+  return {
+    artistAlbums: ArtistStore.getInitData()
+  };
+}
+
+
 var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
+
+    _onAddArtist: function(data){
+      console.log("_onAddArtist data:" ,data);
+      this.setState({artist: data.artist});
+
+    },
+
+	  getInitialState: function() {
+    	// init satate
+    	return getStateInit();
+  	},
+
+  	componentDidMount: function() {
+      ArtistStore.addChangeListener(this._onAddArtist);
+   
+    },
+
+    componentWillUnmount: function() {
+      ArtistStore.removeChangeListener(this._onAddArtist);
+    
+    },
+
 	
 
 	render:function(){
-		console.log('props',this.props)
+		console.log('artistwrap state',this.state)
 		var artists = [];
         var lastArtist = null;
-        this.props.artistAlbums.map(function(artistAlbum) {
+        this.state.artistAlbums.map(function(artistAlbum) {
            
             artists.push(
             	React.DOM.li({class: "artist-item"}, 
@@ -466,7 +526,19 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
  	handleKeyPress: function(evt){
- 		console.log("evt:"+evt.keyCode);
+ 		
+ 		
+ 		if(evt.keyCode == "13"){
+
+ 			
+
+
+ 			var val=this.refs.searchInput.getDOMNode().value;
+ 			console.log("evt-keycode:"+evt.keyCode,"val:",val);
+ 			// evt.preventDefault();
+ 			SearchActionCreators.addArtistFromSearch(val);
+ 			
+ 		}
  	},
  	handleChange: function (evt) {
  		var val=this.refs.searchInput.getDOMNode().value;
@@ -509,12 +581,11 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
  		return(
 
- 			React.DOM.div({className: "search-wrap", onKeyPress: this.handleKeyPress}, 
- 				React.DOM.form({className: "artist-search"}, 
-				React.DOM.input({type: "text", value: this.props.searchText, ref: "searchInput", onChange: this.handleChange, name: "artist-search", list: "artist-name-list", autocomplete: "on", placeholder: "artist or band..."}), 
+ 			React.DOM.div({className: "search-wrap"}, 
+ 				React.DOM.div({className: "artist-search"}, 
+				React.DOM.input({type: "text", value: this.props.searchText, ref: "searchInput", onChange: this.handleChange, onKeyPress: this.handleKeyPress, name: "artist-search", list: "artist-name-list", autocomplete: "on", placeholder: "artist or band..."}), 
 				React.DOM.datalist({id: "artist-name-list"}, 
-					nameList
-					
+					nameList			
 
 				)
 			    ), 
@@ -524,7 +595,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  	},
  	_onChange: function(data) {
 
- 		console.log('on channge');
+ 		//console.log('on channge');
 		
     	this.setState({artistNameList: data});
     }
@@ -567,6 +638,7 @@ module.exports={
 
 	ActionTypes: keyMirror({
 		ADD_ARTIST: null,
+		ENTER_ARTIST: null,
 		RECEIVE_ARTIST: null,
 		REMOVE_ARTIST: null,
 		CLICK_ARTIST: null,
@@ -642,34 +714,16 @@ MusicExampleData.init(); // put example data into localstorage
 MusicAPIUtils.getInitData(); //get init data from Utils
 
 
-function getStateInit() {
-  console.log("get Example Data");
-  return {
-    artistAlbums: AppStore.getInitData()
-  };
-}
 
 var LbcApp=React.createClass({displayName: 'LbcApp',
 
-  getInitialState: function() {
-    // init satate
-    return getStateInit();
-  },
-
-  componentDidMount: function() {
-   
-  },
-  componentWillUnmount: function() {
-    
-  },
-
-
+ 
   render: function(){
     return(
       React.DOM.div(null, 
         SearchWrap(null), 
-        ArtistWrap({artistAlbums: this.state.artistAlbums}), 
-        AlbumWrap({artistAlbums: this.state.artistAlbums}), 
+        ArtistWrap(null), 
+        AlbumWrap(null), 
         VideoWrap(null)
       )
     );
@@ -682,7 +736,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_cbd4cd42.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_ea3cb049.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./utils/MusicAPIUtils":19,"buffer":23,"ngpmcQ":27,"react":162}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -712,11 +766,11 @@ var _album= {};
 
 
 function updateAlbum(id, updates) {
-  _artists[id] = merge(_artists[id], updates);
+  _album[id] = merge(_album[id], updates);
 }
 
 function destroyAlbum(id) {
-  delete _artists[id];
+  delete _album[id];
 }
 
 
@@ -728,8 +782,15 @@ function clickAlbum(id){
 
 var AlbumStore=merge(EventEmitter.prototype,{
 
+	
+
+
+	getInitData:function(rawData){      
+      return _album;
+    },
+
 	getAll: function(){
-		return _artists;
+		return _album;
 	},
 	emitChange: function(action) {
 	    this.emit(CHANGE_EVENT,action);
@@ -749,6 +810,10 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 	var text;
 
 	switch(action.actionType){
+		case  ActionTypes.RECEIVE_INIT:
+     		console.log('INIT lalala',action.rawData);
+     	  	_album=action.rawData; 
+     	break;
 		case  ActionTypes.ADD_ARTIST:
 
 			break;
@@ -849,6 +914,9 @@ var CHANGE_EVENT = 'change';
 var _artist= {};
 
 
+
+
+
 function createArtist(artist) {
   // Hand waving here -- not showing how this interacts with XHR or persistent
   // server-side storage.
@@ -879,11 +947,15 @@ function clickArtist(id){
 
 var ArtistStore=merge(EventEmitter.prototype,{
 
+	getInitData:function(rawData){      
+      return _artist;
+    },
+
 	getAll: function(){
 		return _artists;
 	},
-	emitChange: function() {
-	    this.emit(CHANGE_EVENT);
+	emitChange: function(action) {
+	    this.emit(CHANGE_EVENT,action);
 	},
 	addChangeListener: function(callback) {
 	    this.on(CHANGE_EVENT, callback);
@@ -900,7 +972,15 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 	var text;
 
 	switch(action.actionType){
+		case  ActionTypes.RECEIVE_INIT:
+     		console.log('INIT lalala',action.rawData);
+     	  	_artist=action.rawData; 
+     	break;
 		case  ActionTypes.ADD_ARTIST:
+			
+			_artist.push(action.rawData);
+			console.log("ADD_ARTIS",_artist);
+			ArtistStore.emitChange(_artist);
 
 			break;
 		case  ActionTypes.REMOVE_ARTIST:
@@ -1076,7 +1156,7 @@ module.exports={
 					ArtistServerActionCreators.receiveArtists(_response);
 
 		　　　} else {
-		　　　　　　console.log( "Error: ",oReq.statusText );
+		　　　　　　// console.log( "Error: ",oReq.statusText );
 		　　　}
 	   	}
 	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
@@ -1101,11 +1181,11 @@ module.exports={
 					_response.artistMbid = response.mbid;
 					_response.artistName = response.name;
 					delete response;
-					console.log( 'artist:',_response);
-					ArtistServerActionCreators.receiveArtists(_response);
+					// console.log( 'artist:',_response);
+					ArtistServerActionCreators.addArtists(_response);
 
 		　　　} else {
-		　　　　　　console.log( "Error: ",oReq.statusText );
+		　　　　　　// console.log( "Error: ",oReq.statusText );
 		　　　}
 	   	}
 	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
