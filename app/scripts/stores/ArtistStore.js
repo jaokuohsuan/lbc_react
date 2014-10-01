@@ -69,14 +69,12 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 	var text;
 
 	switch(action.actionType){
-		case  ActionTypes.RECEIVE_INIT:
-     		console.log('INIT lalala',action.rawData);
+		case  ActionTypes.RECEIVE_INIT:     	
      	  	_artist=action.rawData; 
      	break;
 		case  ActionTypes.ADD_ARTIST:
 			
 			_artist.push(action.rawData);
-			console.log("ADD_ARTIS",_artist);
 			ArtistStore.emitChange(_artist);
 
 			break;
@@ -85,7 +83,7 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case  ActionTypes.CLICK_ARTIST:
 			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
-			ArtistStore.emitChange();
+			ArtistStore.emitChange(_artist);
 
 			break;
 

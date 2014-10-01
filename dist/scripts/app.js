@@ -457,8 +457,8 @@ function getStateInit() {
 
 var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
 
-    _onAddArtist: function(data){
-      console.log("_onAddArtist data:" ,data);
+    _onChange: function(data){
+      console.log("_onChange data:" ,data);
       this.setState({artistAlbums: data});
 
     },
@@ -469,12 +469,12 @@ var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
   	},
 
   	componentDidMount: function() {
-      ArtistStore.addChangeListener(this._onAddArtist);
+      ArtistStore.addChangeListener(this._onChange);
    
     },
 
     componentWillUnmount: function() {
-      ArtistStore.removeChangeListener(this._onAddArtist);
+      ArtistStore.removeChangeListener(this._onChange);
     
     },
 
@@ -736,7 +736,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_18898a3b.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_58e79f11.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./utils/MusicAPIUtils":19,"buffer":23,"ngpmcQ":27,"react":162}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -972,14 +972,12 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 	var text;
 
 	switch(action.actionType){
-		case  ActionTypes.RECEIVE_INIT:
-     		console.log('INIT lalala',action.rawData);
+		case  ActionTypes.RECEIVE_INIT:     	
      	  	_artist=action.rawData; 
      	break;
 		case  ActionTypes.ADD_ARTIST:
 			
 			_artist.push(action.rawData);
-			console.log("ADD_ARTIS",_artist);
 			ArtistStore.emitChange(_artist);
 
 			break;
@@ -988,7 +986,7 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case  ActionTypes.CLICK_ARTIST:
 			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
-			ArtistStore.emitChange();
+			ArtistStore.emitChange(_artist);
 
 			break;
 

@@ -17,8 +17,8 @@ function getStateInit() {
 
 var ArtistWrap=React.createClass({
 
-    _onAddArtist: function(data){
-      console.log("_onAddArtist data:" ,data);
+    _onChange: function(data){
+      console.log("_onChange data:" ,data);
       this.setState({artistAlbums: data});
 
     },
@@ -29,12 +29,12 @@ var ArtistWrap=React.createClass({
   	},
 
   	componentDidMount: function() {
-      ArtistStore.addChangeListener(this._onAddArtist);
+      ArtistStore.addChangeListener(this._onChange);
    
     },
 
     componentWillUnmount: function() {
-      ArtistStore.removeChangeListener(this._onAddArtist);
+      ArtistStore.removeChangeListener(this._onChange);
     
     },
 
