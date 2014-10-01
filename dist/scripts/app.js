@@ -327,7 +327,7 @@ var Album = require("./Album"),
 function getStateInit() {
   return {
     artistAlbums: AlbumStore.getInitData(),
-    artist: 'Stars'
+    artist: AlbumStore.getInitData()[0].artistName
   };
 }
 
@@ -340,7 +340,7 @@ var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
     	this.setState({artist: data.artist});
     },
 
-    
+
 	getInitialState: function() {
     	return getStateInit();
   	},
@@ -459,7 +459,7 @@ var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
 
     _onAddArtist: function(data){
       console.log("_onAddArtist data:" ,data);
-      this.setState({artist: data.artist});
+      this.setState({artistAlbums: data});
 
     },
 
@@ -736,7 +736,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_ea3cb049.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_18898a3b.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./utils/MusicAPIUtils":19,"buffer":23,"ngpmcQ":27,"react":162}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');

@@ -9,7 +9,7 @@ var Album = require("./Album"),
 function getStateInit() {
   return {
     artistAlbums: AlbumStore.getInitData(),
-    artist: 'Stars'
+    artist: AlbumStore.getInitData()[0].artistName
   };
 }
 
@@ -22,7 +22,7 @@ var AlbumWrap= React.createClass({
     	this.setState({artist: data.artist});
     },
 
-    
+
 	getInitialState: function() {
     	return getStateInit();
   	},

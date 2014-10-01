@@ -19,7 +19,7 @@ var ArtistWrap=React.createClass({
 
     _onAddArtist: function(data){
       console.log("_onAddArtist data:" ,data);
-      this.setState({artist: data.artist});
+      this.setState({artistAlbums: data});
 
     },
 
