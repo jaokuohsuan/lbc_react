@@ -74,7 +74,7 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
      	break;
 		case  ActionTypes.ADD_ARTIST:
 			
-			_artist.push(action.rawData);
+			_artist.splice(0,0,action.rawData);
 			ArtistStore.emitChange(_artist);
 
 			break;

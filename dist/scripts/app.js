@@ -736,7 +736,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_58e79f11.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_39a664e4.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./utils/MusicAPIUtils":19,"buffer":23,"ngpmcQ":27,"react":162}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -977,7 +977,7 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
      	break;
 		case  ActionTypes.ADD_ARTIST:
 			
-			_artist.push(action.rawData);
+			_artist.splice(0,0,action.rawData);
 			ArtistStore.emitChange(_artist);
 
 			break;
