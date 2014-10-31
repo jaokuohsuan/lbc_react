@@ -776,7 +776,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_1c70dc72.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_85cc5ea0.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./stores/RounterStore":18,"./utils/MusicAPIUtils":20,"buffer":24,"ngpmcQ":28,"react":163}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -1091,12 +1091,15 @@ RounterStore.dispatchToken = AppDispatcher.register(function(payload) {
 			var routes = {
 				
 
-				'/#/:action.artist': function() {
+				'/:action.artist': function() {
 					console.log("rounter Success", action.artist);
 				}
 			};
 
 			var router = Router(routes).init();
+
+			router.setRoute('/'+action.artist);
+		
 
 			
 

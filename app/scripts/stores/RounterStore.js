@@ -45,12 +45,15 @@ RounterStore.dispatchToken = AppDispatcher.register(function(payload) {
 			var routes = {
 				
 
-				'/#/:action.artist': function() {
+				'/:action.artist': function() {
 					console.log("rounter Success", action.artist);
 				}
 			};
 
 			var router = Router(routes).init();
+
+			router.setRoute('/'+action.artist);
+		
 
 			
 
