@@ -5,7 +5,8 @@
 var Artist = require("./Artist"),
 	ArtistActionCreators = require("../actions/ArtistActionCreators"),
 	ArtistStore = require('../stores/ArtistStore'),
-	AlbumStore= require('../stores/AlbumStore');
+  AlbumStore= require('../stores/AlbumStore');
+	//RounterStore= require('../stores/RounterStore');
 
 
 function getStateInit() {
@@ -30,11 +31,13 @@ var ArtistWrap=React.createClass({
 
   	componentDidMount: function() {
       ArtistStore.addChangeListener(this._onChange);
+
    
     },
 
     componentWillUnmount: function() {
       ArtistStore.removeChangeListener(this._onChange);
+
     
     },
 

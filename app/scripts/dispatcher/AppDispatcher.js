@@ -25,7 +25,16 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
       action: action
     };
     this.dispatch(payload);
+  },
+  handleRouterAction: function(action) {
+    console.log("handleRouteAction:",action);
+    var payload = {
+      source: PayloadSources.VIEW_ACTION,
+      action: action
+    };
+    this.dispatch(payload);
   }
+
 
 });
 

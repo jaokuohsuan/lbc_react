@@ -10,5 +10,10 @@ module.exports={
 			actionType: ActionTypes.CLICK_ARTIST,
 			artist: index
 		});
+		AppDispatcher.handleRouterAction({
+			actionType: ActionTypes.ROUNTER_ARTIST,
+			artist: index
+		});
+
 	}
 };

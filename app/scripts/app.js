@@ -8,7 +8,9 @@ var React = window.React = require('react'),
     SearchWrap = require("./components/SearchWrap"),
     MusicAPIUtils = require('./utils/MusicAPIUtils'),
     AppStore = require('./stores/AppStore'),
+    RounterStore = require('./stores/RounterStore'),
     mountNode = document.getElementById("app");
+
 
 var MusicExampleData= require('./MusicExampleData'); //ecample Data
 
@@ -24,6 +26,24 @@ MusicAPIUtils.getInitData(); //get init data from Utils
 
 
 var LbcApp=React.createClass({
+
+  _onChange: function(data){
+
+  },
+
+
+  componentDidMount: function() {
+
+      //RounterStore.addChangeListener(this._onChange);
+
+   
+  },
+
+    componentWillUnmount: function() {
+     //RounterStore.removeChangeListener(this._onChange);
+
+    
+  },
 
  
   render: function(){

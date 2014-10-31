@@ -5,7 +5,7 @@ var ArtistActionCreators = require("../actions/ArtistActionCreators");
 
  var Artist=React.createClass({
  	handleClick: function(){
- 		console.log("handleClick");
+ 		// console.log("handleClick");
 		ArtistActionCreators.clickArtist(this.props.artistName);
 		
 	},
@@ -21,13 +21,14 @@ var ArtistActionCreators = require("../actions/ArtistActionCreators");
 
  		return(
  			
+ 			
 	 			<div className="artist-but" onClick={this.handleClick}>
 					<figure className="artist-thumb" style={artistbgStyle}>
 						
 					</figure>
 
 					<span className="artist-name"> {this.props.artistName} </span>
-					<a href="#" className="artist-remove">
+					<a href='#' className="artist-remove">
 						<i className="icon-remove"></i>
 					</a>
 				</div>
