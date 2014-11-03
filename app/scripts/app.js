@@ -19,15 +19,29 @@ var MusicExampleData= require('./MusicExampleData'); //ecample Data
 // ArtistAPIUtils.getTracks('663dc26a-9fec-4123-8911-678f50ab9a7d');  
 
 MusicExampleData.init(); // put example data into localstorage
-
-
 MusicAPIUtils.getInitData(); //get init data from Utils
+
+
+//try to get url for router to init state
+
+function getRountingState(){
+
+}
 
 
 
 var LbcApp=React.createClass({
 
   _onChange: function(data){
+
+  },
+
+
+  getInitialState: function() {
+
+      //return getStateInit();
+      return {}
+
 
   },
 
@@ -39,7 +53,7 @@ var LbcApp=React.createClass({
    
   },
 
-    componentWillUnmount: function() {
+  componentWillUnmount: function() {
      //RounterStore.removeChangeListener(this._onChange);
 
     

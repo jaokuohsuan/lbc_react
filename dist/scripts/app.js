@@ -341,7 +341,7 @@ var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
 
 
 	_onChange: function(data) {
-		console.log("_onChange",data);
+		// console.log("_onChange",data);
     	this.setState({artist: data.artist});
     },
 
@@ -358,10 +358,10 @@ var AlbumWrap= React.createClass({displayName: 'AlbumWrap',
 
   	},
 	render: function(){
-		console.log('Album-state',this.state);
+		// console.log('Album-state',this.state);
 		var albums = [];
 		var indexNum= _.findIndex(this.state.artistAlbums, { 'artistName': this.state.artist });
-		console.log('indexNum:', indexNum);
+		// console.log('indexNum:', indexNum);
 		this.state.artistAlbums[indexNum].albumList.map(function(artistAlbum) {
            
             albums.push(
@@ -465,7 +465,7 @@ function getStateInit() {
 var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
 
     _onChange: function(data){
-      console.log("_onChange data:" ,data);
+      // console.log("_onChange data:" ,data);
       this.setState({artistAlbums: data});
 
     },
@@ -490,7 +490,7 @@ var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
 	
 
 	render:function(){
-		console.log('artistwrap state',this.state)
+		// console.log('artistwrap state',this.state)
 		var artists = [];
         var lastArtist = null;
         this.state.artistAlbums.map(function(artistAlbum) {
@@ -731,15 +731,29 @@ var MusicExampleData= require('./MusicExampleData'); //ecample Data
 // ArtistAPIUtils.getTracks('663dc26a-9fec-4123-8911-678f50ab9a7d');  
 
 MusicExampleData.init(); // put example data into localstorage
-
-
 MusicAPIUtils.getInitData(); //get init data from Utils
+
+
+//try to get url for router to init state
+
+function getRountingState(){
+
+}
 
 
 
 var LbcApp=React.createClass({displayName: 'LbcApp',
 
   _onChange: function(data){
+
+  },
+
+
+  getInitialState: function() {
+
+      //return getStateInit();
+      return {}
+
 
   },
 
@@ -751,7 +765,7 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
    
   },
 
-    componentWillUnmount: function() {
+  componentWillUnmount: function() {
      //RounterStore.removeChangeListener(this._onChange);
 
     
@@ -776,7 +790,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_85cc5ea0.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_43c369fc.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./stores/RounterStore":18,"./utils/MusicAPIUtils":20,"buffer":24,"ngpmcQ":28,"react":163}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -1103,7 +1117,7 @@ RounterStore.dispatchToken = AppDispatcher.register(function(payload) {
 
 			
 
-			console.log("ROUNTER...:", action.artist+'--', router);
+			// console.log("ROUNTER...:", action.artist+'--', router);
 
 
 

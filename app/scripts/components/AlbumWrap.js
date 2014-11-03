@@ -18,7 +18,7 @@ var AlbumWrap= React.createClass({
 
 
 	_onChange: function(data) {
-		console.log("_onChange",data);
+		// console.log("_onChange",data);
     	this.setState({artist: data.artist});
     },
 
@@ -35,10 +35,10 @@ var AlbumWrap= React.createClass({
 
   	},
 	render: function(){
-		console.log('Album-state',this.state);
+		// console.log('Album-state',this.state);
 		var albums = [];
 		var indexNum= _.findIndex(this.state.artistAlbums, { 'artistName': this.state.artist });
-		console.log('indexNum:', indexNum);
+		// console.log('indexNum:', indexNum);
 		this.state.artistAlbums[indexNum].albumList.map(function(artistAlbum) {
            
             albums.push(

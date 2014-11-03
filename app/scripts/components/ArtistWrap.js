@@ -19,7 +19,7 @@ function getStateInit() {
 var ArtistWrap=React.createClass({
 
     _onChange: function(data){
-      console.log("_onChange data:" ,data);
+      // console.log("_onChange data:" ,data);
       this.setState({artistAlbums: data});
 
     },
@@ -44,7 +44,7 @@ var ArtistWrap=React.createClass({
 	
 
 	render:function(){
-		console.log('artistwrap state',this.state)
+		// console.log('artistwrap state',this.state)
 		var artists = [];
         var lastArtist = null;
         this.state.artistAlbums.map(function(artistAlbum) {
