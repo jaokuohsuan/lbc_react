@@ -6,7 +6,8 @@ var AlbumActionCreators = require("../actions/AlbumActionCreators");
 
  var Album=React.createClass({
  	handleClick: function(){
- 		console.log("handleClick");
+ 		// console.log("handleClick");
+ 		AlbumActionCreators.clickAlbum(this.props.albumName);
 	
 	},
 

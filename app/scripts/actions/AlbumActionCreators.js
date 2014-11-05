@@ -11,5 +11,10 @@ module.exports={
 			actionType: ActionTypes.CLICK_ALBUM,
 			index: index
 		});
+		AppDispatcher.handleRouterAction({
+			actionType: ActionTypes.ROUNTER_ALBUM,
+			album: index
+		});
+
 	}
 };

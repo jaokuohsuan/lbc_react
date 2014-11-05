@@ -186,6 +186,11 @@ module.exports={
 			actionType: ActionTypes.CLICK_ALBUM,
 			index: index
 		});
+		AppDispatcher.handleRouterAction({
+			actionType: ActionTypes.ROUNTER_ALBUM,
+			album: index
+		});
+
 	}
 };
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/actions\\AlbumActionCreators.js","/actions")
@@ -293,7 +298,8 @@ var AlbumActionCreators = require("../actions/AlbumActionCreators");
 
  var Album=React.createClass({displayName: 'Album',
  	handleClick: function(){
- 		console.log("handleClick");
+ 		// console.log("handleClick");
+ 		AlbumActionCreators.clickAlbum(this.props.albumName);
 	
 	},
 
@@ -738,6 +744,8 @@ MusicAPIUtils.getInitData(); //get init data from Utils
 
 function getRountingState(){
 
+  
+
 }
 
 
@@ -790,7 +798,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_43c369fc.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_209db374.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./stores/RounterStore":18,"./utils/MusicAPIUtils":20,"buffer":24,"ngpmcQ":28,"react":163}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -1067,7 +1075,23 @@ var ActionTypes = AppConstants.ActionTypes;
 
 var CHANGE_EVENT = 'change';
 
+var routes = {
 
+
+	'/:action.artist': {
+		'/': function(who) {
+			console.log("rounter 1 Success:" + who);
+		},
+
+		'/:action.albumname': function(who, whichSong) {
+			console.log("rounter 2 Success:" + who, '--', whichSong);
+		}
+
+	}
+};
+
+
+var router = Router(routes).init();
 
 var RounterStore = merge(EventEmitter.prototype, {
 
@@ -1102,20 +1126,10 @@ RounterStore.dispatchToken = AppDispatcher.register(function(payload) {
 		case ActionTypes.ROUNTER_ARTIST:
 
 
-			var routes = {
-				
 
-				'/:action.artist': function() {
-					console.log("rounter Success", action.artist);
-				}
-			};
+			router.setRoute(0 , action.artist);
 
-			var router = Router(routes).init();
 
-			router.setRoute('/'+action.artist);
-		
-
-			
 
 			// console.log("ROUNTER...:", action.artist+'--', router);
 
@@ -1123,6 +1137,11 @@ RounterStore.dispatchToken = AppDispatcher.register(function(payload) {
 
 			break;
 		case ActionTypes.ROUNTER_ALBUM:
+		
+			console.log('action:',action);
+
+
+			router.setRoute(1,action.album);
 
 
 			break;

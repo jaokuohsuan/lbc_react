@@ -7,7 +7,23 @@ var ActionTypes = AppConstants.ActionTypes;
 
 var CHANGE_EVENT = 'change';
 
+var routes = {
 
+
+	'/:action.artist': {
+		'/': function(who) {
+			console.log("rounter 1 Success:" + who);
+		},
+
+		'/:action.albumname': function(who, whichSong) {
+			console.log("rounter 2 Success:" + who, '--', whichSong);
+		}
+
+	}
+};
+
+
+var router = Router(routes).init();
 
 var RounterStore = merge(EventEmitter.prototype, {
 
@@ -42,20 +58,10 @@ RounterStore.dispatchToken = AppDispatcher.register(function(payload) {
 		case ActionTypes.ROUNTER_ARTIST:
 
 
-			var routes = {
-				
 
-				'/:action.artist': function() {
-					console.log("rounter Success", action.artist);
-				}
-			};
+			router.setRoute(0 , action.artist);
 
-			var router = Router(routes).init();
 
-			router.setRoute('/'+action.artist);
-		
-
-			
 
 			// console.log("ROUNTER...:", action.artist+'--', router);
 
@@ -63,6 +69,11 @@ RounterStore.dispatchToken = AppDispatcher.register(function(payload) {
 
 			break;
 		case ActionTypes.ROUNTER_ALBUM:
+		
+			console.log('action:',action);
+
+
+			router.setRoute(1,action.album);
 
 
 			break;
