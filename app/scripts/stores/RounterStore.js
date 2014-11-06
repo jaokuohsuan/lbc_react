@@ -66,8 +66,8 @@ RounterStore.dispatchToken = AppDispatcher.register(function(payload) {
 			// console.log("ROUNTER...:", action.artist+'--', router);
 
 
-
 			break;
+			
 		case ActionTypes.ROUNTER_ALBUM:
 		
 			console.log('action:',action);

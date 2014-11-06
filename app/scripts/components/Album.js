@@ -5,9 +5,10 @@
 var AlbumActionCreators = require("../actions/AlbumActionCreators");
 
  var Album=React.createClass({
- 	handleClick: function(){
+ 	handleClick: function(evt){
  		// console.log("handleClick");
  		AlbumActionCreators.clickAlbum(this.props.albumName);
+ 		evt.preventDefault();
 	
 	},
 
