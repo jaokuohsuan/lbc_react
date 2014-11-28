@@ -18,17 +18,21 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  			
 
 
- 			var val=this.refs.searchInput.getDOMNode().value;
- 			console.log("evt-keycode:"+evt.keyCode,"val:",val);
+ 			// var val=this.refs.searchInput.getDOMNode().value;
+ 			// console.log("evt-keycode:"+evt.keyCode,"val:",val);
  			// evt.preventDefault();
- 			SearchActionCreators.addArtistFromSearch(val);
+ 			SearchActionCreators.addArtistFromSearch(this.state.value);
  			
  		}
  	},
  	handleChange: function (evt) {
- 		var val=this.refs.searchInput.getDOMNode().value;
- 		if (val.length >= 4) {
- 			SearchActionCreators.searchArtistName(val);
+ 		// var val=this.refs.searchInput.getDOMNode().value;
+ 		
+ 		this.setState({value: evt.target.value});
+ 		console.log('v=',evt.target.value,'this-state',this.state);
+
+ 		if (this.state.value.length >= 4) {
+ 			SearchActionCreators.searchArtistName(this.state.value);
  		}
  		
  		
@@ -37,7 +41,10 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
  	getInitialState: function() {
-    	return {artistNameList: null};
+    	return {
+    		artistNameList: null,
+    		value: 'artist or band...'
+    	};
   	},
 
   	componentDidMount: function() {
@@ -53,7 +60,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  	render: function(){
  		var nameList=[];
 
- 		if(this.state.artistNameList!= null){
+ 		if(_.isArray(this.state.artistNameList)){
 
 	 		this.state.artistNameList.map(function(artistName){
 	 			nameList.push(
@@ -68,13 +75,13 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
  			<div className="search-wrap">
  				<div  className="artist-search" >
-				<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
+				<input type="text" value={this.state.value}  onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
 				<datalist id="artist-name-list">
 					{nameList}			
 
 				</datalist>
 			    </div>
-					}
+					
  			</div>
  		)
  	},
