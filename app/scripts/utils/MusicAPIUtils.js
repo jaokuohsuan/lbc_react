@@ -1,163 +1,205 @@
-
 var ArtistServerActionCreators = require('../actions/ArtistServerActionCreators');
 
 var gooogle_key = "AIzaSyAsteyStoDAQ62iG-rc5uDXttHNrtfEVHM";
 var lastfm_key = "d971000674f672292bf9638ba253bc54";
 var searchkey = "stars"; //Model
 
-module.exports={
+module.exports = {
 
 
-    getInitData: function() {
-	    // simulate retrieving data from a database
-	    var rawMessages = JSON.parse(localStorage.getItem('artistalbums'));
+	getInitData: function() {
+		// simulate retrieving data from a database
+		var rawMessages = JSON.parse(localStorage.getItem('artistalbums'));
 
-	    // simulate success callback
-	    ArtistServerActionCreators.receiveInit(rawMessages);
-    },
+		// simulate success callback
+		ArtistServerActionCreators.receiveInit(rawMessages);
+	},
 
 
-  //   getSearchTips: function(){
+	//   getSearchTips: function(){
 
-  //   	var oReq= new XMLHttpRequest();
-  //   	oReq.onreadystatechange = function(){
+	//   	var oReq= new XMLHttpRequest();
+	//   	oReq.onreadystatechange = function(){
 
-	 //   		  if ( oReq.readyState == 4) {
+	//   		  if ( oReq.readyState == 4) {
+	// 　　　　　
+	// 			//get artists
+	// 			var _response = {};					
+	// 			var response =JSON.parse(oReq.responseText);
+	// 			// response  = response.results.artistmatches.artist[0];
+	// 			// _response.artistImage = response.image[2]["#text"];
+	// 			// _response.artistMbid = response.mbid;
+	// 			// _response.artistName = response.name;
+	// 			// delete response;
+	// 			console.log( 'artist:',response);
+
+
+	// 　　　} else {
+	// 　　　　　　console.log( "Error: ",oReq.statusText );
+	// 　　　}
+	//   	}
+	//   	 oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
+	//   	 oReq.send(null);
+
+
+
+	//   },
+
+	getArtistTips: function(searchkey) {
+
+		var oReq = new XMLHttpRequest();
+		var dfd = new Promise(function(resolve) {
+			oReq.onreadystatechange = function() {
+				if (oReq.readyState == 4) {
+					console.log('getArtistTips');　
+
+					var _response = {};
+					var response = JSON.parse(oReq.responseText);
+					response = response.results.artistmatches.artist;
+					_response = _.filter(response, 'mbid'); //filter out mbid is empty
+					_response = _.map(_response, 'name'); //get name list 
+
+					delete response;
+
+					// console.log( 'artist:',_response);
+					resolve(_response);	
+					ArtistServerActionCreators.receiveArtists(_response);				
+
+
+				}
+			}
+		});
+		//   	oReq.onreadystatechange = function(){
+
+		//   		  if ( oReq.readyState == 4) {
 		// 　　　　　
 		// 			//get artists
 		// 			var _response = {};					
 		// 			var response =JSON.parse(oReq.responseText);
-		// 			// response  = response.results.artistmatches.artist[0];
-		// 			// _response.artistImage = response.image[2]["#text"];
-		// 			// _response.artistMbid = response.mbid;
-		// 			// _response.artistName = response.name;
-		// 			// delete response;
-		// 			console.log( 'artist:',response);
-					
+		// 			response  = response.results.artistmatches.artist;
+		// 			_response = _.filter(response,'mbid'); //filter out mbid is empty
+		// 			_response = _.map(_response,'name'); //get name list 
+
+		// 			delete response;
+
+		// 			// console.log( 'artist:',_response);
+
+
+		// 			ArtistServerActionCreators.receiveArtists(_response);
 
 		// 　　　} else {
-		// 　　　　　　console.log( "Error: ",oReq.statusText );
+		// 　　　　　　// console.log( "Error: ",oReq.statusText );
 		// 　　　}
-	 //   	}
-	 //   	 oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
-	 //   	 oReq.send(null);
+		//   	}
+		oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey + "&api_key=" + lastfm_key + "&format=json", true);
+		oReq.send(null);
+		return dfd; //return Promise
+
+	},
 
 
 
-  //   },
+	getArtists: function(searchkey) {
 
-  getArtistTips:function(searchkey){
-   	
-	   	var oReq = new XMLHttpRequest();
-	   	oReq.onreadystatechange = function(){
+		var oReq = new XMLHttpRequest();
+		var dfd = new Promise(function(resolve) {
+			oReq.onreadystatechange = function() {
 
-	   		  if ( oReq.readyState == 4) {
-		　　　　　
-					//get artists
-					var _response = {};					
-					var response =JSON.parse(oReq.responseText);
-					response  = response.results.artistmatches.artist;
-					_response = _.filter(response,'mbid'); //filter out mbid is empty
-					_response = _.map(_response,'name'); //get name list 
+			if (oReq.readyState == 4) {
+				console.log('getArtists');　　　　
+				//get artists
+				var _response = {};
+				var response = JSON.parse(oReq.responseText);
+				response = response.results.artistmatches.artist[0];
+				_response.artistImage = response.image[2]["#text"];
+				_response.artistMbid = response.mbid;
+				_response.artistName = response.name;
+				delete response;
+				// console.log( 'artist:',_response);
+				resolve(_response);	
+				ArtistServerActionCreators.addArtists(_response);
 
-					delete response;
-
-					// console.log( 'artist:',_response);
-					
-					
-					ArtistServerActionCreators.receiveArtists(_response);
-
-		　　　} else {
-		　　　　　　// console.log( "Error: ",oReq.statusText );
-		　　　}
-	   	}
-	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
-	    oReq.send(null);
-
-   },
+				　　　
+			} 
+		}
 
 
-   
-   getArtists:function(searchkey){
-   	
-	   	var oReq = new XMLHttpRequest();
-	   	oReq.onreadystatechange = function(){
+		})
+		// oReq.onreadystatechange = function() {
 
-	   		  if ( oReq.readyState == 4) {
-		　　　　　
-					//get artists
-					var _response = {};					
-					var response =JSON.parse(oReq.responseText);
-					response  = response.results.artistmatches.artist[0];
-					_response.artistImage = response.image[2]["#text"];
-					_response.artistMbid = response.mbid;
-					_response.artistName = response.name;
-					delete response;
-					// console.log( 'artist:',_response);
-					ArtistServerActionCreators.addArtists(_response);
+		// 	if (oReq.readyState == 4) {　　　　　
+		// 		//get artists
+		// 		var _response = {};
+		// 		var response = JSON.parse(oReq.responseText);
+		// 		response = response.results.artistmatches.artist[0];
+		// 		_response.artistImage = response.image[2]["#text"];
+		// 		_response.artistMbid = response.mbid;
+		// 		_response.artistName = response.name;
+		// 		delete response;
+		// 		// console.log( 'artist:',_response);
+		// 		ArtistServerActionCreators.addArtists(_response);
 
-		　　　} else {
-		　　　　　　// console.log( "Error: ",oReq.statusText );
-		　　　}
-	   	}
-	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
-	    oReq.send(null);
+		// 		　　　
+		// 	} else {　　　　　　 // console.log( "Error: ",oReq.statusText );
+		// 		　　　}
+		// }
+		oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey + "&api_key=" + lastfm_key + "&format=json", true);
+		oReq.send(null);
+		return dfd;
 
-   },
-   getAlbums: function(searchkey){
-   		var oReq = new XMLHttpRequest();
-   		oReq.onreadystatechange = function(){
+	},
+	getAlbums: function(searchkey) {
+		var oReq = new XMLHttpRequest();
+		oReq.onreadystatechange = function() {
 
-	   		  if ( oReq.readyState == 4) {
-		　　　　　
-					//get getAlbums
-					var _response = {};
-					var response =JSON.parse(oReq.responseText);
-					response=response.topalbums.album;
-					// _response.albumName = response.name; //get album name
-					// _response.albumMbid = response.mbid; // get album mbid
-					// _response.albumCover = response.image[3]["#text"]; //get medium thumbnal medium url
+			if (oReq.readyState == 4) {　　　　　
+				//get getAlbums
+				var _response = {};
+				var response = JSON.parse(oReq.responseText);
+				response = response.topalbums.album;
+				// _response.albumName = response.name; //get album name
+				// _response.albumMbid = response.mbid; // get album mbid
+				// _response.albumCover = response.image[3]["#text"]; //get medium thumbnal medium url
 
-					// _response.artistName = response.artist.name; //rename description
-					// _response.albumNumber = response.albumNumber;
-					// delete response;
+				// _response.artistName = response.artist.name; //rename description
+				// _response.albumNumber = response.albumNumber;
+				// delete response;
 
-					console.log( 'album:',response);
-					// ArtistServerAction.receiveArtists(_response );
+				console.log('album:', response);
+				// ArtistServerAction.receiveArtists(_response );
 
-		　　　} else {
-		　　　　　　console.log( "Error: ",oReq.statusText );
-		　　　}
-	   	}
-	    oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + searchkey + "&autocorrect=1&api_key=" + lastfm_key + "&format=json", true);
-	    oReq.send(null);
-   },
-   getTracks: function(albumMbid){
-   		var oReq = new XMLHttpRequest();
+				　　　
+			} else {　　　　　　
+				console.log("Error: ", oReq.statusText);　　　
+			}
+		}
+		oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + searchkey + "&autocorrect=1&api_key=" + lastfm_key + "&format=json", true);
+		oReq.send(null);
+	},
+	getTracks: function(albumMbid) {
+		var oReq = new XMLHttpRequest();
 
-   		oReq.onreadystatechange = function(){
-   			if ( oReq.readyState == 4) {
-   				var _response = {};
-				var response =JSON.parse(oReq.responseText);
-   				console.log( 'track:',response);
-   			}else{
-   				console.log( "Error: ",oReq.statusText );
-   			}
+		oReq.onreadystatechange = function() {
+			if (oReq.readyState == 4) {
+				var _response = {};
+				var response = JSON.parse(oReq.responseText);
+				console.log('track:', response);
+			} else {
+				console.log("Error: ", oReq.statusText);
+			}
 
-   		}
+		}
 
-   		if (albumMbid != "") {
-				oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&mbid=" + albumMbid + "&format=json",true);
+		if (albumMbid != "") {
+			oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&mbid=" + albumMbid + "&format=json", true);
 		} else {
-				oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&artist=" + encodeURI(artistName) + "&album=" + encodeURI(albumName) + "&format=json",true);
+			oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&artist=" + encodeURI(artistName) + "&album=" + encodeURI(albumName) + "&format=json", true);
 		}
 		oReq.send(null);
 
 
 
-
-
-   }
+	}
 
 
 

@@ -1,7 +1,7 @@
 /**
  * @jsx React.DOM
  */
- var SearchStore= require('../stores/SearchStore');
+var SearchStore= require('../stores/SearchStore');
 var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators");
 var SearchActionCreators = require("../actions/SearchActionCreators");
 
@@ -19,7 +19,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
  			var val=this.refs.searchInput.getDOMNode().value;
- 			console.log("evt-keycode:"+evt.keyCode,"val:",val);
+ 			// console.log("evt-keycode:"+evt.keyCode,"val:",val);
  			// evt.preventDefault();
  			SearchActionCreators.addArtistFromSearch(val);
  			
@@ -52,8 +52,9 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
  	render: function(){
  		var nameList=[];
-
- 		if(this.state.artistNameList!= null){
+    
+ 		if(_.isArray(this.state.artistNameList)){
+      
 
 	 		this.state.artistNameList.map(function(artistName){
 	 			nameList.push(

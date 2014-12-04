@@ -2,6 +2,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var MusicAPIUtils = require('../utils/MusicAPIUtils');
 
+
 var ActionTypes = AppConstants.ActionTypes;
 
 
@@ -14,7 +15,7 @@ module.exports={
       rawData: val
     });
 
-    MusicAPIUtils.getArtistTips(val);
+    MusicAPIUtils.getArtistTips(val)
 
   },
 
@@ -24,7 +25,7 @@ module.exports={
       rawData: val
     });
 
-    MusicAPIUtils.getArtists(val);
+    MusicAPIUtils.getArtists(val)
 
   } 
 
