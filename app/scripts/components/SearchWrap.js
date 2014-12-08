@@ -6,9 +6,9 @@ var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators"
 var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
+
+
  var SearchWrap=React.createClass({
-
-
 
  	handleKeyPress: function(evt){
  		
@@ -37,7 +37,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
  	getInitialState: function() {
-    	return {artistNameList: null};
+    	return {artistNameList: null,inputVaule: null};
   	},
 
   	componentDidMount: function() {
@@ -52,6 +52,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
  	render: function(){
  		var nameList=[];
+ 		console.log('state',this.state,"_",this.refs.searchInput)
     
  		if(_.isArray(this.state.artistNameList)){
       
@@ -68,16 +69,20 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  		return(
 
  			<div className="search-wrap">
- 				<div  className="artist-search" >
-				<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
-				<datalist id="artist-name-list">
-					{nameList}			
 
-				</datalist>
+ 				<div  className="artist-search" >
+				<input type="text" value={this.state.inputVaule} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
+					<datalist id="artist-name-list">
+						{nameList}	
+					</datalist>
 			    </div>
-					}
+			  
+			   	    
+					
  			</div>
- 		)
+ 			)
+
+
  	},
  	_onChange: function(data) {
 

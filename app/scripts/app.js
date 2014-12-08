@@ -1,8 +1,6 @@
 /** @jsx React.DOM */
 
-var React = window.React = require('react'),
-
-    ArtistWrap = require("./components/ArtistWrap"),
+var ArtistWrap = require("./components/ArtistWrap"),
     VideoWrap = require("./components/VideoWrap"),
     AlbumWrap = require("./components/AlbumWrap"),
     SearchWrap = require("./components/SearchWrap"),
@@ -11,6 +9,9 @@ var React = window.React = require('react'),
     RounterStore = require('./stores/RounterStore'),
     mountNode = document.getElementById("app");
 
+
+// 這行 production 時可拿掉
+window.React = React; // export for http://fb.me/react-devtools
 
 var MusicExampleData= require('./MusicExampleData'); //ecample Data
 
@@ -76,6 +77,5 @@ var LbcApp=React.createClass({
 });
 
 
-React.renderComponent(<LbcApp />, mountNode);
-
+React.render(<LbcApp />, mountNode);
 
