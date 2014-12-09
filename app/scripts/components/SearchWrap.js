@@ -6,8 +6,6 @@ var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators"
 var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
-
-
  var SearchWrap=React.createClass({
 
  	handleKeyPress: function(evt){
@@ -69,13 +67,15 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  		return(
 
  			<div className="search-wrap">
-
+ 				<div className="ui inverted teal button">Teal</div>
+ 				
  				<div  className="artist-search" >
 				<input type="text" value={this.state.inputVaule} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
 					<datalist id="artist-name-list">
-						{nameList}	
+						{nameList }	
 					</datalist>
 			    </div>
+			    
 			  
 			   	    
 					

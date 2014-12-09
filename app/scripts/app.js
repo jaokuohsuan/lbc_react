@@ -52,6 +52,7 @@ var LbcApp=React.createClass({
   componentDidMount: function() {
 
       //RounterStore.addChangeListener(this._onChange);
+     
 
    
   },
@@ -75,7 +76,6 @@ var LbcApp=React.createClass({
   }
 
 });
-
 
 React.render(<LbcApp />, mountNode);
 

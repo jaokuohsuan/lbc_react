@@ -538,8 +538,6 @@ var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators"
 var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
-
-
  var SearchWrap=React.createClass({displayName: 'SearchWrap',
 
  	handleKeyPress: function(evt){
@@ -601,13 +599,15 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  		return(
 
  			React.DOM.div({className: "search-wrap"}, 
-
+ 				React.DOM.div({className: "ui inverted teal button"}, "Teal"), 
+ 				
  				React.DOM.div({className: "artist-search"}, 
 				React.DOM.input({type: "text", value: this.state.inputVaule, ref: "searchInput", onChange: this.handleChange, onKeyPress: this.handleKeyPress, name: "artist-search", list: "artist-name-list", autocomplete: "on", placeholder: "artist or band..."}), 
 					React.DOM.datalist({id: "artist-name-list"}, 
-						nameList	
+						nameList 	
 					)
 			    )
+			    
 			  
 			   	    
 					
@@ -778,6 +778,7 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
   componentDidMount: function() {
 
       //RounterStore.addChangeListener(this._onChange);
+     
 
    
   },
@@ -802,11 +803,10 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
 
 });
 
-
 React.render(LbcApp(null), mountNode);
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_98c7c794.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_481e1d63.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":10,"./components/VideoWrap":11,"./stores/AppStore":16,"./stores/RounterStore":18,"./utils/MusicAPIUtils":20,"buffer":24,"ngpmcQ":28}],15:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
