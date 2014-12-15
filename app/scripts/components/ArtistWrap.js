@@ -1,7 +1,7 @@
 /**
  * @jsx React.DOM
  */
-
+var  React = require('react');
 var Artist = require("./Artist"),
 	ArtistActionCreators = require("../actions/ArtistActionCreators"),
 	ArtistStore = require('../stores/ArtistStore'),

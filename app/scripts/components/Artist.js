@@ -1,6 +1,7 @@
 /**
  * @jsx React.DOM
  */
+var  React = require('react');
 var ArtistActionCreators = require("../actions/ArtistActionCreators");
 
  var Artist=React.createClass({

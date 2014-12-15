@@ -5,10 +5,8 @@ var  React = require('react');
 var SearchStore= require('../stores/SearchStore');
 var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators");
 var SearchActionCreators = require("../actions/SearchActionCreators");
-var SearchDropdown = require("./SearchDropdown");
 
-
- var SearchWrap=React.createClass({
+ var SearchDropdown=React.createClass({
 
 
  	handleKeyPress: function(evt){
@@ -19,7 +17,7 @@ var SearchDropdown = require("./SearchDropdown");
  			
 
 
- 			var val=this.refs.searchInput.getDOMNode().value;
+ 			var val=this.refs.searchDropInput.getDOMNode().value;
  			console.log("evt-keycode:"+evt.keyCode,"val:",val);
  			// evt.preventDefault();
  			SearchActionCreators.addArtistFromSearch(val);
@@ -53,13 +51,20 @@ var SearchDropdown = require("./SearchDropdown");
 
  	render: function(){
  		var nameList=[];
+ 		var nameMenuList=[]
 
  		if(this.state.artistNameList!= null){
 
 	 		this.state.artistNameList.map(function(artistName){
 	 			nameList.push(
-	 				<option value={artistName}>{artistName}</option>
+	 				<option value={artistName} key={artistName}>{artistName}</option>
 	 			);
+	 			nameMenuList.push(
+	 				<div className="item" data-value={artistName} key={artistName}>{artistName}</div>
+	 				
+
+	 			);
+
 
 	 		});
 	 	}
@@ -67,17 +72,23 @@ var SearchDropdown = require("./SearchDropdown");
 
  		return(
 
- 			<div className="search-wrap">
- 				<SearchDropdown />
- 				<div  className="artist-search" >
-				<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
-				<datalist id="artist-name-list">
-					{nameList}			
+ 			
+ 			<div  className="ui search dropdown selection"   >
+				
+				<select>
+					{nameList}
+				</select>
+				<i className="dropdown icon"></i>
+				<input type="text" className="search" tabIndex="0" ref="searchDropInput" onChange={this.handleChange}   />
+				<div className="text"> t</div>
+				<div className="menu transition hidden" tabIndex="-1">
+					{nameMenuList}
+				</div>
 
-				</datalist>
-			    </div>
+			
+			</div>
 					
- 			</div>
+ 			
  		)
  	},
  	_onChange: function(data) {
@@ -89,4 +100,4 @@ var SearchDropdown = require("./SearchDropdown");
 
  });
 
-  module.exports=SearchWrap;
+  module.exports=SearchDropdown;

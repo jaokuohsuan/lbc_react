@@ -1,7 +1,7 @@
 /**
  * @jsx React.DOM
  */
-
+var  React = require('react');
 var AlbumActionCreators = require("../actions/AlbumActionCreators");
 
  var Album=React.createClass({

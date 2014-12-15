@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 
-var ArtistWrap = require("./components/ArtistWrap"),
+var React = window.React = require('react'),
+
+    ArtistWrap = require("./components/ArtistWrap"),
     VideoWrap = require("./components/VideoWrap"),
     AlbumWrap = require("./components/AlbumWrap"),
     SearchWrap = require("./components/SearchWrap"),
@@ -9,9 +11,6 @@ var ArtistWrap = require("./components/ArtistWrap"),
     RounterStore = require('./stores/RounterStore'),
     mountNode = document.getElementById("app");
 
-
-// 這行 production 時可拿掉
-window.React = React; // export for http://fb.me/react-devtools
 
 var MusicExampleData= require('./MusicExampleData'); //ecample Data
 
@@ -52,7 +51,6 @@ var LbcApp=React.createClass({
   componentDidMount: function() {
 
       //RounterStore.addChangeListener(this._onChange);
-     
 
    
   },
@@ -77,5 +75,7 @@ var LbcApp=React.createClass({
 
 });
 
-React.render(<LbcApp />, mountNode);
+
+React.renderComponent(<LbcApp />, mountNode);
+
 
