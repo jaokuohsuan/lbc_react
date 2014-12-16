@@ -68,13 +68,13 @@ var SearchDropdown = require("./SearchDropdown");
  		return(
 
  			<div className="search-wrap">
- 				<SearchDropdown />
+ 				<SearchDropdown placeholder="test" value={this.props.searchText} />
  				<div  className="artist-search" >
-				<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
-				<datalist id="artist-name-list">
-					{nameList}			
+				// <input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
+				// <datalist id="artist-name-list">
+				// 	{nameList}			
 
-				</datalist>
+				// </datalist>
 			    </div>
 					
  			</div>

@@ -1,7 +1,7 @@
 /**
  * @jsx React.DOM
  */
-var  React = require('react');
+var  React = require('react/addons');
 var SearchStore= require('../stores/SearchStore');
 var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators");
 var SearchActionCreators = require("../actions/SearchActionCreators");
@@ -25,10 +25,13 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  		}
  	},
  	handleChange: function (evt) {
- 		var val=this.refs.searchInput.getDOMNode().value;
+ 		var val=this.refs.searchDropInput.getDOMNode().value;
  		if (val.length >= 4) {
  			SearchActionCreators.searchArtistName(val);
  		}
+ 		this.setState({
+ 			value: val
+ 		})
  		
  		
  	},
@@ -36,7 +39,10 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
  	getInitialState: function() {
-    	return {artistNameList: null};
+    		return {
+    			artistNameList: null,
+    			value: this.props.value
+    		};
   	},
 
   	componentDidMount: function() {
@@ -50,8 +56,22 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
 
  	render: function(){
+ 		var cx = React.addons.classSet;
+
  		var nameList=[];
- 		var nameMenuList=[]
+ 		var nameMenuList=[];
+ 	
+ 		
+ 		 var placeHoldClasses = cx({
+		    'text': true,
+		    'default': this.props.placeholder
+		  });
+
+
+ 		 var menuClasses=cx({
+ 		 	'menu transition':true		 	
+
+ 		 });
 
  		if(this.state.artistNameList!= null){
 
@@ -79,9 +99,9 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 					{nameList}
 				</select>
 				<i className="dropdown icon"></i>
-				<input type="text" className="search" tabIndex="0" ref="searchDropInput" onChange={this.handleChange}   />
-				<div className="text"> t</div>
-				<div className="menu transition hidden" tabIndex="-1">
+				<input type="text" className="search"  tabIndex="0" ref="searchDropInput" onChange={this.handleChange}   value={this.state.value}  />
+				<div className={placeHoldClasses} >{this.props.placeholder}</div>
+				<div className={menuClasses} tabIndex="-1">
 					{nameMenuList}
 				</div>
 
