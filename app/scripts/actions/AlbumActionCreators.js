@@ -6,7 +6,7 @@ var ActionTypes = AppConstants.ActionTypes;
 
 module.exports={
 	clickAlbum: function(index){
-		console.log("ActionCreator click album");
+		// console.log("ActionCreator click album");
 		AppDispatcher.handleViewAction({
 			actionType: ActionTypes.CLICK_ALBUM,
 			index: index

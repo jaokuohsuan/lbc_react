@@ -14,13 +14,11 @@ var SearchDropdown = require("./SearchDropdown");
  	handleKeyPress: function(evt){
  		
  		
- 		if(evt.keyCode == "13"){
-
- 			
+ 		if(evt.keyCode == "13"){ 			
 
 
  			var val=this.refs.searchInput.getDOMNode().value;
- 			console.log("evt-keycode:"+evt.keyCode,"val:",val);
+ 			// console.log("evt-keycode:"+evt.keyCode,"val:",val);
  			// evt.preventDefault();
  			SearchActionCreators.addArtistFromSearch(val);
  			
@@ -54,32 +52,28 @@ var SearchDropdown = require("./SearchDropdown");
  	render: function(){
  		var nameList=[];
 
- 		if(this.state.artistNameList!= null){
+ 		// if(this.state.artistNameList!= null){
 
-	 		this.state.artistNameList.map(function(artistName){
-	 			nameList.push(
-	 				<option value={artistName}>{artistName}</option>
-	 			);
+	 	// 	this.state.artistNameList.map(function(artistName){
+	 	// 		nameList.push(
+	 	// 			<option value={artistName}>{artistName}</option>
+	 	// 		);
 
-	 		});
-	 	}
+	 	// 	});
+	 	// }
 
 
  		return(
 
  			<div className="search-wrap">
- 				<SearchDropdown placeholder="test" value={this.props.searchText} />
- 				<div  className="artist-search" >
-				// <input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
-				// <datalist id="artist-name-list">
-				// 	{nameList}			
-
-				// </datalist>
-			    </div>
+ 				<SearchDropdown placeholder="artist name" value={this.props.searchText} options={this.state.artistNameList} startSearchNum="4" />				
+			   
 					
  			</div>
  		)
  	},
+
+
  	_onChange: function(data) {
 
  		//console.log('on channge');
@@ -90,3 +84,11 @@ var SearchDropdown = require("./SearchDropdown");
  });
 
   module.exports=SearchWrap;
+
+
+  // <div  className="artist-search" >
+		// 		<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
+		// 		<datalist id="artist-name-list">
+		// 			{nameList}			
+
+		// 		</datalist>-

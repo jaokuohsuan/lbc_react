@@ -181,7 +181,7 @@ var ActionTypes = AppConstants.ActionTypes;
 
 module.exports={
 	clickAlbum: function(index){
-		console.log("ActionCreator click album");
+		// console.log("ActionCreator click album");
 		AppDispatcher.handleViewAction({
 			actionType: ActionTypes.CLICK_ALBUM,
 			index: index
@@ -232,14 +232,14 @@ module.exports={
       rawData: rawData
     });
 
-    console.log('receiveInit');
+    // console.log('receiveInit');
   },
   receiveArtists: function(rawData){
     AppDispatcher.handleServerAction({
       actionType: ActionTypes.SEARCH_ARTIST_NAME,
       rawData: rawData
     });
-    console.log('receiveArtists');
+    // console.log('receiveArtists');
 
   },
   addArtists: function(rawData){
@@ -247,7 +247,7 @@ module.exports={
       actionType: ActionTypes.ADD_ARTIST,
       rawData: rawData
     });
-    console.log('addArtists');
+    // console.log('addArtists');
 
   }
 
@@ -533,47 +533,149 @@ module.exports=ArtistWrap;
 /**
  * @jsx React.DOM
  */
-var  React = require('react/addons');
+var React = require('react/addons');
 var SearchStore= require('../stores/SearchStore');
 var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators");
 var SearchActionCreators = require("../actions/SearchActionCreators");
 
- var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
+// menuOption components
+var menuOption=React.createClass({displayName: 'menuOption',
 
-
- 	handleKeyPress: function(evt){
- 		
- 		
- 		if(evt.keyCode == "13"){
-
- 			
-
-
- 			var val=this.refs.searchDropInput.getDOMNode().value;
- 			console.log("evt-keycode:"+evt.keyCode,"val:",val);
- 			// evt.preventDefault();
- 			SearchActionCreators.addArtistFromSearch(val);
- 			
- 		}
+	handleMenuClick: function(evt){
+ 		this.props.handleMenuClick(evt,this.props.artistName);
  	},
+
+	render: function(){
+
+		//for class
+		var cx = React.addons.classSet;
+		var menuOptionClass=cx({
+ 		 	'item': true,
+ 		 	'selected': this.props.selected
+ 		 });
+
+
+		return(
+
+			React.DOM.div({className: menuOptionClass, key: this.props.artistName, onClick: this.handleMenuClick}, this.props.artistName)
+		)
+
+	}
+
+});
+var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
+
+	handleMenuClick: function(evt,artistName){
+ 		
+ 		this.setState({
+ 			showMenu: false,
+ 			holderContent: artistName
+ 		});
+ 	},
+
+
+ 	handleKeyUp: function(evt){
+
+ 		// console.log("jj=",this.refs.searchDropInput.getDOMNode().value);
+ 		
+ 		evt.preventDefault();
+ 	},
+ 	handleKeyDown: function(evt){
+
+
+
+ 		this.setState({maxOptionsNumer:this.state.artistNameList.length});
+
+
+
+ 		// var val=this.refs.searchInput.getDOMNode().value;
+ 		// console.log('val,',val);
+
+ 		switch (evt.keyCode){
+
+ 			case 13:
+
+ 				this.setState({
+		 			showMenu: false,
+		 			holderContent: artistName
+		 		});
+
+ 				 
+
+
+
+ 				
+ 				break;
+ 			case 38:
+ 				this.refs.menuList.getDOMNode().focus();
+ 				if(this.state.optionIndex>0){
+
+	 				this.setState({
+	 					optionIndex: this.state.optionIndex-1
+	 				}); 
+	 			}
+
+ 				break;
+ 			case 40:
+ 				this.refs.menuList.getDOMNode().focus();
+ 				
+
+ 				if(this.state.optionIndex < this.state.maxOptionsNumer-1){
+ 					console.log('40');
+
+	 				this.setState({
+	 					optionIndex: this.state.optionIndex+1
+	 				}); 
+	 			}
+
+ 				break;
+
+ 		};
+
+ 	},
+
+ 	
+
  	handleChange: function (evt) {
  		var val=this.refs.searchDropInput.getDOMNode().value;
- 		if (val.length >= 4) {
+
+ 		if (val.length >= this.props.startSearchNum) {
  			SearchActionCreators.searchArtistName(val);
  		}
+
  		this.setState({
- 			value: val
+ 			value: val,
+ 			holderContent: val
  		})
  		
  		
  	},
+ 	handleFocus: function(evt){
+ 		this.setState({
+ 			showMenu: true
+ 		});
+ 		
+ 	},
+ 	handleBlur: function(evt){
+
+ 		console.log('blur');
+ 		
+ 		this.setState({
+ 			showMenu: false
+ 		});
+ 	},
+
 
 
 
  	getInitialState: function() {
     		return {
-    			artistNameList: null,
-    			value: this.props.value
+    			artistNameList: null,    			
+    			value: this.props.value,
+    			holderContent: null,
+    			showMenu: false,
+    			optionIndex: 0,
+    			maxOptionsNumer: 0
     		};
   	},
 
@@ -589,54 +691,65 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
  	render: function(){
  		var cx = React.addons.classSet;
-
+ 		
  		var nameList=[];
  		var nameMenuList=[];
+ 		var maxOptionsNumer= this.state.artistNameList ? this.state.artistNameList.length : 0; 
  	
  		
  		 var placeHoldClasses = cx({
 		    'text': true,
-		    'default': this.props.placeholder
+		    'default': this.props.placeholder,
+		    'filtered': this.state.showMenu
 		  });
 
 
  		 var menuClasses=cx({
- 		 	'menu transition':true		 	
-
+ 		 	'menu transition':true	,
+ 		 	'visible': this.state.showMenu,
+ 		 	'hidden': !this.state.showMenu
  		 });
+
+ 		 var holderContent= this.state.holderContent!=null ? this.state.holderContent :this.props.placeholder;
+
+ 		console.log('this.state.holderContent =',this.state.holderContent );
+ 		 
 
  		if(this.state.artistNameList!= null){
 
-	 		this.state.artistNameList.map(function(artistName){
+
+	 		this.state.artistNameList.map(function(artistName,index){
+	 			// console.log('index,',index,"state.optionIndex",this.state.optionIndex);	 			
 	 			nameList.push(
 	 				React.DOM.option({value: artistName, key: artistName}, artistName)
 	 			);
 	 			nameMenuList.push(
-	 				React.DOM.div({className: "item", 'data-value': artistName, key: artistName}, artistName)
+
+	 				menuOption({handleMenuClick: this.handleMenuClick, artistName: artistName, index: index, selected: this.state.optionIndex===index})
+	 				
 	 				
 
 	 			);
 
 
-	 		});
+	 		}.bind(this));
 	 	}
 
 
  		return(
 
  			
- 			React.DOM.div({className: "ui search dropdown selection"}, 
+ 			React.DOM.div({className: "ui search dropdown selection", onBlur: this.handleBlur, onFocus: this.handleFocus, onKeyDown: this.handleKeyDown, onKeyUp: this.handleKeyUp}, 
 				
 				React.DOM.select(null, 
 					nameList
 				), 
 				React.DOM.i({className: "dropdown icon"}), 
 				React.DOM.input({type: "text", className: "search", tabIndex: "0", ref: "searchDropInput", onChange: this.handleChange, value: this.state.value}), 
-				React.DOM.div({className: placeHoldClasses}, this.props.placeholder), 
-				React.DOM.div({className: menuClasses, tabIndex: "-1"}, 
+				React.DOM.div({className: placeHoldClasses}, " ", holderContent), 
+				React.DOM.div({className: menuClasses, tabIndex: "-1", ref: "menuList"}, 
 					nameMenuList
 				)
-
 			
 			)
 					
@@ -645,8 +758,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  	},
  	_onChange: function(data) {
 
- 		//console.log('on channge');
-		
+ 				
     	this.setState({artistNameList: data});
     }
 
@@ -672,13 +784,11 @@ var SearchDropdown = require("./SearchDropdown");
  	handleKeyPress: function(evt){
  		
  		
- 		if(evt.keyCode == "13"){
-
- 			
+ 		if(evt.keyCode == "13"){ 			
 
 
  			var val=this.refs.searchInput.getDOMNode().value;
- 			console.log("evt-keycode:"+evt.keyCode,"val:",val);
+ 			// console.log("evt-keycode:"+evt.keyCode,"val:",val);
  			// evt.preventDefault();
  			SearchActionCreators.addArtistFromSearch(val);
  			
@@ -712,32 +822,28 @@ var SearchDropdown = require("./SearchDropdown");
  	render: function(){
  		var nameList=[];
 
- 		if(this.state.artistNameList!= null){
+ 		// if(this.state.artistNameList!= null){
 
-	 		this.state.artistNameList.map(function(artistName){
-	 			nameList.push(
-	 				React.DOM.option({value: artistName}, artistName)
-	 			);
+	 	// 	this.state.artistNameList.map(function(artistName){
+	 	// 		nameList.push(
+	 	// 			<option value={artistName}>{artistName}</option>
+	 	// 		);
 
-	 		});
-	 	}
+	 	// 	});
+	 	// }
 
 
  		return(
 
  			React.DOM.div({className: "search-wrap"}, 
- 				SearchDropdown({placeholder: "test", value: this.props.searchText}), 
- 				React.DOM.div({className: "artist-search"}, 
-				"// ", React.DOM.input({type: "text", value: this.props.searchText, ref: "searchInput", onChange: this.handleChange, onKeyPress: this.handleKeyPress, name: "artist-search", list: "artist-name-list", autocomplete: "on", placeholder: "artist or band..."}), 
-				"// ", React.DOM.datalist({id: "artist-name-list"}, 
-				"//  ", nameList, 
-
-				"// ")
-			    )
+ 				SearchDropdown({placeholder: "artist name", value: this.props.searchText, options: this.state.artistNameList, startSearchNum: "4"})				
+			   
 					
  			)
  		)
  	},
+
+
  	_onChange: function(data) {
 
  		//console.log('on channge');
@@ -748,6 +854,14 @@ var SearchDropdown = require("./SearchDropdown");
  });
 
   module.exports=SearchWrap;
+
+
+  // <div  className="artist-search" >
+		// 		<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
+		// 		<datalist id="artist-name-list">
+		// 			{nameList}			
+
+		// 		</datalist>-
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\SearchWrap.js","/components")
 },{"../actions/ArtistServerActionCreators":4,"../actions/SearchActionCreators":5,"../stores/SearchStore":20,"./SearchDropdown":10,"buffer":25,"ngpmcQ":29,"react":179}],12:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -913,10 +1027,8 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
   render: function(){
     return(
       React.DOM.div(null, 
-        SearchWrap(null), 
-        ArtistWrap(null), 
-        AlbumWrap(null), 
-        VideoWrap(null)
+        SearchWrap(null)
+        
       )
     );
   }
@@ -928,7 +1040,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_7debc52f.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_7a1c8425.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":179}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');

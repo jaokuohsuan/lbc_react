@@ -12,14 +12,14 @@ module.exports={
       rawData: rawData
     });
 
-    console.log('receiveInit');
+    // console.log('receiveInit');
   },
   receiveArtists: function(rawData){
     AppDispatcher.handleServerAction({
       actionType: ActionTypes.SEARCH_ARTIST_NAME,
       rawData: rawData
     });
-    console.log('receiveArtists');
+    // console.log('receiveArtists');
 
   },
   addArtists: function(rawData){
@@ -27,7 +27,7 @@ module.exports={
       actionType: ActionTypes.ADD_ARTIST,
       rawData: rawData
     });
-    console.log('addArtists');
+    // console.log('addArtists');
 
   }
 

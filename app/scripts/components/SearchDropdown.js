@@ -1,47 +1,149 @@
 /**
  * @jsx React.DOM
  */
-var  React = require('react/addons');
+var React = require('react/addons');
 var SearchStore= require('../stores/SearchStore');
 var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators");
 var SearchActionCreators = require("../actions/SearchActionCreators");
 
- var SearchDropdown=React.createClass({
+// menuOption components
+var menuOption=React.createClass({
 
-
- 	handleKeyPress: function(evt){
- 		
- 		
- 		if(evt.keyCode == "13"){
-
- 			
-
-
- 			var val=this.refs.searchDropInput.getDOMNode().value;
- 			console.log("evt-keycode:"+evt.keyCode,"val:",val);
- 			// evt.preventDefault();
- 			SearchActionCreators.addArtistFromSearch(val);
- 			
- 		}
+	handleMenuClick: function(evt){
+ 		this.props.handleMenuClick(evt,this.props.artistName);
  	},
+
+	render: function(){
+
+		//for class
+		var cx = React.addons.classSet;
+		var menuOptionClass=cx({
+ 		 	'item': true,
+ 		 	'selected': this.props.selected
+ 		 });
+
+
+		return(
+
+			<div className={menuOptionClass}  key={this.props.artistName} onClick={this.handleMenuClick} >{this.props.artistName}</div>
+		)
+
+	}
+
+});
+var SearchDropdown=React.createClass({
+
+	handleMenuClick: function(evt,artistName){
+ 		
+ 		this.setState({
+ 			showMenu: false,
+ 			holderContent: artistName
+ 		});
+ 	},
+
+
+ 	handleKeyUp: function(evt){
+
+ 		// console.log("jj=",this.refs.searchDropInput.getDOMNode().value);
+ 		
+ 		evt.preventDefault();
+ 	},
+ 	handleKeyDown: function(evt){
+
+
+
+ 		this.setState({maxOptionsNumer:this.state.artistNameList.length});
+
+
+
+ 		// var val=this.refs.searchInput.getDOMNode().value;
+ 		// console.log('val,',val);
+
+ 		switch (evt.keyCode){
+
+ 			case 13:
+
+ 				this.setState({
+		 			showMenu: false,
+		 			holderContent: artistName
+		 		});
+
+ 				 
+
+
+
+ 				
+ 				break;
+ 			case 38:
+ 				this.refs.menuList.getDOMNode().focus();
+ 				if(this.state.optionIndex>0){
+
+	 				this.setState({
+	 					optionIndex: this.state.optionIndex-1
+	 				}); 
+	 			}
+
+ 				break;
+ 			case 40:
+ 				this.refs.menuList.getDOMNode().focus();
+ 				
+
+ 				if(this.state.optionIndex < this.state.maxOptionsNumer-1){
+ 					console.log('40');
+
+	 				this.setState({
+	 					optionIndex: this.state.optionIndex+1
+	 				}); 
+	 			}
+
+ 				break;
+
+ 		};
+
+ 	},
+
+ 	
+
  	handleChange: function (evt) {
  		var val=this.refs.searchDropInput.getDOMNode().value;
- 		if (val.length >= 4) {
+
+ 		if (val.length >= this.props.startSearchNum) {
  			SearchActionCreators.searchArtistName(val);
  		}
+
  		this.setState({
- 			value: val
+ 			value: val,
+ 			holderContent: val
  		})
  		
  		
  	},
+ 	handleFocus: function(evt){
+ 		this.setState({
+ 			showMenu: true
+ 		});
+ 		
+ 	},
+ 	handleBlur: function(evt){
+
+ 		console.log('blur');
+ 		
+ 		this.setState({
+ 			showMenu: false
+ 		});
+ 	},
+
 
 
 
  	getInitialState: function() {
     		return {
-    			artistNameList: null,
-    			value: this.props.value
+    			artistNameList: null,    			
+    			value: this.props.value,
+    			holderContent: null,
+    			showMenu: false,
+    			optionIndex: 0,
+    			maxOptionsNumer: 0
     		};
   	},
 
@@ -57,54 +159,65 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 
  	render: function(){
  		var cx = React.addons.classSet;
-
+ 		
  		var nameList=[];
  		var nameMenuList=[];
+ 		var maxOptionsNumer= this.state.artistNameList ? this.state.artistNameList.length : 0; 
  	
  		
  		 var placeHoldClasses = cx({
 		    'text': true,
-		    'default': this.props.placeholder
+		    'default': this.props.placeholder,
+		    'filtered': this.state.showMenu
 		  });
 
 
  		 var menuClasses=cx({
- 		 	'menu transition':true		 	
-
+ 		 	'menu transition':true	,
+ 		 	'visible': this.state.showMenu,
+ 		 	'hidden': !this.state.showMenu
  		 });
+
+ 		 var holderContent= this.state.holderContent!=null ? this.state.holderContent :this.props.placeholder;
+
+ 		console.log('this.state.holderContent =',this.state.holderContent );
+ 		 
 
  		if(this.state.artistNameList!= null){
 
-	 		this.state.artistNameList.map(function(artistName){
+
+	 		this.state.artistNameList.map(function(artistName,index){
+	 			// console.log('index,',index,"state.optionIndex",this.state.optionIndex);	 			
 	 			nameList.push(
 	 				<option value={artistName} key={artistName}>{artistName}</option>
 	 			);
 	 			nameMenuList.push(
-	 				<div className="item" data-value={artistName} key={artistName}>{artistName}</div>
+
+	 				<menuOption handleMenuClick={this.handleMenuClick}  artistName={artistName} index={index} selected={this.state.optionIndex===index} />
+	 				
 	 				
 
 	 			);
 
 
-	 		});
+	 		}.bind(this));
 	 	}
 
 
  		return(
 
  			
- 			<div  className="ui search dropdown selection"   >
+ 			<div  className="ui search dropdown selection" onBlur={this.handleBlur} onFocus={this.handleFocus}   onKeyDown={this.handleKeyDown}  onKeyUp={this.handleKeyUp} >
 				
 				<select>
 					{nameList}
 				</select>
 				<i className="dropdown icon"></i>
 				<input type="text" className="search"  tabIndex="0" ref="searchDropInput" onChange={this.handleChange}   value={this.state.value}  />
-				<div className={placeHoldClasses} >{this.props.placeholder}</div>
-				<div className={menuClasses} tabIndex="-1">
+				<div className={placeHoldClasses}> {holderContent}</div>
+				<div className={menuClasses} tabIndex="-1" ref="menuList">
 					{nameMenuList}
 				</div>
-
 			
 			</div>
 					
@@ -113,8 +226,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
  	},
  	_onChange: function(data) {
 
- 		//console.log('on channge');
-		
+ 				
     	this.setState({artistNameList: data});
     }
 

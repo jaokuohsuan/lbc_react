@@ -66,9 +66,7 @@ var LbcApp=React.createClass({
     return(
       <div>
         <SearchWrap />
-        <ArtistWrap  />
-        <AlbumWrap  />
-        <VideoWrap />
+        
       </div>
     );
   }
