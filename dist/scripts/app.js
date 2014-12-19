@@ -542,7 +542,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 var menuOption=React.createClass({displayName: 'menuOption',
 
 	handleMenuClick: function(evt){
- 		this.props.handleMenuClick(evt,this.props.artistName);
+ 		this.props.handleMenuClick(evt,this.props.artistName,this.props.index);
  	},
 
 	render: function(){
@@ -565,18 +565,20 @@ var menuOption=React.createClass({displayName: 'menuOption',
 });
 var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
-	handleMenuClick: function(evt,artistName){
+	handleMenuClick: function(evt,artistName,index){
  		
  		this.setState({
  			showMenu: false,
- 			holderContent: artistName
- 		});
+ 			holderContent: artistName,
+ 			optionIndex: index,
+ 			value: ""
+ 		}); 		
+ 		
  	},
 
 
  	handleKeyUp: function(evt){
 
- 		// console.log("jj=",this.refs.searchDropInput.getDOMNode().value);
  		
  		evt.preventDefault();
  	},
@@ -588,24 +590,21 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
 
 
- 		// var val=this.refs.searchInput.getDOMNode().value;
- 		// console.log('val,',val);
+
 
  		switch (evt.keyCode){
 
  			case 13:
+ 				
 
  				this.setState({
 		 			showMenu: false,
-		 			holderContent: artistName
-		 		});
+		 			holderContent: this.state.artistNameList[this.state.optionIndex],
+		 			value: ""
+		 		});		 
 
- 				 
-
-
-
- 				
  				break;
+
  			case 38:
  				this.refs.menuList.getDOMNode().focus();
  				if(this.state.optionIndex>0){
@@ -614,14 +613,13 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 	 					optionIndex: this.state.optionIndex-1
 	 				}); 
 	 			}
-
  				break;
+
  			case 40:
- 				this.refs.menuList.getDOMNode().focus();
- 				
+ 				this.refs.menuList.getDOMNode().focus(); 				
 
  				if(this.state.optionIndex < this.state.maxOptionsNumer-1){
- 					console.log('40');
+ 				
 
 	 				this.setState({
 	 					optionIndex: this.state.optionIndex+1
@@ -637,7 +635,9 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  	
 
  	handleChange: function (evt) {
- 		var val=this.refs.searchDropInput.getDOMNode().value;
+ 
+ 		var val=evt.target.value;
+
 
  		if (val.length >= this.props.startSearchNum) {
  			SearchActionCreators.searchArtistName(val);
@@ -650,23 +650,22 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  		
  		
  	},
+
  	handleFocus: function(evt){
  		this.setState({
  			showMenu: true
  		});
  		
  	},
+
  	handleBlur: function(evt){
 
- 		console.log('blur');
+ 	
  		
  		this.setState({
  			showMenu: false
  		});
  	},
-
-
-
 
  	getInitialState: function() {
     		return {
@@ -690,17 +689,17 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
 
  	render: function(){
- 		var cx = React.addons.classSet;
- 		
+ 				
  		var nameList=[];
  		var nameMenuList=[];
  		var maxOptionsNumer= this.state.artistNameList ? this.state.artistNameList.length : 0; 
- 	
+
+ 		var cx = React.addons.classSet; 	
  		
  		 var placeHoldClasses = cx({
 		    'text': true,
 		    'default': this.props.placeholder,
-		    'filtered': this.state.showMenu
+		    'filtered': (this.state.showMenu) && (this.state.value!="")
 		  });
 
 
@@ -712,11 +711,10 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
  		 var holderContent= this.state.holderContent!=null ? this.state.holderContent :this.props.placeholder;
 
- 		console.log('this.state.holderContent =',this.state.holderContent );
+ 		
  		 
 
  		if(this.state.artistNameList!= null){
-
 
 	 		this.state.artistNameList.map(function(artistName,index){
 	 			// console.log('index,',index,"state.optionIndex",this.state.optionIndex);	 			
@@ -725,9 +723,7 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 	 			);
 	 			nameMenuList.push(
 
-	 				menuOption({handleMenuClick: this.handleMenuClick, artistName: artistName, index: index, selected: this.state.optionIndex===index})
-	 				
-	 				
+	 				menuOption({handleMenuClick: this.handleMenuClick, key: artistName, artistName: artistName, index: index, selected: this.state.optionIndex===index})
 
 	 			);
 
@@ -746,7 +742,7 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 				), 
 				React.DOM.i({className: "dropdown icon"}), 
 				React.DOM.input({type: "text", className: "search", tabIndex: "0", ref: "searchDropInput", onChange: this.handleChange, value: this.state.value}), 
-				React.DOM.div({className: placeHoldClasses}, " ", holderContent), 
+				React.DOM.div({className: placeHoldClasses}, holderContent), 
 				React.DOM.div({className: menuClasses, tabIndex: "-1", ref: "menuList"}, 
 					nameMenuList
 				)
@@ -1040,7 +1036,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_7a1c8425.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_bee88e78.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":179}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');

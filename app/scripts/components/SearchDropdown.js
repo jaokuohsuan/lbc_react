@@ -10,7 +10,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 var menuOption=React.createClass({
 
 	handleMenuClick: function(evt){
- 		this.props.handleMenuClick(evt,this.props.artistName);
+ 		this.props.handleMenuClick(evt,this.props.artistName,this.props.index);
  	},
 
 	render: function(){
@@ -33,18 +33,20 @@ var menuOption=React.createClass({
 });
 var SearchDropdown=React.createClass({
 
-	handleMenuClick: function(evt,artistName){
+	handleMenuClick: function(evt,artistName,index){
  		
  		this.setState({
  			showMenu: false,
- 			holderContent: artistName
- 		});
+ 			holderContent: artistName,
+ 			optionIndex: index,
+ 			value: ""
+ 		}); 		
+ 		
  	},
 
 
  	handleKeyUp: function(evt){
 
- 		// console.log("jj=",this.refs.searchDropInput.getDOMNode().value);
  		
  		evt.preventDefault();
  	},
@@ -56,24 +58,21 @@ var SearchDropdown=React.createClass({
 
 
 
- 		// var val=this.refs.searchInput.getDOMNode().value;
- 		// console.log('val,',val);
+
 
  		switch (evt.keyCode){
 
  			case 13:
+ 				
 
  				this.setState({
 		 			showMenu: false,
-		 			holderContent: artistName
-		 		});
+		 			holderContent: this.state.artistNameList[this.state.optionIndex],
+		 			value: ""
+		 		});		 
 
- 				 
-
-
-
- 				
  				break;
+
  			case 38:
  				this.refs.menuList.getDOMNode().focus();
  				if(this.state.optionIndex>0){
@@ -82,14 +81,13 @@ var SearchDropdown=React.createClass({
 	 					optionIndex: this.state.optionIndex-1
 	 				}); 
 	 			}
-
  				break;
+
  			case 40:
- 				this.refs.menuList.getDOMNode().focus();
- 				
+ 				this.refs.menuList.getDOMNode().focus(); 				
 
  				if(this.state.optionIndex < this.state.maxOptionsNumer-1){
- 					console.log('40');
+ 				
 
 	 				this.setState({
 	 					optionIndex: this.state.optionIndex+1
@@ -105,7 +103,9 @@ var SearchDropdown=React.createClass({
  	
 
  	handleChange: function (evt) {
- 		var val=this.refs.searchDropInput.getDOMNode().value;
+ 
+ 		var val=evt.target.value;
+
 
  		if (val.length >= this.props.startSearchNum) {
  			SearchActionCreators.searchArtistName(val);
@@ -118,23 +118,22 @@ var SearchDropdown=React.createClass({
  		
  		
  	},
+
  	handleFocus: function(evt){
  		this.setState({
  			showMenu: true
  		});
  		
  	},
+
  	handleBlur: function(evt){
 
- 		console.log('blur');
+ 	
  		
  		this.setState({
  			showMenu: false
  		});
  	},
-
-
-
 
  	getInitialState: function() {
     		return {
@@ -158,17 +157,17 @@ var SearchDropdown=React.createClass({
 
 
  	render: function(){
- 		var cx = React.addons.classSet;
- 		
+ 				
  		var nameList=[];
  		var nameMenuList=[];
  		var maxOptionsNumer= this.state.artistNameList ? this.state.artistNameList.length : 0; 
- 	
+
+ 		var cx = React.addons.classSet; 	
  		
  		 var placeHoldClasses = cx({
 		    'text': true,
 		    'default': this.props.placeholder,
-		    'filtered': this.state.showMenu
+		    'filtered': (this.state.showMenu) && (this.state.value!="")
 		  });
 
 
@@ -180,11 +179,10 @@ var SearchDropdown=React.createClass({
 
  		 var holderContent= this.state.holderContent!=null ? this.state.holderContent :this.props.placeholder;
 
- 		console.log('this.state.holderContent =',this.state.holderContent );
+ 		
  		 
 
  		if(this.state.artistNameList!= null){
-
 
 	 		this.state.artistNameList.map(function(artistName,index){
 	 			// console.log('index,',index,"state.optionIndex",this.state.optionIndex);	 			
@@ -193,9 +191,7 @@ var SearchDropdown=React.createClass({
 	 			);
 	 			nameMenuList.push(
 
-	 				<menuOption handleMenuClick={this.handleMenuClick}  artistName={artistName} index={index} selected={this.state.optionIndex===index} />
-	 				
-	 				
+	 				<menuOption handleMenuClick={this.handleMenuClick} key={artistName}  artistName={artistName} index={index} selected={this.state.optionIndex===index} />
 
 	 			);
 
@@ -214,7 +210,7 @@ var SearchDropdown=React.createClass({
 				</select>
 				<i className="dropdown icon"></i>
 				<input type="text" className="search"  tabIndex="0" ref="searchDropInput" onChange={this.handleChange}   value={this.state.value}  />
-				<div className={placeHoldClasses}> {holderContent}</div>
+				<div className={placeHoldClasses}>{holderContent}</div>
 				<div className={menuClasses} tabIndex="-1" ref="menuList">
 					{nameMenuList}
 				</div>
