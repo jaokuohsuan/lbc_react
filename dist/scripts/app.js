@@ -293,7 +293,7 @@ module.exports={
 /**
  * @jsx React.DOM
  */
-var  React = require('react');
+var React = require('react');
 var AlbumActionCreators = require("../actions/AlbumActionCreators");
 
  var Album=React.createClass({displayName: 'Album',
@@ -432,14 +432,42 @@ var ArtistActionCreators = require("../actions/ArtistActionCreators");
  			
  			
 	 			React.DOM.div({className: "artist-but", onClick: this.handleClick}, 
-					React.DOM.figure({className: "artist-thumb", style: artistbgStyle}
-						
+
+	 				React.DOM.div({className: "ui segment"}, 
+
+
+						React.DOM.figure({className: "artist-thumb", style: artistbgStyle}
+							
+						), 
+
+						React.DOM.span({className: "artist-name"}, " ", this.props.artistName, " "), 
+						React.DOM.a({href: "#", className: "artist-remove"}, 
+							React.DOM.i({className: "icon-remove"})
+						)
 					), 
 
-					React.DOM.span({className: "artist-name"}, " ", this.props.artistName, " "), 
-					React.DOM.a({href: "#", className: "artist-remove"}, 
-						React.DOM.i({className: "icon-remove"})
+
+
+					React.DOM.div({className: "ui card artist-but", onClick: this.handleClick}, 
+					  React.DOM.div({className: "ui image fluid"}, 
+					    React.DOM.img({src: this.props.artistImage})
+					  ), 
+					  React.DOM.div({className: "content"}, 
+					    React.DOM.a({className: "header"}, this.props.artistName), 
+					    React.DOM.div({className: "meta"}, 
+					      React.DOM.span({className: "date"}, "Joined in 2014"), 
+					      React.DOM.img({className: "ui avatar image  massive", src: this.props.artistImage})
+					    )
+					    
+					  ), 
+					  React.DOM.div({className: "extra content"}, 
+					    React.DOM.a(null, 
+					      React.DOM.i({className: "user icon"}), 
+					      "22 Friends"
+					    )
+					  )
 					)
+
 				)
 			
  		)
@@ -513,7 +541,7 @@ var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
         });
 		return(
 			React.DOM.div({className: "artist-wrap"}, 
-			React.DOM.div({className: "artist-line"}), 
+			
 			React.DOM.ul({className: "artist-catalogue-list"}, 
 				artists				
 			)
@@ -527,6 +555,8 @@ var ArtistWrap=React.createClass({displayName: 'ArtistWrap',
 
 
 module.exports=ArtistWrap;
+
+// <div className="artist-line"></div>
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\ArtistWrap.js","/components")
 },{"../actions/ArtistActionCreators":3,"../stores/AlbumStore":16,"../stores/ArtistStore":18,"./Artist":8,"buffer":25,"ngpmcQ":29,"react":179}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
@@ -831,10 +861,12 @@ var SearchDropdown = require("./SearchDropdown");
 
  		return(
 
- 			React.DOM.div({className: "search-wrap"}, 
- 				SearchDropdown({placeholder: "artist name", value: this.props.searchText, options: this.state.artistNameList, startSearchNum: "4"})				
+ 			React.DOM.div({className: "ui two column left grid"}, 
+ 				React.DOM.div({className: "column"}, 
+
+ 					SearchDropdown({placeholder: "artist name", value: this.props.searchText, options: this.state.artistNameList, startSearchNum: "4"})				
 			   
-					
+				)
  			)
  		)
  	},
@@ -1022,8 +1054,10 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
  
   render: function(){
     return(
-      React.DOM.div(null, 
-        SearchWrap(null)
+      React.DOM.div({className: "ui page grid"}, 
+        SearchWrap(null), 
+        ArtistWrap(null), 
+        AlbumWrap(null)
         
       )
     );
@@ -1034,9 +1068,9 @@ var LbcApp=React.createClass({displayName: 'LbcApp',
 
 React.renderComponent(LbcApp(null), mountNode);
 
+// <VideoWrap />
 
-
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_bee88e78.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_c8d32b6b.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":179}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -3354,10 +3388,8 @@ EventEmitter.prototype.emit = function(type) {
       er = arguments[1];
       if (er instanceof Error) {
         throw er; // Unhandled 'error' event
-      } else {
-        throw TypeError('Uncaught, unspecified "error" event.');
       }
-      return false;
+      throw TypeError('Uncaught, unspecified "error" event.');
     }
   }
 

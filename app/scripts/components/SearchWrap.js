@@ -65,10 +65,12 @@ var SearchDropdown = require("./SearchDropdown");
 
  		return(
 
- 			<div className="search-wrap">
- 				<SearchDropdown placeholder="artist name" value={this.props.searchText} options={this.state.artistNameList} startSearchNum="4" />				
+ 			<div className="ui two column left grid">
+ 				<div className="column">
+
+ 					<SearchDropdown placeholder="artist name" value={this.props.searchText} options={this.state.artistNameList} startSearchNum="4" />				
 			   
-					
+				</div>
  			</div>
  		)
  	},

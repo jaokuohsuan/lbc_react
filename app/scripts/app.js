@@ -64,8 +64,10 @@ var LbcApp=React.createClass({
  
   render: function(){
     return(
-      <div>
+      <div className="ui page grid">
         <SearchWrap />
+        <ArtistWrap />
+        <AlbumWrap />
         
       </div>
     );
@@ -76,4 +78,4 @@ var LbcApp=React.createClass({
 
 React.renderComponent(<LbcApp />, mountNode);
 
-
+// <VideoWrap />

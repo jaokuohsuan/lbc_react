@@ -59,7 +59,7 @@ var ArtistWrap=React.createClass({
         });
 		return(
 			<div className="artist-wrap">
-			<div className="artist-line"></div>
+			
 			<ul className="artist-catalogue-list">
 				{artists}				
 			</ul>
@@ -73,3 +73,5 @@ var ArtistWrap=React.createClass({
 
 
 module.exports=ArtistWrap;
+
+// <div className="artist-line"></div>
