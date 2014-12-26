@@ -25,31 +25,26 @@ var ArtistActionCreators = require("../actions/ArtistActionCreators");
  			
 	 			<div className="artist-but" onClick={this.handleClick}>
 
-	 				<div className="ui segment">
+	 				
 
+					<div className="ui card fluid grid" onClick={this.handleClick}>
+					    <div className="four wide column">
+						  	<figure className="artist-thumb " style={artistbgStyle}>
+								
+							</figure>
+						</div>
 
-						<figure className="artist-thumb" style={artistbgStyle}>
-							
-						</figure>
+					  
+					  <div className="content twelve wide column">
 
-						<span className="artist-name"> {this.props.artistName} </span>
-						<a href='#' className="artist-remove">
-							<i className="icon-remove"></i>
-						</a>
-					</div>
-
-
-
-					<div className="ui card artist-but" onClick={this.handleClick}>
-					  <div className="ui image fluid">
-					    <img src={this.props.artistImage} />
-					  </div>
-					  <div className="content">
-					    <a className="header">{this.props.artistName}</a>
-					    <div className="meta">
-					      <span className="date">Joined in 2014</span>
-					      <img className="ui avatar image  massive" src={this.props.artistImage} />
-					    </div>
+						  <div className="middle aligned">
+						  	
+						    <a className="header">{this.props.artistName}</a>
+						    <div className="meta">
+						      <span className="date">Joined in 2014</span>
+						      
+						    </div>
+					   		</div>
 					    
 					  </div>
 					  <div className="extra content">

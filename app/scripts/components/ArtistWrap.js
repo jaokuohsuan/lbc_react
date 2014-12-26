@@ -50,19 +50,20 @@ var ArtistWrap=React.createClass({
         this.state.artistAlbums.map(function(artistAlbum) {
            
             artists.push(
-            	<li class="artist-item">
+            	
             	<Artist artistName={artistAlbum.artistName} artistImage={artistAlbum.artistImage} />
-            	</li>
+            
             );
            
            
         });
 		return(
-			<div className="artist-wrap">
+			<div className="ui grid">
+
 			
-			<ul className="artist-catalogue-list">
+			<div className="column">
 				{artists}				
-			</ul>
+			</div>
 		</div>
 		)
 	}

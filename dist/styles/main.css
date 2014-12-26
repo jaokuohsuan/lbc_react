@@ -564,8 +564,9 @@
   position: relative;
   z-index: 20;
   background-color: #000;
+  margin: 0;
 }
-/* line 256, ../../app/styles/lib/_artist.sass */
+/* line 257, ../../app/styles/lib/_artist.sass */
 .artist-thumb:before {
   content: "";
   position: absolute;
@@ -576,21 +577,21 @@
   box-sizing: border-box;
   border-radius: 50%;
 }
-/* line 266, ../../app/styles/lib/_artist.sass */
+/* line 267, ../../app/styles/lib/_artist.sass */
 .artist-thumb:hover:before {
   border-color: rgba(255, 225, 225, 0.6);
 }
-/* line 272, ../../app/styles/lib/_artist.sass */
+/* line 273, ../../app/styles/lib/_artist.sass */
 .artist-thumb img {
   height: 100%;
 }
-/* line 276, ../../app/styles/lib/_artist.sass */
+/* line 277, ../../app/styles/lib/_artist.sass */
 .artist-thumb.is-tall img {
   width: 100%;
   height: auto;
 }
 
-/* line 281, ../../app/styles/lib/_artist.sass */
+/* line 282, ../../app/styles/lib/_artist.sass */
 .artist-name {
   text-decoration: none;
   display: inline-block;
@@ -599,7 +600,7 @@
   text-shadow: 0 0 1px black;
 }
 
-/* line 289, ../../app/styles/lib/_artist.sass */
+/* line 290, ../../app/styles/lib/_artist.sass */
 .artist-line {
   background: rgba(255, 255, 255, 0.25);
   position: absolute;
@@ -611,7 +612,7 @@
   z-index: 10;
 }
 
-/* line 299, ../../app/styles/lib/_artist.sass */
+/* line 300, ../../app/styles/lib/_artist.sass */
 #album-item-wrap {
   top: 7.8rem;
   left: 0;
@@ -623,7 +624,7 @@
   overflow: hidden;
   opacity: 0;
 }
-/* line 329, ../../app/styles/lib/_artist.sass */
+/* line 330, ../../app/styles/lib/_artist.sass */
 #album-item-wrap:after {
   content: "";
   display: block;
@@ -635,7 +636,7 @@
   background-color: rgba(255, 255, 255, 0.3);
   z-index: 10;
 }
-/* line 339, ../../app/styles/lib/_artist.sass */
+/* line 340, ../../app/styles/lib/_artist.sass */
 #album-item-wrap:before {
   content: "";
   display: block;
@@ -654,12 +655,12 @@
   -webkit-transition-duration: 0.3s;
   -webkit-transition-timing-function: ease-in;
 }
-/* line 356, ../../app/styles/lib/_artist.sass */
+/* line 357, ../../app/styles/lib/_artist.sass */
 #album-item-wrap.is-playing:before {
   width: 5rem;
 }
 
-/* line 360, ../../app/styles/lib/_artist.sass */
+/* line 361, ../../app/styles/lib/_artist.sass */
 .album-scroll {
   padding-left: 5rem;
   padding-top: 2rem;
@@ -667,7 +668,7 @@
   position: relative;
 }
 
-/* line 366, ../../app/styles/lib/_artist.sass */
+/* line 367, ../../app/styles/lib/_artist.sass */
 .album-item-list {
   list-style: none;
   margin: 0 0 0 1em;
@@ -676,7 +677,7 @@
   transition: top 0.4s 0;
 }
 
-/* line 376, ../../app/styles/lib/_artist.sass */
+/* line 377, ../../app/styles/lib/_artist.sass */
 .album-item {
   display: block;
   box-sizing: border-box;
@@ -686,7 +687,7 @@
   padding: 0.5rem;
   position: relative;
 }
-/* line 388, ../../app/styles/lib/_artist.sass */
+/* line 389, ../../app/styles/lib/_artist.sass */
 .album-item:after {
   content: "";
   display: block;
@@ -698,41 +699,41 @@
   background-color: rgba(255, 255, 255, 0.2);
   z-index: 10;
 }
-/* line 399, ../../app/styles/lib/_artist.sass */
+/* line 400, ../../app/styles/lib/_artist.sass */
 .album-item:last-child {
   margin-bottom: 0;
 }
-/* line 406, ../../app/styles/lib/_artist.sass */
+/* line 407, ../../app/styles/lib/_artist.sass */
 .album-item.is-playing .album-title {
   color: rgba(0, 148, 224, 0.9);
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.6), 0 0 0.125rem rgba(0, 148, 224, 0.3);
   text-shadow: 0 0 0.1875rem rgba(0, 148, 224, 0.5);
 }
-/* line 411, ../../app/styles/lib/_artist.sass */
+/* line 412, ../../app/styles/lib/_artist.sass */
 .album-item.is-playing .album-time {
   color: #0094e0;
 }
 
-/* line 418, ../../app/styles/lib/_artist.sass */
+/* line 419, ../../app/styles/lib/_artist.sass */
 .album-but {
   text-decoration: none;
   display: block;
   position: relative;
 }
 
-/* line 423, ../../app/styles/lib/_artist.sass */
+/* line 424, ../../app/styles/lib/_artist.sass */
 .album-thumb {
   width: 5rem;
   height: 5rem;
   overflow: hidden;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
 }
-/* line 429, ../../app/styles/lib/_artist.sass */
+/* line 430, ../../app/styles/lib/_artist.sass */
 .album-thumb img {
   width: 100%;
 }
 
-/* line 431, ../../app/styles/lib/_artist.sass */
+/* line 432, ../../app/styles/lib/_artist.sass */
 .album-title {
   font-weight: 200;
   display: block;
@@ -751,7 +752,7 @@
   text-overflow: ellipsis;
 }
 
-/* line 444, ../../app/styles/lib/_artist.sass */
+/* line 445, ../../app/styles/lib/_artist.sass */
 .album-time {
   position: absolute;
   left: -3rem;
@@ -763,12 +764,12 @@
   color: #ccc;
 }
 
-/* line 460, ../../app/styles/lib/_artist.sass */
+/* line 461, ../../app/styles/lib/_artist.sass */
 .is-hide {
   display: none !important;
 }
 
-/* line 464, ../../app/styles/lib/_artist.sass */
+/* line 465, ../../app/styles/lib/_artist.sass */
 body {
   background-color: #000;
 }

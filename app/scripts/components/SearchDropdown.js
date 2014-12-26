@@ -203,7 +203,7 @@ var SearchDropdown=React.createClass({
  		return(
 
  			
- 			<div  className="ui search dropdown selection" onBlur={this.handleBlur} onFocus={this.handleFocus}   onKeyDown={this.handleKeyDown}  onKeyUp={this.handleKeyUp} >
+ 			<div  className="ui search fluid dropdown selection" onBlur={this.handleBlur} onFocus={this.handleFocus}   onKeyDown={this.handleKeyDown}  onKeyUp={this.handleKeyUp} >
 				
 				<select>
 					{nameList}

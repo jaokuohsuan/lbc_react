@@ -65,10 +65,11 @@ var LbcApp=React.createClass({
   render: function(){
     return(
       <div className="ui page grid">
-        <SearchWrap />
-        <ArtistWrap />
-        <AlbumWrap />
-        
+            
+          <SearchWrap />
+          <ArtistWrap />
+          <AlbumWrap />
+              
       </div>
     );
   }
