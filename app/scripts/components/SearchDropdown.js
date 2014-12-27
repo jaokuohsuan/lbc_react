@@ -40,15 +40,15 @@ var SearchDropdown=React.createClass({
  			holderContent: artistName,
  			optionIndex: index,
  			value: ""
- 		}); 		
+ 		}); 
+ 		SearchActionCreators.addArtistFromSearch(this.state.artistNameList[index]);		
  		
  	},
 
 
  	handleKeyUp: function(evt){
-
  		
- 		evt.preventDefault();
+ 		// evt.preventDefault();
  	},
  	handleKeyDown: function(evt){
 
@@ -69,7 +69,8 @@ var SearchDropdown=React.createClass({
 		 			showMenu: false,
 		 			holderContent: this.state.artistNameList[this.state.optionIndex],
 		 			value: ""
-		 		});		 
+		 		});
+		 		SearchActionCreators.addArtistFromSearch(this.state.artistNameList[this.state.optionIndex]);		 
 
  				break;
 
@@ -105,7 +106,6 @@ var SearchDropdown=React.createClass({
  	handleChange: function (evt) {
  
  		var val=evt.target.value;
-
 
  		if (val.length >= this.props.startSearchNum) {
  			SearchActionCreators.searchArtistName(val);
@@ -203,7 +203,7 @@ var SearchDropdown=React.createClass({
  		return(
 
  			
- 			<div  className="ui search fluid dropdown selection" onBlur={this.handleBlur} onFocus={this.handleFocus}   onKeyDown={this.handleKeyDown}  onKeyUp={this.handleKeyUp} >
+ 			<div  className="ui search fluid dropdown selection search-dropdown" onBlur={this.handleBlur} onFocus={this.handleFocus}   onKeyDown={this.handleKeyDown}  onKeyUp={this.handleKeyUp} >
 				
 				<select>
 					{nameList}

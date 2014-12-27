@@ -65,7 +65,7 @@ var SearchDropdown = require("./SearchDropdown");
 
  		return(
 
- 			<div className="ui grid">
+ 			<div className="ui grid serach-wrap">
  				<div className="column">
 
  					<SearchDropdown placeholder="artist name" value={this.props.searchText} options={this.state.artistNameList} startSearchNum="4" />				

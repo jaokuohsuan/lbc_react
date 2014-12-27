@@ -598,15 +598,15 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  			holderContent: artistName,
  			optionIndex: index,
  			value: ""
- 		}); 		
+ 		}); 
+ 		SearchActionCreators.addArtistFromSearch(this.state.artistNameList[index]);		
  		
  	},
 
 
  	handleKeyUp: function(evt){
-
  		
- 		evt.preventDefault();
+ 		// evt.preventDefault();
  	},
  	handleKeyDown: function(evt){
 
@@ -627,7 +627,8 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 		 			showMenu: false,
 		 			holderContent: this.state.artistNameList[this.state.optionIndex],
 		 			value: ""
-		 		});		 
+		 		});
+		 		SearchActionCreators.addArtistFromSearch(this.state.artistNameList[this.state.optionIndex]);		 
 
  				break;
 
@@ -663,7 +664,6 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  	handleChange: function (evt) {
  
  		var val=evt.target.value;
-
 
  		if (val.length >= this.props.startSearchNum) {
  			SearchActionCreators.searchArtistName(val);
@@ -761,7 +761,7 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  		return(
 
  			
- 			React.DOM.div({className: "ui search fluid dropdown selection", onBlur: this.handleBlur, onFocus: this.handleFocus, onKeyDown: this.handleKeyDown, onKeyUp: this.handleKeyUp}, 
+ 			React.DOM.div({className: "ui search fluid dropdown selection search-dropdown", onBlur: this.handleBlur, onFocus: this.handleFocus, onKeyDown: this.handleKeyDown, onKeyUp: this.handleKeyUp}, 
 				
 				React.DOM.select(null, 
 					nameList
@@ -857,7 +857,7 @@ var SearchDropdown = require("./SearchDropdown");
 
  		return(
 
- 			React.DOM.div({className: "ui grid"}, 
+ 			React.DOM.div({className: "ui grid serach-wrap"}, 
  				React.DOM.div({className: "column"}, 
 
  					SearchDropdown({placeholder: "artist name", value: this.props.searchText, options: this.state.artistNameList, startSearchNum: "4"})				
@@ -1001,6 +1001,9 @@ var React = window.React = require('react'),
 var MusicExampleData= require('./MusicExampleData'); //ecample Data
 
 
+React.initializeTouchEvents(true);
+
+
 // ArtistAPIUtils.getAlbums('Stars');  //first run
 // ArtistAPIUtils.getTracks('663dc26a-9fec-4123-8911-678f50ab9a7d');  
 
@@ -1067,7 +1070,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 // <VideoWrap />
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_6d2a3cec.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_4b2ae0f4.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":179}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');

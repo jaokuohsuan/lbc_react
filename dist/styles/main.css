@@ -773,3 +773,8 @@
 body {
   background-color: #000;
 }
+
+/* line 13, ../../app/styles/main.sass */
+.search-dropdown {
+  z-index: 100;
+}
