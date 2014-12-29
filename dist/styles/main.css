@@ -292,7 +292,7 @@
 
 /*store layer */
 /* line 11, ../../app/styles/lib/_artist.sass */
-#ui-layer {
+.ui-layer {
   width: 23%;
   height: calc(100% -  7.1rem);
   position: absolute;
@@ -303,12 +303,12 @@
   transition-timing-function: ease;
 }
 /* line 21, ../../app/styles/lib/_artist.sass */
-#ui-layer.slide-in {
+.ui-layer.slide-in {
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
 /* line 25, ../../app/styles/lib/_artist.sass */
-#ui-layer.slide-out {
+.ui-layer.slide-out {
   -webkit-transform: translateX(-60rem);
           transform: translateX(-60rem);
   transition-delay: 1.3s;
