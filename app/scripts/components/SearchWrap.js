@@ -18,7 +18,7 @@ var SearchDropdown = require("./SearchDropdown");
 
 
  			var val=this.refs.searchInput.getDOMNode().value;
- 			// console.log("evt-keycode:"+evt.keyCode,"val:",val);
+ 			
  			// evt.preventDefault();
  			SearchActionCreators.addArtistFromSearch(val);
  			
@@ -31,6 +31,13 @@ var SearchDropdown = require("./SearchDropdown");
  		}
  		
  		
+ 	},
+ 	handleMenuClick : function(evt,artist){
+
+ 		console.log('ffffffc=',evt,artist);
+ 		// SearchActionCreators.addArtistFromSearch(artistName);
+ 		ArtistServerActionCreators.addArtists(artist);	
+
  	},
 
 
@@ -68,7 +75,7 @@ var SearchDropdown = require("./SearchDropdown");
  			<div className="ui grid serach-wrap">
  				<div className="column">
 
- 					<SearchDropdown placeholder="artist name" value={this.props.searchText} options={this.state.artistNameList} startSearchNum="4" />				
+ 					<SearchDropdown placeholder="artist name" value={this.props.searchText} options={this.state.artistNameList} startSearchNum="4" onMenuClick={this.handleMenuClick} />				
 			   
 				</div>
  			</div>
@@ -78,8 +85,8 @@ var SearchDropdown = require("./SearchDropdown");
 
  	_onChange: function(data) {
 
- 		//console.log('on channge');
-		
+ 		
+
     	this.setState({artistNameList: data});
     }
 

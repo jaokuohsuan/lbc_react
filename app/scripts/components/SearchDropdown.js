@@ -10,7 +10,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 var menuOption=React.createClass({
 
 	handleMenuClick: function(evt){
- 		this.props.handleMenuClick(evt,this.props.artistName,this.props.index);
+ 		this.props.handleMenuClick(evt,this.props.artists.artistName,this.props.index);
  	},
 
 	render: function(){
@@ -22,10 +22,17 @@ var menuOption=React.createClass({
  		 	'selected': this.props.selected
  		 });
 
+	
 
 		return(
 
-			<div className={menuOptionClass}  key={this.props.artistName} onClick={this.handleMenuClick} >{this.props.artistName}</div>
+			<div className={menuOptionClass}  key={this.props.artists.artistMbid} onClick={this.handleMenuClick} >
+
+
+
+				{this.props.artists.artistName}
+				
+			</div>
 		)
 
 	}
@@ -41,7 +48,10 @@ var SearchDropdown=React.createClass({
  			optionIndex: index,
  			value: ""
  		}); 
- 		SearchActionCreators.addArtistFromSearch(this.state.artistNameList[index]);		
+
+
+ 		this.props.onMenuClick(evt,this.state.optionsList[index]);  //to parent
+ 		// SearchActionCreators.addArtistFromSearch(this.state.optionsList[index]);		
  		
  	},
 
@@ -54,7 +64,7 @@ var SearchDropdown=React.createClass({
 
 
 
- 		this.setState({maxOptionsNumer:this.state.artistNameList.length});
+ 		this.setState({maxOptionsNumer:this.state.optionsList.length});
 
 
 
@@ -67,10 +77,12 @@ var SearchDropdown=React.createClass({
 
  				this.setState({
 		 			showMenu: false,
-		 			holderContent: this.state.artistNameList[this.state.optionIndex],
+		 			holderContent: this.state.optionsList[this.state.optionIndex].artistName,
 		 			value: ""
 		 		});
-		 		SearchActionCreators.addArtistFromSearch(this.state.artistNameList[this.state.optionIndex]);		 
+
+		 		this.handleMenuClick(evt,this.state.optionsList[this.state.optionIndex].artistName,this.state.optionIndex);
+		 		// SearchActionCreators.addArtistFromSearch(this.state.optionsList[this.state.optionIndex]);		 
 
  				break;
 
@@ -137,7 +149,7 @@ var SearchDropdown=React.createClass({
 
  	getInitialState: function() {
     		return {
-    			artistNameList: null,    			
+    			optionsList: null,    			
     			value: this.props.value,
     			holderContent: null,
     			showMenu: false,
@@ -160,7 +172,7 @@ var SearchDropdown=React.createClass({
  				
  		var nameList=[];
  		var nameMenuList=[];
- 		var maxOptionsNumer= this.state.artistNameList ? this.state.artistNameList.length : 0; 
+ 		var maxOptionsNumer= this.state.optionsList ? this.state.optionsList.length : 0; 
 
  		var cx = React.addons.classSet; 	
  		
@@ -182,16 +194,16 @@ var SearchDropdown=React.createClass({
  		
  		 
 
- 		if(this.state.artistNameList!= null){
+ 		if(this.state.optionsList!= null){
 
-	 		this.state.artistNameList.map(function(artistName,index){
-	 			// console.log('index,',index,"state.optionIndex",this.state.optionIndex);	 			
+	 		this.state.optionsList.map(function(artists,index){
+	 			 			
 	 			nameList.push(
-	 				<option value={artistName} key={artistName}>{artistName}</option>
+	 				<option value={artists.artistsName} key={artists.artistsName}>{artists.artistsName}</option>
 	 			);
 	 			nameMenuList.push(
 
-	 				<menuOption handleMenuClick={this.handleMenuClick} key={artistName}  artistName={artistName} index={index} selected={this.state.optionIndex===index} />
+	 				<menuOption handleMenuClick={this.handleMenuClick} key={artists.artistsName}  artists={artists} index={index} selected={this.state.optionIndex===index}  />
 
 	 			);
 
@@ -220,10 +232,11 @@ var SearchDropdown=React.createClass({
  			
  		)
  	},
+
  	_onChange: function(data) {
 
  				
-    	this.setState({artistNameList: data});
+    	this.setState({optionsList: data});
     }
 
  });

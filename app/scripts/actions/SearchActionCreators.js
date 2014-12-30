@@ -24,7 +24,8 @@ module.exports={
       rawData: val
     });
 
-    MusicAPIUtils.getArtists(val);
+
+    // MusicAPIUtils.getArtists(val);
 
   } 
 

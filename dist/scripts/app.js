@@ -281,7 +281,8 @@ module.exports={
       rawData: val
     });
 
-    MusicAPIUtils.getArtists(val);
+
+    // MusicAPIUtils.getArtists(val);
 
   } 
 
@@ -568,7 +569,7 @@ var SearchActionCreators = require("../actions/SearchActionCreators");
 var menuOption=React.createClass({displayName: 'menuOption',
 
 	handleMenuClick: function(evt){
- 		this.props.handleMenuClick(evt,this.props.artistName,this.props.index);
+ 		this.props.handleMenuClick(evt,this.props.artists.artistName,this.props.index);
  	},
 
 	render: function(){
@@ -580,10 +581,17 @@ var menuOption=React.createClass({displayName: 'menuOption',
  		 	'selected': this.props.selected
  		 });
 
+	
 
 		return(
 
-			React.DOM.div({className: menuOptionClass, key: this.props.artistName, onClick: this.handleMenuClick}, this.props.artistName)
+			React.DOM.div({className: menuOptionClass, key: this.props.artists.artistMbid, onClick: this.handleMenuClick}, 
+
+
+
+				this.props.artists.artistName
+				
+			)
 		)
 
 	}
@@ -599,7 +607,10 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  			optionIndex: index,
  			value: ""
  		}); 
- 		SearchActionCreators.addArtistFromSearch(this.state.artistNameList[index]);		
+
+
+ 		this.props.onMenuClick(evt,this.state.optionsList[index]);  //to parent
+ 		// SearchActionCreators.addArtistFromSearch(this.state.optionsList[index]);		
  		
  	},
 
@@ -612,7 +623,7 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
 
 
- 		this.setState({maxOptionsNumer:this.state.artistNameList.length});
+ 		this.setState({maxOptionsNumer:this.state.optionsList.length});
 
 
 
@@ -625,10 +636,12 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
  				this.setState({
 		 			showMenu: false,
-		 			holderContent: this.state.artistNameList[this.state.optionIndex],
+		 			holderContent: this.state.optionsList[this.state.optionIndex].artistName,
 		 			value: ""
 		 		});
-		 		SearchActionCreators.addArtistFromSearch(this.state.artistNameList[this.state.optionIndex]);		 
+
+		 		this.handleMenuClick(evt,this.state.optionsList[this.state.optionIndex].artistName,this.state.optionIndex);
+		 		// SearchActionCreators.addArtistFromSearch(this.state.optionsList[this.state.optionIndex]);		 
 
  				break;
 
@@ -695,7 +708,7 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
  	getInitialState: function() {
     		return {
-    			artistNameList: null,    			
+    			optionsList: null,    			
     			value: this.props.value,
     			holderContent: null,
     			showMenu: false,
@@ -718,7 +731,7 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  				
  		var nameList=[];
  		var nameMenuList=[];
- 		var maxOptionsNumer= this.state.artistNameList ? this.state.artistNameList.length : 0; 
+ 		var maxOptionsNumer= this.state.optionsList ? this.state.optionsList.length : 0; 
 
  		var cx = React.addons.classSet; 	
  		
@@ -740,16 +753,16 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  		
  		 
 
- 		if(this.state.artistNameList!= null){
+ 		if(this.state.optionsList!= null){
 
-	 		this.state.artistNameList.map(function(artistName,index){
-	 			// console.log('index,',index,"state.optionIndex",this.state.optionIndex);	 			
+	 		this.state.optionsList.map(function(artists,index){
+	 			 			
 	 			nameList.push(
-	 				React.DOM.option({value: artistName, key: artistName}, artistName)
+	 				React.DOM.option({value: artists.artistsName, key: artists.artistsName}, artists.artistsName)
 	 			);
 	 			nameMenuList.push(
 
-	 				menuOption({handleMenuClick: this.handleMenuClick, key: artistName, artistName: artistName, index: index, selected: this.state.optionIndex===index})
+	 				menuOption({handleMenuClick: this.handleMenuClick, key: artists.artistsName, artists: artists, index: index, selected: this.state.optionIndex===index})
 
 	 			);
 
@@ -778,10 +791,11 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  			
  		)
  	},
+
  	_onChange: function(data) {
 
  				
-    	this.setState({artistNameList: data});
+    	this.setState({optionsList: data});
     }
 
  });
@@ -810,7 +824,7 @@ var SearchDropdown = require("./SearchDropdown");
 
 
  			var val=this.refs.searchInput.getDOMNode().value;
- 			// console.log("evt-keycode:"+evt.keyCode,"val:",val);
+ 			
  			// evt.preventDefault();
  			SearchActionCreators.addArtistFromSearch(val);
  			
@@ -823,6 +837,13 @@ var SearchDropdown = require("./SearchDropdown");
  		}
  		
  		
+ 	},
+ 	handleMenuClick : function(evt,artist){
+
+ 		console.log('ffffffc=',evt,artist);
+ 		// SearchActionCreators.addArtistFromSearch(artistName);
+ 		ArtistServerActionCreators.addArtists(artist);	
+
  	},
 
 
@@ -860,7 +881,7 @@ var SearchDropdown = require("./SearchDropdown");
  			React.DOM.div({className: "ui grid serach-wrap"}, 
  				React.DOM.div({className: "column"}, 
 
- 					SearchDropdown({placeholder: "artist name", value: this.props.searchText, options: this.state.artistNameList, startSearchNum: "4"})				
+ 					SearchDropdown({placeholder: "artist name", value: this.props.searchText, options: this.state.artistNameList, startSearchNum: "4", onMenuClick: this.handleMenuClick})				
 			   
 				)
  			)
@@ -870,8 +891,8 @@ var SearchDropdown = require("./SearchDropdown");
 
  	_onChange: function(data) {
 
- 		//console.log('on channge');
-		
+ 		
+
     	this.setState({artistNameList: data});
     }
 
@@ -1070,7 +1091,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 // <VideoWrap />
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_c45139f9.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_15aed1b6.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":179}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -1531,34 +1552,7 @@ module.exports={
     },
 
 
-  //   getSearchTips: function(){
 
-  //   	var oReq= new XMLHttpRequest();
-  //   	oReq.onreadystatechange = function(){
-
-	 //   		  if ( oReq.readyState == 4) {
-		// 　　　　　
-		// 			//get artists
-		// 			var _response = {};					
-		// 			var response =JSON.parse(oReq.responseText);
-		// 			// response  = response.results.artistmatches.artist[0];
-		// 			// _response.artistImage = response.image[2]["#text"];
-		// 			// _response.artistMbid = response.mbid;
-		// 			// _response.artistName = response.name;
-		// 			// delete response;
-		// 			console.log( 'artist:',response);
-					
-
-		// 　　　} else {
-		// 　　　　　　console.log( "Error: ",oReq.statusText );
-		// 　　　}
-	 //   	}
-	 //   	 oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + searchkey+ "&api_key=" + lastfm_key + "&format=json", true);
-	 //   	 oReq.send(null);
-
-
-
-  //   },
 
   getArtistTips:function(searchkey){
 
@@ -1569,14 +1563,21 @@ module.exports={
   			.end(function(res){
 
   				if (res.ok){
-  					console.log('res=',res.body);
+  					// console.log('res=',res.body);
 
-	  				var _response = {};					
+	  				var _response = [];					
 					var response =res.body;
 					response  = response.results.artistmatches.artist;
-					_response = _.filter(response,'mbid'); //filter out mbid is empty
-					_response = _.map(_response,'name'); //get name list 
-					delete response;
+				
+					response = _.filter(response,'mbid'); //filter out mbid is empty
+					response.forEach(function(artist){
+						_response.push({'artistImage': artist.image[2]["#text"],'artistMbid': artist.mbid,'artistName': artist.name})
+
+					});
+					
+					// _response = _.map(_response,'name'); //get name list 
+					
+					// delete response;
 
 					ArtistServerActionCreators.receiveArtists(_response);
 
@@ -1635,6 +1636,7 @@ module.exports={
 						response  = response.results.artistmatches.artist[0];
 						_response.artistImage = response.image[2]["#text"];
 						_response.artistMbid = response.mbid;
+
 						_response.artistName = response.name; 
 						delete response;
 
@@ -1677,7 +1679,7 @@ module.exports={
    		if (albumMbid != ""){
    			queryUrl={'method':'album.getinfo','mbid': albumMbid,'api_key':lastfm_key,'format':'json'};
    		}else{
-   			queryUrl={'method':'album.getinfo','artist': artistName,'album': albumName,'api_key':lastfm_key,'format':'json'};
+   			queryUrl={'method':'album.getinfo','artist': _.escape(artistName),'album': _.escape(albumName),'api_key':lastfm_key,'format':'json'};
    		}
 
    		Request
