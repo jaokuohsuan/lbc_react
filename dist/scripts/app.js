@@ -622,13 +622,6 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  	handleKeyDown: function(evt){
 
 
-
- 		this.setState({maxOptionsNumer:this.state.optionsList.length});
-
-
-
-
-
  		switch (evt.keyCode){
 
  			case 13:
@@ -656,7 +649,9 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  				break;
 
  			case 40:
- 				this.refs.menuList.getDOMNode().focus(); 				
+ 				this.refs.menuList.getDOMNode().focus(); 	
+
+ 				 // console.log("optionIndex=",this.state.optionIndex,"maxOptionsNumer=" ,this.state.maxOptionsNumer);			
 
  				if(this.state.optionIndex < this.state.maxOptionsNumer-1){
  				
@@ -680,11 +675,12 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
  		if (val.length >= this.props.startSearchNum) {
  			SearchActionCreators.searchArtistName(val);
+
  		}
 
  		this.setState({
  			value: val,
- 			holderContent: val
+ 			holderContent: ""
  		})
  		
  		
@@ -752,6 +748,7 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
 
  		
  		 
+ 		console.log("g=",this.state.optionsList);
 
  		if(this.state.optionsList!= null){
 
@@ -795,7 +792,12 @@ var SearchDropdown=React.createClass({displayName: 'SearchDropdown',
  	_onChange: function(data) {
 
  				
-    	this.setState({optionsList: data});
+    	this.setState({
+    		optionsList: data,
+    		maxOptionsNumer:data.length,
+    		optionIndex: 0 //reset index
+
+    	});
     }
 
  });
@@ -1091,7 +1093,7 @@ React.renderComponent(LbcApp(null), mountNode);
 
 // <VideoWrap />
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_15aed1b6.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_edb5cb6a.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":179}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -1514,7 +1516,6 @@ SearchStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case  ActionTypes.SEARCH_ARTIST_NAME:
 			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
-			console.log("search neame gg:",action.rawData);
 			SearchStore.emitChange(action.rawData);
 
 			break;

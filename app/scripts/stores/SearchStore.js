@@ -59,7 +59,6 @@ SearchStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case  ActionTypes.SEARCH_ARTIST_NAME:
 			//AppDispatcher.waitFor([AlbumStore.dispatchToken]);  //waitFor example
-			console.log("search neame gg:",action.rawData);
 			SearchStore.emitChange(action.rawData);
 
 			break;

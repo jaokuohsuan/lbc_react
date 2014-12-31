@@ -63,13 +63,6 @@ var SearchDropdown=React.createClass({
  	handleKeyDown: function(evt){
 
 
-
- 		this.setState({maxOptionsNumer:this.state.optionsList.length});
-
-
-
-
-
  		switch (evt.keyCode){
 
  			case 13:
@@ -97,7 +90,9 @@ var SearchDropdown=React.createClass({
  				break;
 
  			case 40:
- 				this.refs.menuList.getDOMNode().focus(); 				
+ 				this.refs.menuList.getDOMNode().focus(); 	
+
+ 				 // console.log("optionIndex=",this.state.optionIndex,"maxOptionsNumer=" ,this.state.maxOptionsNumer);			
 
  				if(this.state.optionIndex < this.state.maxOptionsNumer-1){
  				
@@ -121,11 +116,12 @@ var SearchDropdown=React.createClass({
 
  		if (val.length >= this.props.startSearchNum) {
  			SearchActionCreators.searchArtistName(val);
+
  		}
 
  		this.setState({
  			value: val,
- 			holderContent: val
+ 			holderContent: ""
  		})
  		
  		
@@ -193,6 +189,7 @@ var SearchDropdown=React.createClass({
 
  		
  		 
+ 		console.log("g=",this.state.optionsList);
 
  		if(this.state.optionsList!= null){
 
@@ -236,7 +233,12 @@ var SearchDropdown=React.createClass({
  	_onChange: function(data) {
 
  				
-    	this.setState({optionsList: data});
+    	this.setState({
+    		optionsList: data,
+    		maxOptionsNumer:data.length,
+    		optionIndex: 0 //reset index
+
+    	});
     }
 
  });
