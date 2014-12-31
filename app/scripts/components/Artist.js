@@ -1,12 +1,10 @@
-/**
- * @jsx React.DOM
- */
-var  React = require('react');
+
+var React = require('react');
 var ArtistActionCreators = require("../actions/ArtistActionCreators");
 
  var Artist=React.createClass({
  	handleClick: function(){
- 		// console.log("handleClick");
+ 
 		ArtistActionCreators.clickArtist(this.props.artistName);
 		
 	},

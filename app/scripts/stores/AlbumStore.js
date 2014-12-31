@@ -1,5 +1,6 @@
 var AppConstants= require('../constants/AppConstants');
 var AppDispatcher= require('../dispatcher/AppDispatcher');
+var MusicAPIUtils = require('../utils/MusicAPIUtils');
 var EventEmitter = require('events').EventEmitter;
 var merge = require('react/lib/merge');
 var ActionTypes = AppConstants.ActionTypes;
@@ -39,9 +40,7 @@ function clickAlbum(id){
 
 
 
-var AlbumStore=merge(EventEmitter.prototype,{
-
-	
+var AlbumStore=merge(EventEmitter.prototype,{	
 
 
 	getInitData:function(rawData){      
@@ -85,6 +84,13 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 		case  ActionTypes.CLICK_ALBUM:
 
 			break;
+		case  ActionTypes.GET_ALBUMS:
+			console.log('payload=',payload);
+
+			MusicAPIUtils.getAlbums(payload.action.rawData.artistName);
+
+			break;	
+			
 
 		default:
       		

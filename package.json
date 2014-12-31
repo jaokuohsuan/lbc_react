@@ -25,8 +25,8 @@
     "gulp-size": "~0.1.2",
     "gulp-useref": "~0.4.4",
     "gulp-util": "~2.2.9",
-    "react": "^0.10.0",
-    "reactify": "~0.10.0",
+    "react": "^0.12.2",
+    "reactify": "~0.17.1",
     "superagent": "^0.21.0"
   },
   "engines": {

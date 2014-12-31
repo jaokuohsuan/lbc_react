@@ -105,7 +105,7 @@ module.exports={
 						_response.artistName = response.name; 
 						delete response;
 
-						ArtistServerActionCreators.addArtists(_response);
+						// ArtistServerActionCreators.addArtists(_response);
 
 	  				}else{
 	  					console.error('Oh no! error ' + res.text);
@@ -189,3 +189,5 @@ module.exports={
 
 
 };
+
+

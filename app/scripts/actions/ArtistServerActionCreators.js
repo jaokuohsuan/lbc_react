@@ -1,6 +1,7 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
+// var MusicAPIUtils = require('../utils/MusicAPIUtils');
 var ActionTypes = AppConstants.ActionTypes;
 
 
@@ -28,6 +29,17 @@ module.exports={
       rawData: rawData
     });
     // console.log('addArtists');
+
+  },
+  getAlbums: function(rawData){
+    console.log("rawData=",rawData);
+    AppDispatcher.handleServerAction({
+      actionType: ActionTypes.GET_ALBUMS,
+      rawData: rawData
+    });
+    console.log('rawData.artistName= ',rawData.artistName)
+    // MusicAPIUtils.getAlbums(rawData.artistName);
+    
 
   }
 

@@ -11,32 +11,13 @@ var SearchDropdown = require("./SearchDropdown");
  var SearchWrap=React.createClass({
 
 
- 	handleKeyPress: function(evt){
- 		
- 		
- 		if(evt.keyCode == "13"){ 			
 
-
- 			var val=this.refs.searchInput.getDOMNode().value;
- 			
- 			// evt.preventDefault();
- 			SearchActionCreators.addArtistFromSearch(val);
- 			
- 		}
- 	},
- 	handleChange: function (evt) {
- 		var val=this.refs.searchInput.getDOMNode().value;
- 		if (val.length >= 4) {
- 			SearchActionCreators.searchArtistName(val);
- 		}
- 		
- 		
- 	},
  	handleMenuClick : function(evt,artist){
 
- 		console.log('ffffffc=',evt,artist);
- 		// SearchActionCreators.addArtistFromSearch(artistName);
- 		ArtistServerActionCreators.addArtists(artist);	
+  		// SearchActionCreators.addArtistFromSearch(artistName);
+ 		ArtistServerActionCreators.addArtists(artist);
+ 		ArtistServerActionCreators.getAlbums(artist);
+ 			
 
  	},
 
@@ -75,7 +56,7 @@ var SearchDropdown = require("./SearchDropdown");
  			<div className="ui grid serach-wrap">
  				<div className="column">
 
- 					<SearchDropdown placeholder="artist name" value={this.props.searchText} options={this.state.artistNameList} startSearchNum="4" onMenuClick={this.handleMenuClick} />				
+ 					<SearchDropdown placeholder="artist name" options={this.state.artistNameList} startSearchNum="4" onMenuClick={this.handleMenuClick} />				
 			   
 				</div>
  			</div>
@@ -95,9 +76,3 @@ var SearchDropdown = require("./SearchDropdown");
   module.exports=SearchWrap;
 
 
-  // <div  className="artist-search" >
-		// 		<input type="text" value={this.props.searchText} ref="searchInput" onChange={this.handleChange}  onKeyPress={this.handleKeyPress }  name="artist-search" list="artist-name-list"  autocomplete="on" placeholder="artist or band..." />
-		// 		<datalist id="artist-name-list">
-		// 			{nameList}			
-
-		// 		</datalist>-

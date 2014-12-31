@@ -1,15 +1,12 @@
-/**
- * @jsx React.DOM
- */
+
 var React = require('react');
 var AlbumActionCreators = require("../actions/AlbumActionCreators");
 
- var Album=React.createClass({
+var Album=React.createClass({
  	handleClick: function(evt){
  		// console.log("handleClick");
  		AlbumActionCreators.clickAlbum(this.props.albumName);
- 		evt.preventDefault();
-	
+ 		evt.preventDefault();	
 	},
 
 
@@ -18,8 +15,7 @@ var AlbumActionCreators = require("../actions/AlbumActionCreators");
  			<div>
 	 			<a href="#" className="album-but" onClick={this.handleClick}>
 					<figure className="album-thumb">
-						<img src={this.props.albumCover} />
-						
+						<img src={this.props.albumCover} />						
 					</figure>
 					<span className="album-title"> {this.props.albumName} </span>
 				</a>

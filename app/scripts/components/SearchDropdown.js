@@ -3,11 +3,10 @@
  */
 var React = require('react/addons');
 var SearchStore= require('../stores/SearchStore');
-var ArtistServerActionCreators = require("../actions/ArtistServerActionCreators");
 var SearchActionCreators = require("../actions/SearchActionCreators");
 
 // menuOption components
-var menuOption=React.createClass({
+var MenuOption=React.createClass({
 
 	handleMenuClick: function(evt){
  		this.props.handleMenuClick(evt,this.props.artists.artistName,this.props.index);
@@ -20,14 +19,11 @@ var menuOption=React.createClass({
 		var menuOptionClass=cx({
  		 	'item': true,
  		 	'selected': this.props.selected
- 		 });
-
-	
+ 		 });	
 
 		return(
 
-			<div className={menuOptionClass}  key={this.props.artists.artistMbid} onClick={this.handleMenuClick} >
-
+			<div className={menuOptionClass}  onClick={this.handleMenuClick} >
 
 
 				{this.props.artists.artistName}
@@ -189,18 +185,17 @@ var SearchDropdown=React.createClass({
 
  		
  		 
- 		console.log("g=",this.state.optionsList);
-
- 		if(this.state.optionsList!= null){
+ 	
+ 		if(this.state.optionsList!= null && Array.isArray(this.state.optionsList)){
 
 	 		this.state.optionsList.map(function(artists,index){
 	 			 			
 	 			nameList.push(
-	 				<option value={artists.artistsName} key={artists.artistsName}>{artists.artistsName}</option>
+	 				<option value={artists.artistsName} key={artists.artistMbid} >{artists.artistsName}</option>
 	 			);
 	 			nameMenuList.push(
 
-	 				<menuOption handleMenuClick={this.handleMenuClick} key={artists.artistsName}  artists={artists} index={index} selected={this.state.optionIndex===index}  />
+	 				<MenuOption handleMenuClick={this.handleMenuClick} key={artists.artistMbid}  artists={artists} index={index} selected={this.state.optionIndex===index}  />
 
 	 			);
 

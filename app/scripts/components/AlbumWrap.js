@@ -1,7 +1,4 @@
-/**
- * @jsx React.DOM
- */
-var  React = require('react');
+var React = require('react');
 var Album = require("./Album"),
 	AlbumActionCreators = require("../actions/AlbumActionCreators"),
 	AlbumStore= require("../stores/AlbumStore");

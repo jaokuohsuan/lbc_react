@@ -22,12 +22,12 @@ module.exports={
   	AppDispatcher.handleServerAction({
       actionType: ActionTypes.ENTER_ARTIST,
       rawData: val
-    });
-
+    });    
 
     // MusicAPIUtils.getArtists(val);
 
-  } 
+  },
+  
 
 
 }

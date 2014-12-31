@@ -12,7 +12,8 @@ module.exports={
 		ROUNTER_ALBUM: null,
 		CLICK_ALBUM: null,
 		RECEIVE_INIT: null,
-		SEARCH_ARTIST_NAME: null
+		SEARCH_ARTIST_NAME: null,
+		GET_ALBUMS: null
 	}),	
 	PayloadSources: keyMirror({
 	    SERVER_ACTION: null,
