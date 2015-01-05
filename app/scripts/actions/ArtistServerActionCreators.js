@@ -32,14 +32,22 @@ module.exports={
 
   },
   getAlbums: function(rawData){
-    console.log("rawData=",rawData);
+    // console.log("rawData=",rawData);
     AppDispatcher.handleServerAction({
       actionType: ActionTypes.GET_ALBUMS,
       rawData: rawData
     });
-    console.log('rawData.artistName= ',rawData.artistName)
-    // MusicAPIUtils.getAlbums(rawData.artistName);
+    // console.log('rawData.artistName= ',rawData.artistName)
+
     
+
+  },
+  receiveAlbums: function(rawData){
+    console.log("rawData=",rawData);
+    AppDispatcher.handleServerAction({
+      actionType: ActionTypes.RECEIVE_ALBUMS,
+      rawData: rawData
+    });
 
   }
 

@@ -85,7 +85,7 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.GET_ALBUMS:
-			console.log('payload=',payload);
+			// console.log('payload=',payload);
 
 			MusicAPIUtils.getAlbums(payload.action.rawData.artistName);
 

@@ -15,7 +15,7 @@ var AlbumWrap= React.createClass({
 
 
 	_onChange: function(data) {
-		// console.log("_onChange",data);
+		// console.log("_onChange.....",data);
     	this.setState({artist: data.artist});
     },
 

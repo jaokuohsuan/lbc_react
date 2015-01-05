@@ -252,14 +252,22 @@ module.exports={
 
   },
   getAlbums: function(rawData){
-    console.log("rawData=",rawData);
+    // console.log("rawData=",rawData);
     AppDispatcher.handleServerAction({
       actionType: ActionTypes.GET_ALBUMS,
       rawData: rawData
     });
-    console.log('rawData.artistName= ',rawData.artistName)
-    // MusicAPIUtils.getAlbums(rawData.artistName);
+    // console.log('rawData.artistName= ',rawData.artistName)
+
     
+
+  },
+  receiveAlbums: function(rawData){
+    console.log("rawData=",rawData);
+    AppDispatcher.handleServerAction({
+      actionType: ActionTypes.RECEIVE_ALBUMS,
+      rawData: rawData
+    });
 
   }
 
@@ -354,7 +362,7 @@ var AlbumWrap= React.createClass({displayName: "AlbumWrap",
 
 
 	_onChange: function(data) {
-		// console.log("_onChange",data);
+		// console.log("_onChange.....",data);
     	this.setState({artist: data.artist});
     },
 
@@ -532,7 +540,7 @@ var ArtistWrap=React.createClass({displayName: "ArtistWrap",
            
             artists.push(
             	
-            	React.createElement(Artist, {artistName: artistAlbum.artistName, artistImage: artistAlbum.artistImage})
+            	React.createElement(Artist, {artistName: artistAlbum.artistName, artistImage: artistAlbum.artistImage, artistalbums: artistAlbum.albumList})
             
             );
            
@@ -922,6 +930,7 @@ module.exports={
 		RECEIVE_ARTIST: null,
 		REMOVE_ARTIST: null,
 		CLICK_ARTIST: null,
+		RECEIVE_ALBUMS: null,
 		ROUNTER_ARTIST: null,
 		ROUNTER_ALBUM: null,
 		CLICK_ALBUM: null,
@@ -1068,7 +1077,7 @@ React.renderComponent(React.createElement(LbcApp, null), mountNode);
 
 // <VideoWrap />
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_1c6236ac.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a2eefac4.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":193}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -1158,7 +1167,7 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.GET_ALBUMS:
-			console.log('payload=',payload);
+			// console.log('payload=',payload);
 
 			MusicAPIUtils.getAlbums(payload.action.rawData.artistName);
 
@@ -1281,6 +1290,13 @@ function clickArtist(id){
 	console.log('click:',id);
 }
 
+function updateArtistAlbums(albums){
+
+
+
+
+}
+
 
 
 var ArtistStore=merge(EventEmitter.prototype,{
@@ -1327,6 +1343,14 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 			ArtistStore.emitChange(_artist);
 
 			break;
+		case  ActionTypes.RECEIVE_ALBUMS:
+			console.log("artalbum=",action.rawData)
+			_artist[0].albumList=action.rawData
+			ArtistStore.emitChange(_artist);
+			// ArtistServerActionCreators.updateArtistAlbums(action.rawData);
+			break;
+
+		
 
 		default:
       		
@@ -1521,8 +1545,11 @@ var ArtistServerActionCreators = require('../actions/ArtistServerActionCreators'
 var gooogle_key = "AIzaSyAsteyStoDAQ62iG-rc5uDXttHNrtfEVHM";
 var lastfm_key = "d971000674f672292bf9638ba253bc54";
 var searchkey = "stars"; //Model
+var self=this;
 
 module.exports={
+
+	
 
 
     getInitData: function() {
@@ -1536,7 +1563,7 @@ module.exports={
 
 
 
-  getArtistTips:function(searchkey){
+   getArtistTips:function(searchkey){
 
   		Request
   			.get('http://ws.audioscrobbler.com/2.0/')
@@ -1633,6 +1660,7 @@ module.exports={
 
    },
    getAlbums: function(searchkey){
+   		var self=this;
 
    		Request
   			.get('http://ws.audioscrobbler.com/2.0/')
@@ -1642,9 +1670,23 @@ module.exports={
 
 	  				if (res.ok){
 	  					console.log('res=',res.body);
-	  					var _response = {};
+	  					var _response = [];
+	  					
 						var response =res.body;
 						response=response.topalbums.album;
+						response = _.filter(response,'mbid');
+
+						response.forEach(function(album){
+
+							_response.push({'albumCover': album.image[2]["#text"],'albumMbid': album.mbid,'albumName': album.name})
+							self.getTracks(album.mbid);
+
+
+						});
+
+						ArtistServerActionCreators.receiveAlbums(_response);
+
+
 
 
 	  				}else{
@@ -1690,12 +1732,6 @@ module.exports={
 
    		
 
-  //  		if (albumMbid != "") {
-		// 		oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&mbid=" + albumMbid + "&format=json",true);
-		// } else {
-		// 		oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&artist=" + encodeURI(artistName) + "&album=" + encodeURI(albumName) + "&format=json",true);
-		// }
-		
 
 
 

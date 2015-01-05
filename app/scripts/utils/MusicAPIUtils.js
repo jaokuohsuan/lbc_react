@@ -4,8 +4,11 @@ var ArtistServerActionCreators = require('../actions/ArtistServerActionCreators'
 var gooogle_key = "AIzaSyAsteyStoDAQ62iG-rc5uDXttHNrtfEVHM";
 var lastfm_key = "d971000674f672292bf9638ba253bc54";
 var searchkey = "stars"; //Model
+var self=this;
 
 module.exports={
+
+	
 
 
     getInitData: function() {
@@ -19,7 +22,7 @@ module.exports={
 
 
 
-  getArtistTips:function(searchkey){
+   getArtistTips:function(searchkey){
 
   		Request
   			.get('http://ws.audioscrobbler.com/2.0/')
@@ -116,6 +119,7 @@ module.exports={
 
    },
    getAlbums: function(searchkey){
+   		var self=this;
 
    		Request
   			.get('http://ws.audioscrobbler.com/2.0/')
@@ -125,9 +129,23 @@ module.exports={
 
 	  				if (res.ok){
 	  					console.log('res=',res.body);
-	  					var _response = {};
+	  					var _response = [];
+	  					
 						var response =res.body;
 						response=response.topalbums.album;
+						response = _.filter(response,'mbid');
+
+						response.forEach(function(album){
+
+							_response.push({'albumCover': album.image[2]["#text"],'albumMbid': album.mbid,'albumName': album.name})
+							self.getTracks(album.mbid);
+
+
+						});
+
+						ArtistServerActionCreators.receiveAlbums(_response);
+
+
 
 
 	  				}else{
@@ -173,12 +191,6 @@ module.exports={
 
    		
 
-  //  		if (albumMbid != "") {
-		// 		oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&mbid=" + albumMbid + "&format=json",true);
-		// } else {
-		// 		oReq.open("GET", "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + lastfm_key + "&artist=" + encodeURI(artistName) + "&album=" + encodeURI(albumName) + "&format=json",true);
-		// }
-		
 
 
 

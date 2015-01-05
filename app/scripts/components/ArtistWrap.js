@@ -51,7 +51,7 @@ var ArtistWrap=React.createClass({
            
             artists.push(
             	
-            	<Artist artistName={artistAlbum.artistName} artistImage={artistAlbum.artistImage} />
+            	<Artist artistName={artistAlbum.artistName} artistImage={artistAlbum.artistImage} artistalbums={artistAlbum.albumList} />
             
             );
            

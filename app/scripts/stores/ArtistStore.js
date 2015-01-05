@@ -40,6 +40,13 @@ function clickArtist(id){
 	console.log('click:',id);
 }
 
+function updateArtistAlbums(albums){
+
+
+
+
+}
+
 
 
 var ArtistStore=merge(EventEmitter.prototype,{
@@ -86,6 +93,14 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 			ArtistStore.emitChange(_artist);
 
 			break;
+		case  ActionTypes.RECEIVE_ALBUMS:
+			console.log("artalbum=",action.rawData)
+			_artist[0].albumList=action.rawData
+			ArtistStore.emitChange(_artist);
+			// ArtistServerActionCreators.updateArtistAlbums(action.rawData);
+			break;
+
+		
 
 		default:
       		
