@@ -1,15 +1,28 @@
 
 var React = require('react');
 var ArtistActionCreators = require("../actions/ArtistActionCreators");
+var albumAmount;
 
  var Artist=React.createClass({
+
  	handleClick: function(){
  
 		ArtistActionCreators.clickArtist(this.props.artistName);
 		
 	},
 
+
+
  	render: function(){
+
+ 		//add albumAmount
+
+ 		if(Array.isArray(this.props.artistalbums)){
+			albumAmount=this.props.artistalbums.length;
+
+		}else{
+			albumAmount="-";
+		}
 
  		//style for artist background-image
 
@@ -39,7 +52,7 @@ var ArtistActionCreators = require("../actions/ArtistActionCreators");
 						  	
 						    <a className="header">{this.props.artistName}</a>
 						    <div className="meta">
-						      <span className="date">Joined in 2014</span>
+						      <span className="date">{albumAmount} Albums</span>
 						      
 						    </div>
 					   		</div>

@@ -269,6 +269,12 @@ module.exports={
       rawData: rawData
     });
 
+  },
+  receiveTracks: function (rawData) {
+    AppDispatcher.handleServerAction({
+      actionType: ActionTypes.RECEIVE_TRACKS,
+      rawData: rawData
+    });
   }
 
 }
@@ -423,15 +429,28 @@ module.exports=AlbumWrap;
 
 var React = require('react');
 var ArtistActionCreators = require("../actions/ArtistActionCreators");
+var albumAmount;
 
  var Artist=React.createClass({displayName: "Artist",
+
  	handleClick: function(){
  
 		ArtistActionCreators.clickArtist(this.props.artistName);
 		
 	},
 
+
+
  	render: function(){
+
+ 		//add albumAmount
+
+ 		if(Array.isArray(this.props.artistalbums)){
+			albumAmount=this.props.artistalbums.length;
+
+		}else{
+			albumAmount="-";
+		}
 
  		//style for artist background-image
 
@@ -461,7 +480,7 @@ var ArtistActionCreators = require("../actions/ArtistActionCreators");
 						  	
 						    React.createElement("a", {className: "header"}, this.props.artistName), 
 						    React.createElement("div", {className: "meta"}, 
-						      React.createElement("span", {className: "date"}, "Joined in 2014")
+						      React.createElement("span", {className: "date"}, albumAmount, " Albums")
 						      
 						    )
 					   		)
@@ -931,6 +950,7 @@ module.exports={
 		REMOVE_ARTIST: null,
 		CLICK_ARTIST: null,
 		RECEIVE_ALBUMS: null,
+		RECEIVE_TRACKS: null,
 		ROUNTER_ARTIST: null,
 		ROUNTER_ALBUM: null,
 		CLICK_ALBUM: null,
@@ -1077,7 +1097,7 @@ React.renderComponent(React.createElement(LbcApp, null), mountNode);
 
 // <VideoWrap />
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a2eefac4.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_1e964471.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":193}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');

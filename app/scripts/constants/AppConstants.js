@@ -9,6 +9,7 @@ module.exports={
 		REMOVE_ARTIST: null,
 		CLICK_ARTIST: null,
 		RECEIVE_ALBUMS: null,
+		RECEIVE_TRACKS: null,
 		ROUNTER_ARTIST: null,
 		ROUNTER_ALBUM: null,
 		CLICK_ALBUM: null,

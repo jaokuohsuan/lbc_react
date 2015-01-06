@@ -49,6 +49,12 @@ module.exports={
       rawData: rawData
     });
 
+  },
+  receiveTracks: function (rawData) {
+    AppDispatcher.handleServerAction({
+      actionType: ActionTypes.RECEIVE_TRACKS,
+      rawData: rawData
+    });
   }
 
 }
