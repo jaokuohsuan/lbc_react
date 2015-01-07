@@ -1,5 +1,6 @@
 
-var React = require('react');
+var React = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var ArtistActionCreators = require("../actions/ArtistActionCreators");
 var albumAmount;
 
@@ -34,7 +35,9 @@ var albumAmount;
  		return(
  			
  			
+ 			
 	 			<div className="artist-but" onClick={this.handleClick}>
+	 				
 
 	 				
 
@@ -58,15 +61,12 @@ var albumAmount;
 					   		</div>
 					    
 					  </div>
-					  <div className="extra content">
-					    <a>
-					      <i className="user icon"></i>
-					      22 Friends
-					    </a>
-					  </div>
+					  
 					</div>
 
+
 				</div>
+			
 			
  		)
 

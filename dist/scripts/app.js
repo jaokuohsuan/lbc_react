@@ -192,6 +192,7 @@ module.exports={
 		});
 
 	}
+
 };
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/actions\\AlbumActionCreators.js","/actions")
 },{"../constants/AppConstants":13,"../dispatcher/AppDispatcher":14,"buffer":25,"ngpmcQ":29}],3:[function(require,module,exports){
@@ -263,7 +264,7 @@ module.exports={
 
   },
   receiveAlbums: function(rawData){
-    console.log("rawData=",rawData);
+    // console.log("rawData=",rawData);
     AppDispatcher.handleServerAction({
       actionType: ActionTypes.RECEIVE_ALBUMS,
       rawData: rawData
@@ -351,7 +352,8 @@ var Album=React.createClass({displayName: "Album",
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\Album.js","/components")
 },{"../actions/AlbumActionCreators":2,"buffer":25,"ngpmcQ":29,"react":193}],7:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
-var React = require('react');
+var React = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Album = require("./Album"),
 	AlbumActionCreators = require("../actions/AlbumActionCreators"),
 	AlbumStore= require("../stores/AlbumStore");
@@ -394,7 +396,7 @@ var AlbumWrap= React.createClass({displayName: "AlbumWrap",
             albums.push(
 
             	React.createElement("li", {className: "album-item"}, 
-            	React.createElement(Album, {albumName: artistAlbum.albumName, albumCover: artistAlbum.albumCover})
+            	React.createElement(Album, {albumName: artistAlbum.albumName, albumCover: artistAlbum.albumCover, albumMbid: artistAlbum.albumMbid})
             	)
             );
            
@@ -406,11 +408,7 @@ var AlbumWrap= React.createClass({displayName: "AlbumWrap",
 	 			React.createElement("div", {className: "album-scroll"}, 
 
 			         React.createElement("ul", {className: "album-item-list"}, 
-				         
-
-								albums		
-		  
-		               
+								albums	
 					), 
 				  React.createElement("div", {className: "album-line"}, 
 					React.createElement("div", {className: "line-inner"})
@@ -424,10 +422,11 @@ var AlbumWrap= React.createClass({displayName: "AlbumWrap",
 
 module.exports=AlbumWrap;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\AlbumWrap.js","/components")
-},{"../actions/AlbumActionCreators":2,"../stores/AlbumStore":16,"./Album":6,"buffer":25,"ngpmcQ":29,"react":193}],8:[function(require,module,exports){
+},{"../actions/AlbumActionCreators":2,"../stores/AlbumStore":16,"./Album":6,"buffer":25,"ngpmcQ":29,"react/addons":30}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 
-var React = require('react');
+var React = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var ArtistActionCreators = require("../actions/ArtistActionCreators");
 var albumAmount;
 
@@ -462,7 +461,9 @@ var albumAmount;
  		return(
  			
  			
+ 			
 	 			React.createElement("div", {className: "artist-but", onClick: this.handleClick}, 
+	 				
 
 	 				
 
@@ -485,16 +486,13 @@ var albumAmount;
 						    )
 					   		)
 					    
-					  ), 
-					  React.createElement("div", {className: "extra content"}, 
-					    React.createElement("a", null, 
-					      React.createElement("i", {className: "user icon"}), 
-					      "22 Friends"
-					    )
 					  )
+					  
 					)
 
+
 				)
+			
 			
  		)
 
@@ -504,12 +502,14 @@ var albumAmount;
 
 module.exports=Artist;
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\Artist.js","/components")
-},{"../actions/ArtistActionCreators":3,"buffer":25,"ngpmcQ":29,"react":193}],9:[function(require,module,exports){
+},{"../actions/ArtistActionCreators":3,"buffer":25,"ngpmcQ":29,"react/addons":30}],9:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @jsx React.DOM
  */
-var  React = require('react');
+
+var React = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Artist = require("./Artist"),
 	ArtistActionCreators = require("../actions/ArtistActionCreators"),
 	ArtistStore = require('../stores/ArtistStore'),
@@ -570,7 +570,9 @@ var ArtistWrap=React.createClass({displayName: "ArtistWrap",
 
 			
 			React.createElement("div", {className: "column"}, 
-				artists				
+     
+				  artists			
+       
 			)
 		)
 		)
@@ -585,7 +587,7 @@ module.exports=ArtistWrap;
 
 // <div className="artist-line"></div>
 }).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/components\\ArtistWrap.js","/components")
-},{"../actions/ArtistActionCreators":3,"../stores/AlbumStore":16,"../stores/ArtistStore":18,"./Artist":8,"buffer":25,"ngpmcQ":29,"react":193}],10:[function(require,module,exports){
+},{"../actions/ArtistActionCreators":3,"../stores/AlbumStore":16,"../stores/ArtistStore":18,"./Artist":8,"buffer":25,"ngpmcQ":29,"react/addons":30}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /**
  * @jsx React.DOM
@@ -1097,7 +1099,7 @@ React.renderComponent(React.createElement(LbcApp, null), mountNode);
 
 // <VideoWrap />
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_1e964471.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_39558013.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":193}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -1162,6 +1164,7 @@ var AlbumStore=merge(EventEmitter.prototype,{
 	    this.removeListener(CHANGE_EVENT, callback);
 	}
 
+
 });
 
 AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
@@ -1191,7 +1194,13 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			MusicAPIUtils.getAlbums(payload.action.rawData.artistName);
 
-			break;	
+			break;
+		// case ActionTypes.RECEIVE_TRACKS:
+		// 	// AlbumStore.emitChange(action);
+
+		// 	console.log('track-payload=',payload);
+
+		// 	break;
 			
 
 		default:
@@ -1364,12 +1373,33 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.RECEIVE_ALBUMS:
-			console.log("artalbum=",action.rawData)
+			console.log("artalbum111=",action.rawData)
 			_artist[0].albumList=action.rawData
 			ArtistStore.emitChange(_artist);
+
 			// ArtistServerActionCreators.updateArtistAlbums(action.rawData);
 			break;
+		case ActionTypes.RECEIVE_TRACKS:
 
+			// var artistIndex=_.findIndex(_artist,function(artist){
+			// 	artist.artistMbid===action.rawData.artistMbid;
+			// 	//console.log("yy=",artist.artistMbid ,action.rawData.artistMbid);
+			// });
+			// console.log("artistIndex=",artistIndex);
+			_artist.map(function(artist){
+				console.log("artist=",artist,"action.rawData=",action.rawData);
+
+				if(artist.artistMbid===action.rawData.artistMbid){
+					//artist.tracks=action.rawData.tracks;
+					console.log('papa');
+					
+
+				}
+
+			});
+
+
+			break;
 		
 
 		default:
@@ -1698,6 +1728,7 @@ module.exports={
 
 						response.forEach(function(album){
 
+
 							_response.push({'albumCover': album.image[2]["#text"],'albumMbid': album.mbid,'albumName': album.name})
 							self.getTracks(album.mbid);
 
@@ -1735,8 +1766,24 @@ module.exports={
 	  				if (res.ok){
 	  					
 	  					var _response = {};
-						var response =res.body;
-						console.log( 'track:',response);
+	  					_response.tracks=[];
+						var response =res.body.album;
+
+						_response.albumMbid=response.mbid;
+						_response.albumName=response.name;
+						_response.albumDate=response.releasedate;						
+						_response.artistMbid=response.tracks.track[0].artist.mbid;
+						_response.artistName=response.artist;
+
+						response.tracks.track.forEach(function(track){
+
+							_response.tracks.push({'trackMbid': track.mbid,'trackName': track.name});
+
+						});
+						// _response.tracks=response.tracks.track;
+						ArtistServerActionCreators.receiveTracks(_response);
+
+					
 
 
 	  				}else{

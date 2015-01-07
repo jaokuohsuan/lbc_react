@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react/addons');
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Album = require("./Album"),
 	AlbumActionCreators = require("../actions/AlbumActionCreators"),
 	AlbumStore= require("../stores/AlbumStore");
@@ -41,7 +42,7 @@ var AlbumWrap= React.createClass({
             albums.push(
 
             	<li className="album-item">
-            	<Album albumName={artistAlbum.albumName} albumCover={artistAlbum.albumCover} />
+            	<Album albumName={artistAlbum.albumName} albumCover={artistAlbum.albumCover} albumMbid={artistAlbum.albumMbid} />
             	</li>
             );
            
@@ -53,11 +54,7 @@ var AlbumWrap= React.createClass({
 	 			<div className="album-scroll">
 
 			         <ul className="album-item-list">
-				         
-
-								{albums}		
-		  
-		               
+								{albums}	
 					</ul>
 				  <div className="album-line">
 					<div className="line-inner"></div>

@@ -137,6 +137,7 @@ module.exports={
 
 						response.forEach(function(album){
 
+
 							_response.push({'albumCover': album.image[2]["#text"],'albumMbid': album.mbid,'albumName': album.name})
 							self.getTracks(album.mbid);
 
@@ -174,8 +175,24 @@ module.exports={
 	  				if (res.ok){
 	  					
 	  					var _response = {};
-						var response =res.body;
-						console.log( 'track:',response);
+	  					_response.tracks=[];
+						var response =res.body.album;
+
+						_response.albumMbid=response.mbid;
+						_response.albumName=response.name;
+						_response.albumDate=response.releasedate;						
+						_response.artistMbid=response.tracks.track[0].artist.mbid;
+						_response.artistName=response.artist;
+
+						response.tracks.track.forEach(function(track){
+
+							_response.tracks.push({'trackMbid': track.mbid,'trackName': track.name});
+
+						});
+						// _response.tracks=response.tracks.track;
+						ArtistServerActionCreators.receiveTracks(_response);
+
+					
 
 
 	  				}else{

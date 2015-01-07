@@ -43,7 +43,7 @@ module.exports={
 
   },
   receiveAlbums: function(rawData){
-    console.log("rawData=",rawData);
+    // console.log("rawData=",rawData);
     AppDispatcher.handleServerAction({
       actionType: ActionTypes.RECEIVE_ALBUMS,
       rawData: rawData

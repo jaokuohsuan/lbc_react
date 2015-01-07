@@ -60,6 +60,7 @@ var AlbumStore=merge(EventEmitter.prototype,{
 	    this.removeListener(CHANGE_EVENT, callback);
 	}
 
+
 });
 
 AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
@@ -89,7 +90,13 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			MusicAPIUtils.getAlbums(payload.action.rawData.artistName);
 
-			break;	
+			break;
+		// case ActionTypes.RECEIVE_TRACKS:
+		// 	// AlbumStore.emitChange(action);
+
+		// 	console.log('track-payload=',payload);
+
+		// 	break;
 			
 
 		default:
