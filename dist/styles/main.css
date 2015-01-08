@@ -769,28 +769,23 @@
   display: none !important;
 }
 
-/* line 465, ../../app/styles/lib/_artist.sass */
-body {
-  background-color: #000;
-}
-
-/* line 472, ../../app/styles/lib/_artist.sass */
+/* line 469, ../../app/styles/lib/_artist.sass */
 .fadein-anima-enter {
   opacity: 0.01;
   transition: opacity 0.5s ease-in;
 }
 
-/* line 477, ../../app/styles/lib/_artist.sass */
+/* line 474, ../../app/styles/lib/_artist.sass */
 .fadein-anima-enter.fadein-anima-enter-active {
   opacity: 1;
 }
 
-/* line 480, ../../app/styles/lib/_artist.sass */
+/* line 477, ../../app/styles/lib/_artist.sass */
 .fadein-anima-leave {
   opacity: 1;
 }
 
-/* line 484, ../../app/styles/lib/_artist.sass */
+/* line 481, ../../app/styles/lib/_artist.sass */
 .fadein-anima-leave.fadein-anima-leave-active {
   opacity: 0.01;
   transition: opacity 0.5s ease-in;

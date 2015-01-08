@@ -70,7 +70,7 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 	switch(action.actionType){
 		case  ActionTypes.RECEIVE_INIT:
-     		console.log('INIT lalala',action.rawData);
+     		// console.log('INIT lalala',action.rawData);
      	  	_album=action.rawData; 
      	break;
 		case  ActionTypes.ADD_ARTIST:

@@ -14,6 +14,58 @@ var React = window.React = require('react'),
 
 var MusicExampleData= require('./MusicExampleData'); //ecample Data
 
+//youtube player js
+var tag = document.createElement('script');
+   
+var firstScriptTag = document.getElementsByTagName('script')[0];
+   
+var player;
+
+
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('UtubePlayer', {
+    height: '100%',
+    width: '100%',
+    //videoId: 'M7lc1UVf-VE',
+    //wmode: 'transparent',
+    playerVars: {
+      "controls": 2, //change youtube controls bar 
+      "autohide": 1, //auto hide contral bar
+      "theme": "dark",
+      "color": "white",
+      "wmode": 'transparent',
+      "rel": 0
+
+    },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+  //to do list ,set to hight quality
+  //player.setPlaybackQuality('hd720'); 
+}
+
+function onPlayerReady(event) {
+
+  //event.target.playVideo();
+}
+
+
+function onPlayerStateChange(event) {
+  // if (event.data == YT.PlayerState.PLAYING && !done) {
+  //  setTimeout(stopVideo, 6000);
+  //  done = true;
+  // }
+}
+
+function stopVideo() {
+  player.stopVideo();
+}
+//youtube player js end
+
+
 
 React.initializeTouchEvents(true);
 
@@ -54,7 +106,8 @@ var LbcApp=React.createClass({
   componentDidMount: function() {
 
       //RounterStore.addChangeListener(this._onChange);
-
+       // tag.src = "https://www.youtube.com/iframe_api";
+       // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
    
   },
 
@@ -68,7 +121,7 @@ var LbcApp=React.createClass({
   render: function(){
     return(
       <div className="ui page grid">
-            
+          <VideoWrap />  
           <SearchWrap />
           <ArtistWrap />
           <AlbumWrap />

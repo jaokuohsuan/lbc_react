@@ -12,15 +12,18 @@ var Album=React.createClass({
 
  	render: function(){
  		return(
- 			<div>
-	 			<a href="#" className="album-but" onClick={this.handleClick}>
-					<figure className="album-thumb">
+ 			
+	 			<a  className="item" onClick={this.handleClick}>
+					<div className="ui tiny image">
 						<img src={this.props.albumCover} />						
-					</figure>
-					<span className="album-title"> {this.props.albumName} </span>
+					</div>
+					<div className="middle aligned content"> 
+						<h4 className="header">{this.props.albumName}</h4>
+						<div className="description">{this.props.albumName}</div>
+					</div>
 				</a>
-				<span className="album-time">album </span>
-			</div>
+				
+			
  		)
  	}
 

@@ -94,7 +94,7 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.RECEIVE_ALBUMS:
-			console.log("artalbum111=",action.rawData)
+			// console.log("artalbum111=",action.rawData)
 			_artist[0].albumList=action.rawData
 			ArtistStore.emitChange(_artist);
 
@@ -102,22 +102,22 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case ActionTypes.RECEIVE_TRACKS:
 
-			// var artistIndex=_.findIndex(_artist,function(artist){
-			// 	artist.artistMbid===action.rawData.artistMbid;
-			// 	//console.log("yy=",artist.artistMbid ,action.rawData.artistMbid);
-			// });
-			// console.log("artistIndex=",artistIndex);
+			//loop artists
 			_artist.map(function(artist){
-				console.log("artist=",artist,"action.rawData=",action.rawData);
-
+				//loop albums
 				if(artist.artistMbid===action.rawData.artistMbid){
-					//artist.tracks=action.rawData.tracks;
-					console.log('papa');
-					
+
+					var alnumIndex=_.findIndex(artist.albumList,function(theAlbum){
+						return theAlbum.albumMbid===action.rawData.albumMbid
+					});
+					artist.albumList[alnumIndex].tracks=action.rawData.tracks;
+					artist.albumList[alnumIndex].albumDate=action.rawData.albumDate;
 
 				}
 
 			});
+
+			ArtistStore.emitChange(_artist);
 
 
 			break;

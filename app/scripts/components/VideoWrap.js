@@ -9,8 +9,8 @@ var VideoWrap= React.createClass({
 
 		return(
 
-	 		<div className="videoBg-wrap">
-			  <div className="UtubePlayer"></div>
+	 		<div className="video-wrap">
+			  <div id="UtubePlayer"></div>
 			</div>
  		);
 

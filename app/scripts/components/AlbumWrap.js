@@ -41,9 +41,9 @@ var AlbumWrap= React.createClass({
            
             albums.push(
 
-            	<li className="album-item">
+            	
             	<Album albumName={artistAlbum.albumName} albumCover={artistAlbum.albumCover} albumMbid={artistAlbum.albumMbid} />
-            	</li>
+            	
             );
            
            
@@ -51,15 +51,15 @@ var AlbumWrap= React.createClass({
 
 		return(
 
-	 			<div className="album-scroll">
-
-			         <ul className="album-item-list">
+	 		  
+					<div className="sixteen wide column">
+			         <div className="ui divided items">
 								{albums}	
-					</ul>
-				  <div className="album-line">
-					<div className="line-inner"></div>
-				  </div>
-		      </div>
+					 </div>
+					</div>
+					
+				  
+		      
 		)
 
 	}

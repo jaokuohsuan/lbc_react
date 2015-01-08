@@ -332,15 +332,18 @@ var Album=React.createClass({displayName: "Album",
 
  	render: function(){
  		return(
- 			React.createElement("div", null, 
-	 			React.createElement("a", {href: "#", className: "album-but", onClick: this.handleClick}, 
-					React.createElement("figure", {className: "album-thumb"}, 
+ 			
+	 			React.createElement("a", {className: "item", onClick: this.handleClick}, 
+					React.createElement("div", {className: "ui tiny image"}, 
 						React.createElement("img", {src: this.props.albumCover})						
 					), 
-					React.createElement("span", {className: "album-title"}, " ", this.props.albumName, " ")
-				), 
-				React.createElement("span", {className: "album-time"}, "album ")
-			)
+					React.createElement("div", {className: "middle aligned content"}, 
+						React.createElement("h4", {className: "header"}, this.props.albumName), 
+						React.createElement("div", {className: "description"}, this.props.albumName)
+					)
+				)
+				
+			
  		)
  	}
 
@@ -395,9 +398,9 @@ var AlbumWrap= React.createClass({displayName: "AlbumWrap",
            
             albums.push(
 
-            	React.createElement("li", {className: "album-item"}, 
+            	
             	React.createElement(Album, {albumName: artistAlbum.albumName, albumCover: artistAlbum.albumCover, albumMbid: artistAlbum.albumMbid})
-            	)
+            	
             );
            
            
@@ -405,15 +408,15 @@ var AlbumWrap= React.createClass({displayName: "AlbumWrap",
 
 		return(
 
-	 			React.createElement("div", {className: "album-scroll"}, 
-
-			         React.createElement("ul", {className: "album-item-list"}, 
+	 		  
+					React.createElement("div", {className: "sixteen wide column"}, 
+			         React.createElement("div", {className: "ui divided items"}, 
 								albums	
-					), 
-				  React.createElement("div", {className: "album-line"}, 
-					React.createElement("div", {className: "line-inner"})
-				  )
-		      )
+					 )
+					)
+					
+				  
+		      
 		)
 
 	}
@@ -926,8 +929,8 @@ var VideoWrap= React.createClass({displayName: "VideoWrap",
 
 		return(
 
-	 		React.createElement("div", {className: "videoBg-wrap"}, 
-			  React.createElement("div", {className: "UtubePlayer"})
+	 		React.createElement("div", {className: "video-wrap"}, 
+			  React.createElement("div", {id: "UtubePlayer"})
 			)
  		);
 
@@ -1029,6 +1032,58 @@ var React = window.React = require('react'),
 
 var MusicExampleData= require('./MusicExampleData'); //ecample Data
 
+//youtube player js
+var tag = document.createElement('script');
+   
+var firstScriptTag = document.getElementsByTagName('script')[0];
+   
+var player;
+
+
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('UtubePlayer', {
+    height: '100%',
+    width: '100%',
+    //videoId: 'M7lc1UVf-VE',
+    //wmode: 'transparent',
+    playerVars: {
+      "controls": 2, //change youtube controls bar 
+      "autohide": 1, //auto hide contral bar
+      "theme": "dark",
+      "color": "white",
+      "wmode": 'transparent',
+      "rel": 0
+
+    },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+  //to do list ,set to hight quality
+  //player.setPlaybackQuality('hd720'); 
+}
+
+function onPlayerReady(event) {
+
+  //event.target.playVideo();
+}
+
+
+function onPlayerStateChange(event) {
+  // if (event.data == YT.PlayerState.PLAYING && !done) {
+  //  setTimeout(stopVideo, 6000);
+  //  done = true;
+  // }
+}
+
+function stopVideo() {
+  player.stopVideo();
+}
+//youtube player js end
+
+
 
 React.initializeTouchEvents(true);
 
@@ -1069,7 +1124,8 @@ var LbcApp=React.createClass({displayName: "LbcApp",
   componentDidMount: function() {
 
       //RounterStore.addChangeListener(this._onChange);
-
+       // tag.src = "https://www.youtube.com/iframe_api";
+       // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
    
   },
 
@@ -1083,7 +1139,7 @@ var LbcApp=React.createClass({displayName: "LbcApp",
   render: function(){
     return(
       React.createElement("div", {className: "ui page grid"}, 
-            
+          React.createElement(VideoWrap, null), 
           React.createElement(SearchWrap, null), 
           React.createElement(ArtistWrap, null), 
           React.createElement(AlbumWrap, null)
@@ -1099,7 +1155,7 @@ React.renderComponent(React.createElement(LbcApp, null), mountNode);
 
 // <VideoWrap />
 
-}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_39558013.js","/")
+}).call(this,require("ngpmcQ"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_f0001b75.js","/")
 },{"./MusicExampleData":1,"./components/AlbumWrap":7,"./components/ArtistWrap":9,"./components/SearchWrap":11,"./components/VideoWrap":12,"./stores/AppStore":17,"./stores/RounterStore":19,"./utils/MusicAPIUtils":21,"buffer":25,"ngpmcQ":29,"react":193}],16:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var AppConstants= require('../constants/AppConstants');
@@ -1174,7 +1230,7 @@ AlbumStore.dispatchToken=AppDispatcher.register(function(payload){
 
 	switch(action.actionType){
 		case  ActionTypes.RECEIVE_INIT:
-     		console.log('INIT lalala',action.rawData);
+     		// console.log('INIT lalala',action.rawData);
      	  	_album=action.rawData; 
      	break;
 		case  ActionTypes.ADD_ARTIST:
@@ -1373,7 +1429,7 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 
 			break;
 		case  ActionTypes.RECEIVE_ALBUMS:
-			console.log("artalbum111=",action.rawData)
+			// console.log("artalbum111=",action.rawData)
 			_artist[0].albumList=action.rawData
 			ArtistStore.emitChange(_artist);
 
@@ -1381,22 +1437,22 @@ ArtistStore.dispatchToken=AppDispatcher.register(function(payload){
 			break;
 		case ActionTypes.RECEIVE_TRACKS:
 
-			// var artistIndex=_.findIndex(_artist,function(artist){
-			// 	artist.artistMbid===action.rawData.artistMbid;
-			// 	//console.log("yy=",artist.artistMbid ,action.rawData.artistMbid);
-			// });
-			// console.log("artistIndex=",artistIndex);
+			//loop artists
 			_artist.map(function(artist){
-				console.log("artist=",artist,"action.rawData=",action.rawData);
-
+				//loop albums
 				if(artist.artistMbid===action.rawData.artistMbid){
-					//artist.tracks=action.rawData.tracks;
-					console.log('papa');
-					
+
+					var alnumIndex=_.findIndex(artist.albumList,function(theAlbum){
+						return theAlbum.albumMbid===action.rawData.albumMbid
+					});
+					artist.albumList[alnumIndex].tracks=action.rawData.tracks;
+					artist.albumList[alnumIndex].albumDate=action.rawData.albumDate;
 
 				}
 
 			});
+
+			ArtistStore.emitChange(_artist);
 
 
 			break;
@@ -1688,7 +1744,7 @@ module.exports={
    		   	.end(function(res){
 
 	  				if (res.ok){
-	  					console.log('res=',res.body);
+	  					// console.log('res=',res.body);
 
 		  				var _response = {};					
 						var response =res.body;
@@ -1719,7 +1775,7 @@ module.exports={
   			.end(function(res){
 
 	  				if (res.ok){
-	  					console.log('res=',res.body);
+	  					console.log('album res=',res.body);
 	  					var _response = [];
 	  					
 						var response =res.body;
@@ -1764,6 +1820,7 @@ module.exports={
    			.end(function(res){
 
 	  				if (res.ok){
+	  					console.log('track res=',res.body);
 	  					
 	  					var _response = {};
 	  					_response.tracks=[];
@@ -1792,17 +1849,25 @@ module.exports={
 	  				
 
 	  		});
-   		
 
+   },
+   getVideo: function(searchKey){
+   		Request
+   			.get('https://www.googleapis.com/youtube/v3/search')
+  			.accept('json')
+  			.query({'part':'snippet','q': searchkey,"maxResults": prePageNu,'key':gooogle_key})
+  			.end(function(res){
 
+	  				if (res.ok){
+	  					var _response = {};	
+	  					var response =res.body
 
+	  				}else{
+	  					console.error('Oh no! error ' + res.text);
+	  				}
+	  				
 
-   		
-
-
-
-
-
+	  		});
 
    }
 

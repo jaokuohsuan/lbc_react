@@ -97,7 +97,7 @@ module.exports={
    		   	.end(function(res){
 
 	  				if (res.ok){
-	  					console.log('res=',res.body);
+	  					// console.log('res=',res.body);
 
 		  				var _response = {};					
 						var response =res.body;
@@ -128,7 +128,7 @@ module.exports={
   			.end(function(res){
 
 	  				if (res.ok){
-	  					console.log('res=',res.body);
+	  					console.log('album res=',res.body);
 	  					var _response = [];
 	  					
 						var response =res.body;
@@ -173,6 +173,7 @@ module.exports={
    			.end(function(res){
 
 	  				if (res.ok){
+	  					console.log('track res=',res.body);
 	  					
 	  					var _response = {};
 	  					_response.tracks=[];
@@ -201,17 +202,25 @@ module.exports={
 	  				
 
 	  		});
-   		
 
+   },
+   getVideo: function(searchKey){
+   		Request
+   			.get('https://www.googleapis.com/youtube/v3/search')
+  			.accept('json')
+  			.query({'part':'snippet','q': searchkey,"maxResults": prePageNu,'key':gooogle_key})
+  			.end(function(res){
 
+	  				if (res.ok){
+	  					var _response = {};	
+	  					var response =res.body
 
+	  				}else{
+	  					console.error('Oh no! error ' + res.text);
+	  				}
+	  				
 
-   		
-
-
-
-
-
+	  		});
 
    }
 
