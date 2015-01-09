@@ -2,6 +2,10 @@
  * @jsx React.DOM
  */
 var  React = require('react');
+var Utube=require('./Utube');
+
+
+
 var VideoWrap= React.createClass({
 
 
@@ -10,7 +14,7 @@ var VideoWrap= React.createClass({
 		return(
 
 	 		<div className="video-wrap">
-			  <div id="UtubePlayer"></div>
+			  <Utube />
 			</div>
  		);
 
@@ -20,4 +24,4 @@ var VideoWrap= React.createClass({
 });
 
 
- module.exports=VideoWrap;
+module.exports=VideoWrap;
